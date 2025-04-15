@@ -2,12 +2,16 @@
   "name": "luiz-institucional",
   "version": "0.1.0",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:DevLfmd/semicolon.git"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "deploy": "next build && gh-pages -d out"
+    "deploy": "next build && gh-pages -d out --repo git@github.com:DevLfmd/semicolon.git"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
