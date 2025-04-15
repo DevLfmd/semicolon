@@ -6,8 +6,8 @@ const nextConfig = {
   },
   // Only use these settings in production
   ...(process.env.NODE_ENV === 'production' ? {
-    basePath: '/devlfmd',
-    assetPrefix: '/devlfmd/',
+    basePath: '/semicolon',
+    assetPrefix: '/semicolon/',
   } : {})
 }
 
