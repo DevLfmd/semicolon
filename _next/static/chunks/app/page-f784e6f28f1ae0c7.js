@@ -252,18 +252,7 @@ function Home() {
                             zIndex: 10
                         },
                         children: [
-                            /*#__PURE__*/ (0,jsx_runtime.jsxs)(proxy/* motion */.E.h1, {
-                                initial: {
-                                    opacity: 0,
-                                    y: 20
-                                },
-                                animate: {
-                                    opacity: 1,
-                                    y: 0
-                                },
-                                transition: {
-                                    duration: 0.8
-                                },
+                            /*#__PURE__*/ (0,jsx_runtime.jsxs)("h1", {
                                 style: {
                                     fontSize: "3.5rem",
                                     fontWeight: "bold",
@@ -280,19 +269,7 @@ function Home() {
                                     })
                                 ]
                             }),
-                            /*#__PURE__*/ (0,jsx_runtime.jsx)(proxy/* motion */.E.p, {
-                                initial: {
-                                    opacity: 0,
-                                    y: 20
-                                },
-                                animate: {
-                                    opacity: 1,
-                                    y: 0
-                                },
-                                transition: {
-                                    duration: 0.8,
-                                    delay: 0.2
-                                },
+                            /*#__PURE__*/ (0,jsx_runtime.jsx)("p", {
                                 style: {
                                     fontSize: "1.35rem",
                                     marginBottom: "2rem",
@@ -301,19 +278,7 @@ function Home() {
                                 },
                                 children: "Desenvolvimento Full Stack de alta performance para impulsionar seu neg\xf3cio"
                             }),
-                            /*#__PURE__*/ (0,jsx_runtime.jsxs)(proxy/* motion */.E.div, {
-                                initial: {
-                                    opacity: 0,
-                                    y: 20
-                                },
-                                animate: {
-                                    opacity: 1,
-                                    y: 0
-                                },
-                                transition: {
-                                    duration: 0.8,
-                                    delay: 0.4
-                                },
+                            /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
                                 style: {
                                     display: "flex",
                                     flexDirection: "row",
@@ -352,19 +317,7 @@ function Home() {
                             })
                         ]
                     }),
-                    /*#__PURE__*/ (0,jsx_runtime.jsx)(proxy/* motion */.E.div, {
-                        initial: {
-                            opacity: 0,
-                            y: 20
-                        },
-                        animate: {
-                            opacity: 1,
-                            y: 0
-                        },
-                        transition: {
-                            duration: 0.8,
-                            delay: 0.6
-                        },
+                    /*#__PURE__*/ (0,jsx_runtime.jsx)("div", {
                         style: {
                             position: "absolute",
                             bottom: "2.5rem"
@@ -398,10 +351,7 @@ function Home() {
                             textAlign: "center"
                         },
                         children: [
-                            /*#__PURE__*/ (0,jsx_runtime.jsxs)(proxy/* motion */.E.div, {
-                                whileHover: {
-                                    scale: 1.05
-                                },
+                            /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
                                 style: {
                                     padding: "1.5rem"
                                 },
@@ -423,10 +373,7 @@ function Home() {
                                     })
                                 ]
                             }),
-                            /*#__PURE__*/ (0,jsx_runtime.jsxs)(proxy/* motion */.E.div, {
-                                whileHover: {
-                                    scale: 1.05
-                                },
+                            /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
                                 style: {
                                     padding: "1.5rem"
                                 },
@@ -448,10 +395,7 @@ function Home() {
                                     })
                                 ]
                             }),
-                            /*#__PURE__*/ (0,jsx_runtime.jsxs)(proxy/* motion */.E.div, {
-                                whileHover: {
-                                    scale: 1.05
-                                },
+                            /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
                                 style: {
                                     padding: "1.5rem"
                                 },
@@ -473,10 +417,7 @@ function Home() {
                                     })
                                 ]
                             }),
-                            /*#__PURE__*/ (0,jsx_runtime.jsxs)(proxy/* motion */.E.div, {
-                                whileHover: {
-                                    scale: 1.05
-                                },
+                            /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
                                 style: {
                                     padding: "1.5rem"
                                 },
