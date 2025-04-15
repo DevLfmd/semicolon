@@ -1,7 +1,151 @@
 2:I[7831,[],""]
-3:I[8836,["118","static/chunks/118-87d47bd3565016f2.js","931","static/chunks/app/page-5102b1f171180c24.js"],""]
-4:I[5613,[],""]
-5:I[1778,[],""]
-0:["zvdGf1JkQVJDXcE0mttPK",[[["",{"children":["__PAGE__",{}]},"$undefined","$undefined",true],["",{"children":["__PAGE__",{},["$L1",["$","$L2",null,{"propsForComponent":{"params":{}},"Component":"$3","isStaticGeneration":true}],null]]},[null,["$","html",null,{"lang":"pt-BR","children":["$","body",null,{"className":"font-sans","children":["$","$L4",null,{"parallelRouterKey":"children","segmentPath":["children"],"loading":"$undefined","loadingStyles":"$undefined","loadingScripts":"$undefined","hasLoading":false,"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":["$","div",null,{"className":"min-h-screen flex items-center justify-center bg-gray-100","children":["$","div",null,{"className":"text-center","children":[["$","h1",null,{"className":"text-6xl font-bold text-gray-900 mb-4","children":"404"}],["$","p",null,{"className":"text-xl text-gray-600 mb-8","children":"Página não encontrada"}],["$","a",null,{"href":"/semicolon/","className":"px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors","children":"Voltar para a página inicial"}]]}]}],"notFoundStyles":[],"styles":null}]}]}],null]],[null,"$L6"]]]]
-6:[["$","meta","0",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","1",{"charSet":"utf-8"}],["$","title","2",{"children":"Empresa de Desenvolvimento Full Stack"}],["$","meta","3",{"name":"description","content":"Transformando ideias em realidade digital com desenvolvimento full stack de alta performance"}]]
+3:I[8836,["118","static/chunks/118-87d47bd3565016f2.js","931","static/chunks/app/page-e97334aef8fda08e.js"],""]
+5:I[5613,[],""]
+6:I[1778,[],""]
+4:T726,
+          body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+          }
+          .min-h-screen {
+            min-height: 100vh;
+          }
+          .flex {
+            display: flex;
+          }
+          .items-center {
+            align-items: center;
+          }
+          .justify-center {
+            justify-content: center;
+          }
+          .text-center {
+            text-align: center;
+          }
+          .bg-gray-100 {
+            background-color: #f3f4f6;
+          }
+          .text-6xl {
+            font-size: 3.75rem;
+            line-height: 1;
+          }
+          .font-bold {
+            font-weight: 700;
+          }
+          .text-gray-900 {
+            color: #111827;
+          }
+          .mb-4 {
+            margin-bottom: 1rem;
+          }
+          .text-xl {
+            font-size: 1.25rem;
+            line-height: 1.75rem;
+          }
+          .text-gray-600 {
+            color: #4b5563;
+          }
+          .mb-8 {
+            margin-bottom: 2rem;
+          }
+          .px-6 {
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+          }
+          .py-3 {
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
+          }
+          .bg-blue-600 {
+            background-color: #2563eb;
+          }
+          .text-white {
+            color: #ffffff;
+          }
+          .rounded-lg {
+            border-radius: 0.5rem;
+          }
+          .hover\:bg-blue-700:hover {
+            background-color: #1d4ed8;
+          }
+          .transition-colors {
+            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 150ms;
+          }
+        7:T696,
+        body {
+          font-family: 'Inter', sans-serif;
+          margin: 0;
+          padding: 0;
+        }
+        .min-h-screen {
+          min-height: 100vh;
+        }
+        .flex {
+          display: flex;
+        }
+        .items-center {
+          align-items: center;
+        }
+        .justify-center {
+          justify-content: center;
+        }
+        .text-center {
+          text-align: center;
+        }
+        .bg-gray-100 {
+          background-color: #f3f4f6;
+        }
+        .text-6xl {
+          font-size: 3.75rem;
+          line-height: 1;
+        }
+        .font-bold {
+          font-weight: 700;
+        }
+        .text-gray-900 {
+          color: #111827;
+        }
+        .mb-4 {
+          margin-bottom: 1rem;
+        }
+        .text-xl {
+          font-size: 1.25rem;
+          line-height: 1.75rem;
+        }
+        .text-gray-600 {
+          color: #4b5563;
+        }
+        .mb-8 {
+          margin-bottom: 2rem;
+        }
+        .px-6 {
+          padding-left: 1.5rem;
+          padding-right: 1.5rem;
+        }
+        .py-3 {
+          padding-top: 0.75rem;
+          padding-bottom: 0.75rem;
+        }
+        .bg-blue-600 {
+          background-color: #2563eb;
+        }
+        .text-white {
+          color: #ffffff;
+        }
+        .rounded-lg {
+          border-radius: 0.5rem;
+        }
+        .hover\:bg-blue-700:hover {
+          background-color: #1d4ed8;
+        }
+        .transition-colors {
+          transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+          transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+          transition-duration: 150ms;
+        }
+      0:["PEGFXVyj3BClTUdHEnzyk",[[["",{"children":["__PAGE__",{}]},"$undefined","$undefined",true],["",{"children":["__PAGE__",{},["$L1",["$","$L2",null,{"propsForComponent":{"params":{}},"Component":"$3","isStaticGeneration":true}],null]]},[null,["$","html",null,{"lang":"pt-BR","children":[["$","head",null,{"children":["$","style",null,{"dangerouslySetInnerHTML":{"__html":"$4"}}]}],["$","body",null,{"className":"__className_48954d","children":["$","$L5",null,{"parallelRouterKey":"children","segmentPath":["children"],"loading":"$undefined","loadingStyles":"$undefined","loadingScripts":"$undefined","hasLoading":false,"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L6",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"$7"}}],["$","div",null,{"className":"min-h-screen flex items-center justify-center bg-gray-100","children":["$","div",null,{"className":"text-center","children":[["$","h1",null,{"className":"text-6xl font-bold text-gray-900 mb-4","children":"404"}],["$","p",null,{"className":"text-xl text-gray-600 mb-8","children":"Página não encontrada"}],["$","a",null,{"href":"/semicolon/","className":"px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors","children":"Voltar para a página inicial"}]]}]}]],"notFoundStyles":[],"styles":null}]}]]}],null]],[[["$","link","0",{"rel":"stylesheet","href":"/semicolon/_next/static/css/7cce1149c6d62bde.css","precedence":"next","crossOrigin":""}]],"$L8"]]]]
+8:[["$","meta","0",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","1",{"charSet":"utf-8"}],["$","title","2",{"children":"Empresa de Desenvolvimento Full Stack"}],["$","meta","3",{"name":"description","content":"Transformando ideias em realidade digital com desenvolvimento full stack de alta performance"}],["$","meta","4",{"name":"next-size-adjust"}]]
 1:null
