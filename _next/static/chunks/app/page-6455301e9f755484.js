@@ -167,6 +167,10 @@ function Home() {
     });
     const [isSubmitting, setIsSubmitting] = (0,react.useState)(false);
     const [submitStatus, setSubmitStatus] = (0,react.useState)(null);
+    // Initialize EmailJS
+    (0,react.useEffect)(()=>{
+        es/* default.init */.ZP.init("fkyTKEWPMpDZrvJIJ");
+    }, []);
     const handleChange = (e)=>{
         const { name, value } = e.target;
         setFormData((prev)=>({
@@ -176,23 +180,35 @@ function Home() {
     };
     const handleSubmit = async (e)=>{
         e.preventDefault();
+        // Basic validation
+        if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+            setSubmitStatus({
+                success: false,
+                message: "Por favor, preencha todos os campos obrigat\xf3rios."
+            });
+            return;
+        }
+        // Email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(formData.email)) {
+            setSubmitStatus({
+                success: false,
+                message: "Por favor, insira um endere\xe7o de email v\xe1lido."
+            });
+            return;
+        }
         setIsSubmitting(true);
         setSubmitStatus(null);
         try {
-            // Check if environment variables are defined
             const serviceId = "service_3fezsm8";
             const templateId = "template_w17cycd";
-            const publicKey = "fkyTKEWPMpDZrvJIJ";
-            if (!serviceId || !templateId || !publicKey) {
-                throw new Error("EmailJS configuration is missing");
-            }
             const result = await es/* default.send */.ZP.send(serviceId, templateId, {
                 to_email: "luizfmd16@gmail.com",
                 from_name: formData.name,
                 from_email: formData.email,
                 phone: formData.phone,
                 message: formData.message
-            }, publicKey);
+            });
             if (result.text === "OK") {
                 setSubmitStatus({
                     success: true,
@@ -1203,19 +1219,31 @@ function Home() {
                                                         backgroundColor: submitStatus.success ? "#dcfce7" : "#fee2e2",
                                                         color: submitStatus.success ? "#166534" : "#991b1b"
                                                     },
+                                                    role: "alert",
+                                                    "aria-live": "polite",
                                                     children: submitStatus.message
                                                 }),
                                                 /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
                                                     children: [
-                                                        /*#__PURE__*/ (0,jsx_runtime.jsx)("label", {
+                                                        /*#__PURE__*/ (0,jsx_runtime.jsxs)("label", {
+                                                            htmlFor: "name",
                                                             style: {
                                                                 display: "block",
                                                                 color: "#374151",
                                                                 marginBottom: "0.5rem"
                                                             },
-                                                            children: "Nome"
+                                                            children: [
+                                                                "Nome ",
+                                                                /*#__PURE__*/ (0,jsx_runtime.jsx)("span", {
+                                                                    style: {
+                                                                        color: "#ef4444"
+                                                                    },
+                                                                    children: "*"
+                                                                })
+                                                            ]
                                                         }),
                                                         /*#__PURE__*/ (0,jsx_runtime.jsx)("input", {
+                                                            id: "name",
                                                             type: "text",
                                                             name: "name",
                                                             value: formData.name,
@@ -1225,24 +1253,37 @@ function Home() {
                                                                 padding: "0.5rem 1rem",
                                                                 border: "1px solid #d1d5db",
                                                                 borderRadius: "0.5rem",
-                                                                outline: "none"
+                                                                outline: "none",
+                                                                backgroundColor: isSubmitting ? "#f3f4f6" : "white"
                                                             },
                                                             required: true,
-                                                            disabled: isSubmitting
+                                                            disabled: isSubmitting,
+                                                            "aria-required": "true",
+                                                            "aria-invalid": submitStatus && !formData.name.trim() ? "true" : "false"
                                                         })
                                                     ]
                                                 }),
                                                 /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
                                                     children: [
-                                                        /*#__PURE__*/ (0,jsx_runtime.jsx)("label", {
+                                                        /*#__PURE__*/ (0,jsx_runtime.jsxs)("label", {
+                                                            htmlFor: "email",
                                                             style: {
                                                                 display: "block",
                                                                 color: "#374151",
                                                                 marginBottom: "0.5rem"
                                                             },
-                                                            children: "Email"
+                                                            children: [
+                                                                "Email ",
+                                                                /*#__PURE__*/ (0,jsx_runtime.jsx)("span", {
+                                                                    style: {
+                                                                        color: "#ef4444"
+                                                                    },
+                                                                    children: "*"
+                                                                })
+                                                            ]
                                                         }),
                                                         /*#__PURE__*/ (0,jsx_runtime.jsx)("input", {
+                                                            id: "email",
                                                             type: "email",
                                                             name: "email",
                                                             value: formData.email,
@@ -1252,16 +1293,20 @@ function Home() {
                                                                 padding: "0.5rem 1rem",
                                                                 border: "1px solid #d1d5db",
                                                                 borderRadius: "0.5rem",
-                                                                outline: "none"
+                                                                outline: "none",
+                                                                backgroundColor: isSubmitting ? "#f3f4f6" : "white"
                                                             },
                                                             required: true,
-                                                            disabled: isSubmitting
+                                                            disabled: isSubmitting,
+                                                            "aria-required": "true",
+                                                            "aria-invalid": submitStatus && !formData.email.trim() ? "true" : "false"
                                                         })
                                                     ]
                                                 }),
                                                 /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
                                                     children: [
                                                         /*#__PURE__*/ (0,jsx_runtime.jsx)("label", {
+                                                            htmlFor: "phone",
                                                             style: {
                                                                 display: "block",
                                                                 color: "#374151",
@@ -1270,6 +1315,7 @@ function Home() {
                                                             children: "Telefone"
                                                         }),
                                                         /*#__PURE__*/ (0,jsx_runtime.jsx)("input", {
+                                                            id: "phone",
                                                             type: "tel",
                                                             name: "phone",
                                                             value: formData.phone,
@@ -1279,7 +1325,8 @@ function Home() {
                                                                 padding: "0.5rem 1rem",
                                                                 border: "1px solid #d1d5db",
                                                                 borderRadius: "0.5rem",
-                                                                outline: "none"
+                                                                outline: "none",
+                                                                backgroundColor: isSubmitting ? "#f3f4f6" : "white"
                                                             },
                                                             disabled: isSubmitting
                                                         })
@@ -1287,15 +1334,25 @@ function Home() {
                                                 }),
                                                 /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
                                                     children: [
-                                                        /*#__PURE__*/ (0,jsx_runtime.jsx)("label", {
+                                                        /*#__PURE__*/ (0,jsx_runtime.jsxs)("label", {
+                                                            htmlFor: "message",
                                                             style: {
                                                                 display: "block",
                                                                 color: "#374151",
                                                                 marginBottom: "0.5rem"
                                                             },
-                                                            children: "Mensagem"
+                                                            children: [
+                                                                "Mensagem ",
+                                                                /*#__PURE__*/ (0,jsx_runtime.jsx)("span", {
+                                                                    style: {
+                                                                        color: "#ef4444"
+                                                                    },
+                                                                    children: "*"
+                                                                })
+                                                            ]
                                                         }),
                                                         /*#__PURE__*/ (0,jsx_runtime.jsx)("textarea", {
+                                                            id: "message",
                                                             name: "message",
                                                             value: formData.message,
                                                             onChange: handleChange,
@@ -1305,10 +1362,14 @@ function Home() {
                                                                 border: "1px solid #d1d5db",
                                                                 borderRadius: "0.5rem",
                                                                 outline: "none",
-                                                                height: "8rem"
+                                                                height: "8rem",
+                                                                backgroundColor: isSubmitting ? "#f3f4f6" : "white",
+                                                                resize: "vertical"
                                                             },
                                                             required: true,
-                                                            disabled: isSubmitting
+                                                            disabled: isSubmitting,
+                                                            "aria-required": "true",
+                                                            "aria-invalid": submitStatus && !formData.message.trim() ? "true" : "false"
                                                         })
                                                     ]
                                                 }),
@@ -1321,9 +1382,11 @@ function Home() {
                                                         backgroundColor: isSubmitting ? "#9ca3af" : "#1e3a8a",
                                                         color: "white",
                                                         cursor: isSubmitting ? "not-allowed" : "pointer",
-                                                        transition: "background-color 0.3s"
+                                                        transition: "background-color 0.3s",
+                                                        fontWeight: "600"
                                                     },
                                                     disabled: isSubmitting,
+                                                    "aria-busy": isSubmitting,
                                                     children: isSubmitting ? "Enviando..." : "Enviar Mensagem"
                                                 })
                                             ]
