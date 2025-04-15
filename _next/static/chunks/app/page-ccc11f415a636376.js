@@ -491,7 +491,7 @@ function Home() {
     const [submitStatus, setSubmitStatus] = (0,react.useState)(null);
     // Initialize EmailJS
     (0,react.useEffect)(()=>{
-        es/* default.init */.ZP.init("fkyTKEWPMpDZrvJIJ");
+        es/* default.init */.ZP.init("fkyTKEWPMpDZrvJIJ" || 0);
     }, []);
     const handleChange = (e)=>{
         const { name, value } = e.target;
@@ -522,8 +522,8 @@ function Home() {
         setIsSubmitting(true);
         setSubmitStatus(null);
         try {
-            const serviceId = "service_3fezsm8";
-            const templateId = "template_w17cycd";
+            const serviceId = "service_3fezsm8" || 0;
+            const templateId = "template_w17cycd" || 0;
             const result = await es/* default.sendForm */.ZP.sendForm(serviceId, templateId, e.target, "fkyTKEWPMpDZrvJIJ");
             if (result.text === "OK") {
                 setSubmitStatus({
