@@ -491,8 +491,27 @@ function Home() {
     const [submitStatus, setSubmitStatus] = (0,react.useState)(null);
     // Initialize EmailJS
     (0,react.useEffect)(()=>{
-        es/* default.init */.ZP.init("fkyTKEWPMpDZrvJIJ" || 0);
+        es/* default.init */.ZP.init("fkyTKEWPMpDZrvJIJ");
+        console.log("EmailJS inicializado");
     }, []);
+    const testEmailJS = async ()=>{
+        try {
+            console.log("Testando EmailJS...");
+            const serviceId = "service_3fezsm8";
+            const templateId = "template_w17cycd";
+            const result = await es/* default.send */.ZP.send(serviceId, templateId, {
+                from_name: "Teste",
+                from_email: "teste@exemplo.com",
+                phone: "123456789",
+                message: "Esta \xe9 uma mensagem de teste."
+            }, "fkyTKEWPMpDZrvJIJ");
+            console.log("Resultado do teste:", result);
+            alert("Teste de EmailJS conclu\xeddo com sucesso!");
+        } catch (error) {
+            console.error("Erro no teste de EmailJS:", error);
+            alert("Erro no teste de EmailJS. Verifique o console para mais detalhes.");
+        }
+    };
     const handleChange = (e)=>{
         const { name, value } = e.target;
         setFormData((prev)=>({
@@ -502,6 +521,7 @@ function Home() {
     };
     const handleSubmit = async (e)=>{
         e.preventDefault();
+        console.log("Formul\xe1rio enviado", formData);
         // Basic validation
         if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
             setSubmitStatus({
@@ -522,9 +542,14 @@ function Home() {
         setIsSubmitting(true);
         setSubmitStatus(null);
         try {
-            const serviceId = "service_3fezsm8" || 0;
-            const templateId = "template_w17cycd" || 0;
-            const result = await es/* default.sendForm */.ZP.sendForm(serviceId, templateId, e.target, "fkyTKEWPMpDZrvJIJ");
+            const serviceId = "service_3fezsm8";
+            const templateId = "template_w17cycd";
+            const result = await es/* default.send */.ZP.send(serviceId, templateId, {
+                from_name: formData.name,
+                from_email: formData.email,
+                phone: formData.phone,
+                message: formData.message
+            }, "fkyTKEWPMpDZrvJIJ");
             if (result.text === "OK") {
                 setSubmitStatus({
                     success: true,
@@ -1524,7 +1549,7 @@ function Home() {
                                                         /*#__PURE__*/ (0,jsx_runtime.jsx)("input", {
                                                             id: "name",
                                                             type: "text",
-                                                            name: "from_name",
+                                                            name: "name",
                                                             value: formData.name,
                                                             onChange: handleChange,
                                                             style: {
@@ -1564,7 +1589,7 @@ function Home() {
                                                         /*#__PURE__*/ (0,jsx_runtime.jsx)("input", {
                                                             id: "email",
                                                             type: "email",
-                                                            name: "from_email",
+                                                            name: "email",
                                                             value: formData.email,
                                                             onChange: handleChange,
                                                             style: {
@@ -1667,6 +1692,22 @@ function Home() {
                                                     disabled: isSubmitting,
                                                     "aria-busy": isSubmitting,
                                                     children: isSubmitting ? "Enviando..." : "Enviar Mensagem"
+                                                }),
+                                                /*#__PURE__*/ (0,jsx_runtime.jsx)("button", {
+                                                    type: "button",
+                                                    onClick: testEmailJS,
+                                                    style: {
+                                                        width: "100%",
+                                                        padding: "0.75rem",
+                                                        borderRadius: "0.5rem",
+                                                        backgroundColor: "#4b5563",
+                                                        color: "white",
+                                                        cursor: "pointer",
+                                                        transition: "background-color 0.3s",
+                                                        fontWeight: "600",
+                                                        marginTop: "0.5rem"
+                                                    },
+                                                    children: "Testar EmailJS"
                                                 })
                                             ]
                                         })
