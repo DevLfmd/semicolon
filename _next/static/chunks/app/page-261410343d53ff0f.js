@@ -491,8 +491,12 @@ function Home() {
     const [submitStatus, setSubmitStatus] = (0,react.useState)(null);
     // Initialize EmailJS
     (0,react.useEffect)(()=>{
-        es/* default.init */.ZP.init("fkyTKEWPMpDZrvJIJ");
-        console.log("EmailJS inicializado");
+        try {
+            es/* default.init */.ZP.init("fkyTKEWPMpDZrvJIJ");
+            console.log("EmailJS inicializado com sucesso");
+        } catch (error) {
+            console.error("Erro ao inicializar EmailJS:", error);
+        }
     }, []);
     const testEmailJS = async ()=>{
         try {
@@ -542,14 +546,19 @@ function Home() {
         setIsSubmitting(true);
         setSubmitStatus(null);
         try {
+            console.log("Iniciando envio de email...");
             const serviceId = "service_3fezsm8";
             const templateId = "template_w17cycd";
-            const result = await es/* default.send */.ZP.send(serviceId, templateId, {
+            const publicKey = "fkyTKEWPMpDZrvJIJ";
+            const templateParams = {
                 from_name: formData.name,
                 from_email: formData.email,
                 phone: formData.phone,
                 message: formData.message
-            }, "fkyTKEWPMpDZrvJIJ");
+            };
+            console.log("Par\xe2metros do template:", templateParams);
+            const result = await es/* default.send */.ZP.send(serviceId, templateId, templateParams, publicKey);
+            console.log("Resultado do envio:", result);
             if (result.text === "OK") {
                 setSubmitStatus({
                     success: true,
@@ -1486,7 +1495,9 @@ function Home() {
                                                                         children: "LinkedIn"
                                                                     }),
                                                                     /*#__PURE__*/ (0,jsx_runtime.jsx)("a", {
-                                                                        href: "#",
+                                                                        href: "https://github.com/luizfmd16",
+                                                                        target: "_blank",
+                                                                        rel: "noopener noreferrer",
                                                                         style: {
                                                                             color: "#1e3a8a"
                                                                         },
@@ -1877,7 +1888,9 @@ function Home() {
                                                     children: "LinkedIn"
                                                 }),
                                                 /*#__PURE__*/ (0,jsx_runtime.jsx)("a", {
-                                                    href: "#",
+                                                    href: "https://github.com/luizfmd16",
+                                                    target: "_blank",
+                                                    rel: "noopener noreferrer",
                                                     style: {
                                                         color: "#9ca3af"
                                                     },
