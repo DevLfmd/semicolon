@@ -7,8 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "export": "next export",
-    "deploy": "npm run build && npm run export && gh-pages -d out"
+    "deploy": "next build && gh-pages -d out --repo https://github.com/luizfernandomirandadias/semicolon.git"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",

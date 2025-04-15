@@ -4,11 +4,9 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  // Only use these settings in production
-  ...(process.env.NODE_ENV === 'production' ? {
-    basePath: '/semicolon',
-    assetPrefix: '/semicolon/',
-  } : {})
+  basePath: '/semicolon',
+  assetPrefix: '/semicolon/',
+  trailingSlash: true,
 }
 
 module.exports = nextConfig 
