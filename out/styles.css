@@ -1,61 +1,17 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
+/* Base styles */
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: rgb(var(--background-end-rgb));
   font-family: 'Inter', sans-serif;
-  margin: 0;
-  padding: 0;
 }
 
-@layer base {
-  html {
-    @apply scroll-smooth;
-  }
-  
-  body {
-    @apply min-h-screen;
-  }
-}
-
-@layer components {
-  .layout {
-    @apply min-h-screen flex items-center justify-center;
-  }
-  
-  .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500;
-  }
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-}
-
-/* Utility classes */
+/* Tailwind-like utility classes */
 .min-h-screen {
   min-height: 100vh;
 }

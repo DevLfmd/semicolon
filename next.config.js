@@ -4,9 +4,15 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  basePath: '/semicolon',
-  assetPrefix: '/semicolon/',
+  basePath: process.env.NODE_ENV === 'production' ? '/semicolon' : '',
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/semicolon/' : '',
   trailingSlash: true,
+  optimizeCss: false,
+  minify: false,
+  webpack: (config) => {
+    config.optimization.minimize = false;
+    return config;
+  },
 }
 
 module.exports = nextConfig 
