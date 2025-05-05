@@ -3,336 +3,11 @@
 /***/ 6518:
 /***/ (function(__unused_webpack_module, __unused_webpack_exports, __webpack_require__) {
 
-Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 1139))
+Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 1009))
 
 /***/ }),
 
-/***/ 5986:
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-// EXPORTS
-__webpack_require__.d(__webpack_exports__, {
-  ZP: function() { return /* binding */ es; }
-});
-
-// UNUSED EXPORTS: EmailJSResponseStatus, init, send, sendForm
-
-;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/models/EmailJSResponseStatus.js
-class EmailJSResponseStatus {
-    constructor(_status = 0, _text = "Network Error"){
-        this.status = _status;
-        this.text = _text;
-    }
-}
-
-;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/utils/createWebStorage/createWebStorage.js
-const createWebStorage = ()=>{
-    if (typeof localStorage === "undefined") return;
-    return {
-        get: (key)=>Promise.resolve(localStorage.getItem(key)),
-        set: (key, value)=>Promise.resolve(localStorage.setItem(key, value)),
-        remove: (key)=>Promise.resolve(localStorage.removeItem(key))
-    };
-};
-
-;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/store/store.js
-
-const store = {
-    origin: "https://api.emailjs.com",
-    blockHeadless: false,
-    storageProvider: createWebStorage()
-};
-
-;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/utils/buildOptions/buildOptions.js
-const buildOptions = (options)=>{
-    if (!options) return {};
-    // support compatibility with SDK v3
-    if (typeof options === "string") {
-        return {
-            publicKey: options
-        };
-    }
-    // eslint-disable-next-line @typescript-eslint/no-base-to-string
-    if (options.toString() === "[object Object]") {
-        return options;
-    }
-    return {};
-};
-
-;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/methods/init/init.js
-
-
-/**
- * EmailJS global SDK config
- * @param {object} options - the EmailJS global SDK config options
- * @param {string} origin - the non-default EmailJS origin
- */ const init = function(options) {
-    let origin = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : "https://api.emailjs.com";
-    if (!options) return;
-    const opts = buildOptions(options);
-    store.publicKey = opts.publicKey;
-    store.blockHeadless = opts.blockHeadless;
-    store.storageProvider = opts.storageProvider;
-    store.blockList = opts.blockList;
-    store.limitRate = opts.limitRate;
-    store.origin = opts.origin || origin;
-};
-
-;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/api/sendPost.js
-
-
-const sendPost = async function(url, data) {
-    let headers = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : {};
-    const response = await fetch(store.origin + url, {
-        method: "POST",
-        headers,
-        body: data
-    });
-    const message = await response.text();
-    const responseStatus = new EmailJSResponseStatus(response.status, message);
-    if (response.ok) {
-        return responseStatus;
-    }
-    throw responseStatus;
-};
-
-;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/utils/validateParams/validateParams.js
-const validateParams = (publicKey, serviceID, templateID)=>{
-    if (!publicKey || typeof publicKey !== "string") {
-        throw "The public key is required. Visit https://dashboard.emailjs.com/admin/account";
-    }
-    if (!serviceID || typeof serviceID !== "string") {
-        throw "The service ID is required. Visit https://dashboard.emailjs.com/admin";
-    }
-    if (!templateID || typeof templateID !== "string") {
-        throw "The template ID is required. Visit https://dashboard.emailjs.com/admin/templates";
-    }
-};
-
-;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/utils/validateTemplateParams/validateTemplateParams.js
-const validateTemplateParams = (templateParams)=>{
-    // eslint-disable-next-line @typescript-eslint/no-base-to-string
-    if (templateParams && templateParams.toString() !== "[object Object]") {
-        throw "The template params have to be the object. Visit https://www.emailjs.com/docs/sdk/send/";
-    }
-};
-
-;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/utils/isHeadless/isHeadless.js
-const isHeadless = (navigator)=>{
-    return navigator.webdriver || !navigator.languages || navigator.languages.length === 0;
-};
-
-;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/errors/headlessError/headlessError.js
-
-const headlessError = ()=>{
-    return new EmailJSResponseStatus(451, "Unavailable For Headless Browser");
-};
-
-;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/utils/validateBlockListParams/validateBlockListParams.js
-const validateBlockListParams = (list, watchVariable)=>{
-    if (!Array.isArray(list)) {
-        throw "The BlockList list has to be an array";
-    }
-    if (typeof watchVariable !== "string") {
-        throw "The BlockList watchVariable has to be a string";
-    }
-};
-
-;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/utils/isBlockedValueInParams/isBlockedValueInParams.js
-
-const isBlockListDisabled = (options)=>{
-    var _options_list;
-    return !((_options_list = options.list) === null || _options_list === void 0 ? void 0 : _options_list.length) || !options.watchVariable;
-};
-const getValue = (data, name)=>{
-    return data instanceof FormData ? data.get(name) : data[name];
-};
-const isBlockedValueInParams = (options, params)=>{
-    if (isBlockListDisabled(options)) return false;
-    validateBlockListParams(options.list, options.watchVariable);
-    const value = getValue(params, options.watchVariable);
-    if (typeof value !== "string") return false;
-    return options.list.includes(value);
-};
-
-;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/errors/blockedEmailError/blockedEmailError.js
-
-const blockedEmailError = ()=>{
-    return new EmailJSResponseStatus(403, "Forbidden");
-};
-
-;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/utils/validateLimitRateParams/validateLimitRateParams.js
-const validateLimitRateParams = (throttle, id)=>{
-    if (typeof throttle !== "number" || throttle < 0) {
-        throw "The LimitRate throttle has to be a positive number";
-    }
-    if (id && typeof id !== "string") {
-        throw "The LimitRate ID has to be a non-empty string";
-    }
-};
-
-;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/utils/isLimitRateHit/isLimitRateHit.js
-
-const getLeftTime = async (id, throttle, storage)=>{
-    const lastTime = Number(await storage.get(id) || 0);
-    return throttle - Date.now() + lastTime;
-};
-const isLimitRateHit = async (defaultID, options, storage)=>{
-    if (!options.throttle || !storage) {
-        return false;
-    }
-    validateLimitRateParams(options.throttle, options.id);
-    const id = options.id || defaultID;
-    const leftTime = await getLeftTime(id, options.throttle, storage);
-    if (leftTime > 0) {
-        return true;
-    }
-    await storage.set(id, Date.now().toString());
-    return false;
-};
-
-;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/errors/limitRateError/limitRateError.js
-
-const limitRateError = ()=>{
-    return new EmailJSResponseStatus(429, "Too Many Requests");
-};
-
-;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/methods/send/send.js
-
-
-
-
-
-
-
-
-
-
-
-/**
- * Send a template to the specific EmailJS service
- * @param {string} serviceID - the EmailJS service ID
- * @param {string} templateID - the EmailJS template ID
- * @param {object} templateParams - the template params, what will be set to the EmailJS template
- * @param {object} options - the EmailJS SDK config options
- * @returns {Promise<EmailJSResponseStatus>}
- */ const send = async (serviceID, templateID, templateParams, options)=>{
-    const opts = buildOptions(options);
-    const publicKey = opts.publicKey || store.publicKey;
-    const blockHeadless = opts.blockHeadless || store.blockHeadless;
-    const storageProvider = opts.storageProvider || store.storageProvider;
-    const blockList = {
-        ...store.blockList,
-        ...opts.blockList
-    };
-    const limitRate = {
-        ...store.limitRate,
-        ...opts.limitRate
-    };
-    if (blockHeadless && isHeadless(navigator)) {
-        return Promise.reject(headlessError());
-    }
-    validateParams(publicKey, serviceID, templateID);
-    validateTemplateParams(templateParams);
-    if (templateParams && isBlockedValueInParams(blockList, templateParams)) {
-        return Promise.reject(blockedEmailError());
-    }
-    if (await isLimitRateHit(location.pathname, limitRate, storageProvider)) {
-        return Promise.reject(limitRateError());
-    }
-    const params = {
-        lib_version: "4.4.1",
-        user_id: publicKey,
-        service_id: serviceID,
-        template_id: templateID,
-        template_params: templateParams
-    };
-    return sendPost("/api/v1.0/email/send", JSON.stringify(params), {
-        "Content-type": "application/json"
-    });
-};
-
-;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/utils/validateForm/validateForm.js
-const validateForm = (form)=>{
-    if (!form || form.nodeName !== "FORM") {
-        throw "The 3rd parameter is expected to be the HTML form element or the style selector of the form";
-    }
-};
-
-;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/methods/sendForm/sendForm.js
-
-
-
-
-
-
-
-
-
-
-
-const findHTMLForm = (form)=>{
-    return typeof form === "string" ? document.querySelector(form) : form;
-};
-/**
- * Send a form the specific EmailJS service
- * @param {string} serviceID - the EmailJS service ID
- * @param {string} templateID - the EmailJS template ID
- * @param {string | HTMLFormElement} form - the form element or selector
- * @param {object} options - the EmailJS SDK config options
- * @returns {Promise<EmailJSResponseStatus>}
- */ const sendForm = async (serviceID, templateID, form, options)=>{
-    const opts = buildOptions(options);
-    const publicKey = opts.publicKey || store.publicKey;
-    const blockHeadless = opts.blockHeadless || store.blockHeadless;
-    const storageProvider = store.storageProvider || opts.storageProvider;
-    const blockList = {
-        ...store.blockList,
-        ...opts.blockList
-    };
-    const limitRate = {
-        ...store.limitRate,
-        ...opts.limitRate
-    };
-    if (blockHeadless && isHeadless(navigator)) {
-        return Promise.reject(headlessError());
-    }
-    const currentForm = findHTMLForm(form);
-    validateParams(publicKey, serviceID, templateID);
-    validateForm(currentForm);
-    const formData = new FormData(currentForm);
-    if (isBlockedValueInParams(blockList, formData)) {
-        return Promise.reject(blockedEmailError());
-    }
-    if (await isLimitRateHit(location.pathname, limitRate, storageProvider)) {
-        return Promise.reject(limitRateError());
-    }
-    formData.append("lib_version", "4.4.1");
-    formData.append("service_id", serviceID);
-    formData.append("template_id", templateID);
-    formData.append("user_id", publicKey);
-    return sendPost("/api/v1.0/email/send-form", formData);
-};
-
-;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/index.js
-
-
-
-
-
-/* harmony default export */ var es = ({
-    init: init,
-    send: send,
-    sendForm: sendForm,
-    EmailJSResponseStatus: EmailJSResponseStatus
-});
-
-
-/***/ }),
-
-/***/ 1139:
+/***/ 1009:
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -475,8 +150,620 @@ const ServerIcon_ForwardRef = /*#__PURE__*/ react.forwardRef(ServerIcon);
 
 // EXTERNAL MODULE: ./node_modules/@emailjs/browser/es/index.js + 19 modules
 var es = __webpack_require__(5986);
+// EXTERNAL MODULE: ./node_modules/framer-motion/dist/es/context/LayoutGroupContext.mjs
+var LayoutGroupContext = __webpack_require__(3856);
+// EXTERNAL MODULE: ./node_modules/framer-motion/dist/es/utils/use-constant.mjs
+var use_constant = __webpack_require__(2435);
+// EXTERNAL MODULE: ./node_modules/framer-motion/dist/es/context/PresenceContext.mjs
+var PresenceContext = __webpack_require__(4561);
+// EXTERNAL MODULE: ./node_modules/framer-motion/dist/es/context/MotionConfigContext.mjs
+var MotionConfigContext = __webpack_require__(3449);
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/components/AnimatePresence/PopChild.mjs
+/* __next_internal_client_entry_do_not_use__ PopChild auto */ 
+
+
+
+/**
+ * Measurement functionality has to be within a separate component
+ * to leverage snapshot lifecycle.
+ */ class PopChildMeasure extends react.Component {
+    getSnapshotBeforeUpdate(prevProps) {
+        const element = this.props.childRef.current;
+        if (element && prevProps.isPresent && !this.props.isPresent) {
+            const size = this.props.sizeRef.current;
+            size.height = element.offsetHeight || 0;
+            size.width = element.offsetWidth || 0;
+            size.top = element.offsetTop;
+            size.left = element.offsetLeft;
+        }
+        return null;
+    }
+    /**
+     * Required with getSnapshotBeforeUpdate to stop React complaining.
+     */ componentDidUpdate() {}
+    render() {
+        return this.props.children;
+    }
+}
+function PopChild(param) {
+    let { children, isPresent } = param;
+    const id = (0,react.useId)();
+    const ref = (0,react.useRef)(null);
+    const size = (0,react.useRef)({
+        width: 0,
+        height: 0,
+        top: 0,
+        left: 0
+    });
+    const { nonce } = (0,react.useContext)(MotionConfigContext/* MotionConfigContext */._);
+    /**
+     * We create and inject a style block so we can apply this explicit
+     * sizing in a non-destructive manner by just deleting the style block.
+     *
+     * We can't apply size via render as the measurement happens
+     * in getSnapshotBeforeUpdate (post-render), likewise if we apply the
+     * styles directly on the DOM node, we might be overwriting
+     * styles set via the style prop.
+     */ (0,react.useInsertionEffect)(()=>{
+        const { width, height, top, left } = size.current;
+        if (isPresent || !ref.current || !width || !height) return;
+        ref.current.dataset.motionPopId = id;
+        const style = document.createElement("style");
+        if (nonce) style.nonce = nonce;
+        document.head.appendChild(style);
+        if (style.sheet) {
+            style.sheet.insertRule('\n          [data-motion-pop-id="'.concat(id, '"] {\n            position: absolute !important;\n            width: ').concat(width, "px !important;\n            height: ").concat(height, "px !important;\n            top: ").concat(top, "px !important;\n            left: ").concat(left, "px !important;\n          }\n        "));
+        }
+        return ()=>{
+            document.head.removeChild(style);
+        };
+    }, [
+        isPresent
+    ]);
+    return (0,jsx_runtime.jsx)(PopChildMeasure, {
+        isPresent: isPresent,
+        childRef: ref,
+        sizeRef: size,
+        children: /*#__PURE__*/ react.cloneElement(children, {
+            ref
+        })
+    });
+}
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/components/AnimatePresence/PresenceChild.mjs
+/* __next_internal_client_entry_do_not_use__ PresenceChild auto */ 
+
+
+
+
+
+const PresenceChild = (param)=>{
+    let { children, initial, isPresent, onExitComplete, custom, presenceAffectsLayout, mode } = param;
+    const presenceChildren = (0,use_constant/* useConstant */.h)(newChildrenMap);
+    const id = (0,react.useId)();
+    const memoizedOnExitComplete = (0,react.useCallback)((childId)=>{
+        presenceChildren.set(childId, true);
+        for (const isComplete of presenceChildren.values()){
+            if (!isComplete) return; // can stop searching when any is incomplete
+        }
+        onExitComplete && onExitComplete();
+    }, [
+        presenceChildren,
+        onExitComplete
+    ]);
+    const context = (0,react.useMemo)(()=>({
+            id,
+            initial,
+            isPresent,
+            custom,
+            onExitComplete: memoizedOnExitComplete,
+            register: (childId)=>{
+                presenceChildren.set(childId, false);
+                return ()=>presenceChildren.delete(childId);
+            }
+        }), /**
+     * If the presence of a child affects the layout of the components around it,
+     * we want to make a new context value to ensure they get re-rendered
+     * so they can detect that layout change.
+     */ presenceAffectsLayout ? [
+        Math.random(),
+        memoizedOnExitComplete
+    ] : [
+        isPresent,
+        memoizedOnExitComplete
+    ]);
+    (0,react.useMemo)(()=>{
+        presenceChildren.forEach((_, key)=>presenceChildren.set(key, false));
+    }, [
+        isPresent
+    ]);
+    /**
+     * If there's no `motion` components to fire exit animations, we want to remove this
+     * component immediately.
+     */ react.useEffect(()=>{
+        !isPresent && !presenceChildren.size && onExitComplete && onExitComplete();
+    }, [
+        isPresent
+    ]);
+    if (mode === "popLayout") {
+        children = (0,jsx_runtime.jsx)(PopChild, {
+            isPresent: isPresent,
+            children: children
+        });
+    }
+    return (0,jsx_runtime.jsx)(PresenceContext/* PresenceContext */.O.Provider, {
+        value: context,
+        children: children
+    });
+};
+function newChildrenMap() {
+    return new Map();
+}
+
+
+// EXTERNAL MODULE: ./node_modules/framer-motion/dist/es/components/AnimatePresence/use-presence.mjs
+var use_presence = __webpack_require__(3177);
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/components/AnimatePresence/utils.mjs
+
+const getChildKey = (child)=>child.key || "";
+function onlyElements(children) {
+    const filtered = [];
+    // We use forEach here instead of map as map mutates the component key by preprending `.$`
+    react.Children.forEach(children, (child)=>{
+        if (/*#__PURE__*/ (0,react.isValidElement)(child)) filtered.push(child);
+    });
+    return filtered;
+}
+
+
+// EXTERNAL MODULE: ./node_modules/framer-motion/dist/es/utils/use-isomorphic-effect.mjs
+var use_isomorphic_effect = __webpack_require__(5526);
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/components/AnimatePresence/index.mjs
+/* __next_internal_client_entry_do_not_use__ AnimatePresence auto */ 
+
+
+
+
+
+
+
+/**
+ * `AnimatePresence` enables the animation of components that have been removed from the tree.
+ *
+ * When adding/removing more than a single child, every child **must** be given a unique `key` prop.
+ *
+ * Any `motion` components that have an `exit` property defined will animate out when removed from
+ * the tree.
+ *
+ * ```jsx
+ * import { motion, AnimatePresence } from 'framer-motion'
+ *
+ * export const Items = ({ items }) => (
+ *   <AnimatePresence>
+ *     {items.map(item => (
+ *       <motion.div
+ *         key={item.id}
+ *         initial={{ opacity: 0 }}
+ *         animate={{ opacity: 1 }}
+ *         exit={{ opacity: 0 }}
+ *       />
+ *     ))}
+ *   </AnimatePresence>
+ * )
+ * ```
+ *
+ * You can sequence exit animations throughout a tree using variants.
+ *
+ * If a child contains multiple `motion` components with `exit` props, it will only unmount the child
+ * once all `motion` components have finished animating out. Likewise, any components using
+ * `usePresence` all need to call `safeToRemove`.
+ *
+ * @public
+ */ const AnimatePresence = (param)=>{
+    let { children, custom, initial = true, onExitComplete, presenceAffectsLayout = true, mode = "sync", propagate = false } = param;
+    const [isParentPresent, safeToRemove] = (0,use_presence/* usePresence */.oO)(propagate);
+    /**
+     * Filter any children that aren't ReactElements. We can only track components
+     * between renders with a props.key.
+     */ const presentChildren = (0,react.useMemo)(()=>onlyElements(children), [
+        children
+    ]);
+    /**
+     * Track the keys of the currently rendered children. This is used to
+     * determine which children are exiting.
+     */ const presentKeys = propagate && !isParentPresent ? [] : presentChildren.map(getChildKey);
+    /**
+     * If `initial={false}` we only want to pass this to components in the first render.
+     */ const isInitialRender = (0,react.useRef)(true);
+    /**
+     * A ref containing the currently present children. When all exit animations
+     * are complete, we use this to re-render the component with the latest children
+     * *committed* rather than the latest children *rendered*.
+     */ const pendingPresentChildren = (0,react.useRef)(presentChildren);
+    /**
+     * Track which exiting children have finished animating out.
+     */ const exitComplete = (0,use_constant/* useConstant */.h)(()=>new Map());
+    /**
+     * Save children to render as React state. To ensure this component is concurrent-safe,
+     * we check for exiting children via an effect.
+     */ const [diffedChildren, setDiffedChildren] = (0,react.useState)(presentChildren);
+    const [renderedChildren, setRenderedChildren] = (0,react.useState)(presentChildren);
+    (0,use_isomorphic_effect/* useIsomorphicLayoutEffect */.L)(()=>{
+        isInitialRender.current = false;
+        pendingPresentChildren.current = presentChildren;
+        /**
+         * Update complete status of exiting children.
+         */ for(let i = 0; i < renderedChildren.length; i++){
+            const key = getChildKey(renderedChildren[i]);
+            if (!presentKeys.includes(key)) {
+                if (exitComplete.get(key) !== true) {
+                    exitComplete.set(key, false);
+                }
+            } else {
+                exitComplete.delete(key);
+            }
+        }
+    }, [
+        renderedChildren,
+        presentKeys.length,
+        presentKeys.join("-")
+    ]);
+    const exitingChildren = [];
+    if (presentChildren !== diffedChildren) {
+        let nextChildren = [
+            ...presentChildren
+        ];
+        /**
+         * Loop through all the currently rendered components and decide which
+         * are exiting.
+         */ for(let i = 0; i < renderedChildren.length; i++){
+            const child = renderedChildren[i];
+            const key = getChildKey(child);
+            if (!presentKeys.includes(key)) {
+                nextChildren.splice(i, 0, child);
+                exitingChildren.push(child);
+            }
+        }
+        /**
+         * If we're in "wait" mode, and we have exiting children, we want to
+         * only render these until they've all exited.
+         */ if (mode === "wait" && exitingChildren.length) {
+            nextChildren = exitingChildren;
+        }
+        setRenderedChildren(onlyElements(nextChildren));
+        setDiffedChildren(presentChildren);
+        /**
+         * Early return to ensure once we've set state with the latest diffed
+         * children, we can immediately re-render.
+         */ return;
+    }
+    if (false) {}
+    /**
+     * If we've been provided a forceRender function by the LayoutGroupContext,
+     * we can use it to force a re-render amongst all surrounding components once
+     * all components have finished animating out.
+     */ const { forceRender } = (0,react.useContext)(LayoutGroupContext/* LayoutGroupContext */.p);
+    return (0,jsx_runtime.jsx)(jsx_runtime.Fragment, {
+        children: renderedChildren.map((child)=>{
+            const key = getChildKey(child);
+            const isPresent = propagate && !isParentPresent ? false : presentChildren === renderedChildren || presentKeys.includes(key);
+            const onExit = ()=>{
+                if (exitComplete.has(key)) {
+                    exitComplete.set(key, true);
+                } else {
+                    return;
+                }
+                let isEveryExitComplete = true;
+                exitComplete.forEach((isExitComplete)=>{
+                    if (!isExitComplete) isEveryExitComplete = false;
+                });
+                if (isEveryExitComplete) {
+                    forceRender === null || forceRender === void 0 ? void 0 : forceRender();
+                    setRenderedChildren(pendingPresentChildren.current);
+                    propagate && (safeToRemove === null || safeToRemove === void 0 ? void 0 : safeToRemove());
+                    onExitComplete && onExitComplete();
+                }
+            };
+            return (0,jsx_runtime.jsx)(PresenceChild, {
+                isPresent: isPresent,
+                initial: !isInitialRender.current || initial ? undefined : false,
+                custom: isPresent ? undefined : custom,
+                presenceAffectsLayout: presenceAffectsLayout,
+                mode: mode,
+                onExitComplete: isPresent ? undefined : onExit,
+                children: child
+            }, key);
+        })
+    });
+};
+
+
+// EXTERNAL MODULE: ./node_modules/framer-motion/dist/es/render/components/motion/proxy.mjs + 241 modules
+var proxy = __webpack_require__(8371);
+;// CONCATENATED MODULE: ./node_modules/@heroicons/react/24/outline/esm/ChevronLeftIcon.js
+
+function ChevronLeftIcon(param, svgRef) {
+    let { title, titleId, ...props } = param;
+    return /*#__PURE__*/ react.createElement("svg", Object.assign({
+        xmlns: "http://www.w3.org/2000/svg",
+        fill: "none",
+        viewBox: "0 0 24 24",
+        strokeWidth: 1.5,
+        stroke: "currentColor",
+        "aria-hidden": "true",
+        "data-slot": "icon",
+        ref: svgRef,
+        "aria-labelledby": titleId
+    }, props), title ? /*#__PURE__*/ react.createElement("title", {
+        id: titleId
+    }, title) : null, /*#__PURE__*/ react.createElement("path", {
+        strokeLinecap: "round",
+        strokeLinejoin: "round",
+        d: "M15.75 19.5 8.25 12l7.5-7.5"
+    }));
+}
+const ChevronLeftIcon_ForwardRef = /*#__PURE__*/ react.forwardRef(ChevronLeftIcon);
+/* harmony default export */ var esm_ChevronLeftIcon = (ChevronLeftIcon_ForwardRef);
+
+;// CONCATENATED MODULE: ./node_modules/@heroicons/react/24/outline/esm/ChevronRightIcon.js
+
+function ChevronRightIcon(param, svgRef) {
+    let { title, titleId, ...props } = param;
+    return /*#__PURE__*/ react.createElement("svg", Object.assign({
+        xmlns: "http://www.w3.org/2000/svg",
+        fill: "none",
+        viewBox: "0 0 24 24",
+        strokeWidth: 1.5,
+        stroke: "currentColor",
+        "aria-hidden": "true",
+        "data-slot": "icon",
+        ref: svgRef,
+        "aria-labelledby": titleId
+    }, props), title ? /*#__PURE__*/ react.createElement("title", {
+        id: titleId
+    }, title) : null, /*#__PURE__*/ react.createElement("path", {
+        strokeLinecap: "round",
+        strokeLinejoin: "round",
+        d: "m8.25 4.5 7.5 7.5-7.5 7.5"
+    }));
+}
+const ChevronRightIcon_ForwardRef = /*#__PURE__*/ react.forwardRef(ChevronRightIcon);
+/* harmony default export */ var esm_ChevronRightIcon = (ChevronRightIcon_ForwardRef);
+
+;// CONCATENATED MODULE: ./src/components/SuccessCasesCarousel.tsx
+/* __next_internal_client_entry_do_not_use__ default auto */ 
+
+
+
+const projects = [
+    {
+        id: 1,
+        title: "Deepread",
+        description: "DeepRead is a digital productivity platform that enhances how users engage with their Kindle highlights. The tool allows users to sync, organize, and refine their reading notes to build a structured, personalized knowledge system. With a focus on insight extraction and learning retention, DeepRead empowers users to transform highlights into actionable ideas and knowledge.",
+        image: "/images/deepread.png",
+        link: "https://deepread.com",
+        technologies: [
+            "ReactJS",
+            "Express.js",
+            "Docker",
+            "MongoDB",
+            "Stripe",
+            "Puppeteer"
+        ]
+    },
+    {
+        id: 2,
+        title: "LeadOwl",
+        description: "LeadOwl is an AI-powered sales assistant platform designed to help businesses automate lead engagement, streamline customer communication, and close more deals—24/7. The platform enables instant responses across channels like websites, WhatsApp, SMS, and social media, ensuring no lead is ever missed.",
+        image: "/images/leadowl.png",
+        link: "https://leadowl.com",
+        technologies: [
+            "Next.js",
+            "TypeScript",
+            "OpenAI",
+            "SailsJS",
+            "Stripe",
+            "React Native",
+            "One Signal",
+            "Facebook Graph Api",
+            "Twilio",
+            "Postmark"
+        ]
+    },
+    {
+        id: 3,
+        title: "Vidlo",
+        description: "Vidlo is a UGC (user-generated content) platform that empowers brands to easily collect and organize authentic customer video stories. By transforming real experiences into shareable, sales-driving content, Vidlo helps businesses unlock trust, engagement, and revenue through automated video capture.",
+        image: "/images/vidlo.png",
+        link: "https://vidlo.video",
+        technologies: [
+            "ReactJS",
+            "AWS",
+            "NodeJS",
+            "FFMPEG"
+        ]
+    },
+    {
+        id: 4,
+        title: "Roboagro",
+        description: "Roboagro is Brazil’s first company to automate swine feeding through an app-controlled robotic feeder. More than just an automatic trough, Roboagro is transforming swine farming with precision feeding, enhanced animal welfare, and real-time data management.",
+        image: "/images/roboagro.png",
+        link: "https://www.roboagro.com.br",
+        technologies: [
+            "Symphony PHP",
+            "MySql",
+            "React Native"
+        ]
+    },
+    {
+        id: 4,
+        title: "2Local.AI",
+        description: "2Local.ai is a cutting-edge AI-powered platform designed to automate and scale local business outreach. It enables marketing agencies, sales teams, and real estate professionals to discover local businesses via real-time Google Maps data, build targeted prospect lists, and launch personalized automated outreach campaigns — without relying on cold emails or spam-prone tactics.",
+        image: "/images/2localai.png",
+        link: "https://www.2local.ai",
+        technologies: [
+            "Nest.JS",
+            "Next.Js",
+            "MongoDB",
+            "Stripe",
+            "Puppeteer",
+            "2Captcha"
+        ]
+    },
+    {
+        id: 5,
+        title: "iCons\xf3rcio",
+        description: "iCons\xf3rcio is a flexible, all-in-one platform built to streamline the management of health consortia, clinics, and medical practices. Its modular system allows organizations to choose and integrate only the tools they need — all in one cohesive environment.",
+        image: "/images/iconsorcio.png",
+        link: "https://www.sitconsistemas.com.br/pagina-iconsorcio/",
+        technologies: [
+            "React Native",
+            "Laravel",
+            "Php",
+            "Php PDO",
+            "ReactJs",
+            "Jquery",
+            "Bootstrap"
+        ]
+    },
+    {
+        id: 6,
+        title: "Escallo",
+        description: "Escallo is a business strategy platform that uses intelligent technology to enhance customer interactions via voice and text.",
+        image: "/images/escallo.png",
+        link: "https://escallo.com.br",
+        technologies: [
+            "Php PDO",
+            "Css",
+            "Asterisk",
+            "Jquery",
+            "Bootstrap"
+        ]
+    },
+    {
+        id: 7,
+        title: "Yby Online",
+        description: "Yby online was a platform that allowed users to create and manage their own online farm stores.",
+        image: "/images/yby.png",
+        link: "https://www.instagram.com/ybyonline/",
+        technologies: [
+            "AdonisJS",
+            "Jquery",
+            "Bootstrap"
+        ]
+    }
+];
+function SuccessCasesCarousel() {
+    const [currentIndex, setCurrentIndex] = (0,react.useState)(0);
+    const nextSlide = ()=>{
+        setCurrentIndex((prevIndex)=>(prevIndex + 1) % projects.length);
+    };
+    const prevSlide = ()=>{
+        setCurrentIndex((prevIndex)=>(prevIndex - 1 + projects.length) % projects.length);
+    };
+    return /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
+        className: "relative w-full max-w-6xl mx-auto",
+        children: [
+            /*#__PURE__*/ (0,jsx_runtime.jsx)("div", {
+                className: "overflow-hidden",
+                children: /*#__PURE__*/ (0,jsx_runtime.jsx)(AnimatePresence, {
+                    mode: "wait",
+                    children: /*#__PURE__*/ (0,jsx_runtime.jsxs)(proxy/* motion */.E.div, {
+                        initial: {
+                            opacity: 0,
+                            x: 100
+                        },
+                        animate: {
+                            opacity: 1,
+                            x: 0
+                        },
+                        exit: {
+                            opacity: 0,
+                            x: -100
+                        },
+                        transition: {
+                            duration: 0.5
+                        },
+                        className: "flex flex-col md:flex-row items-center gap-8 p-6",
+                        children: [
+                            /*#__PURE__*/ (0,jsx_runtime.jsx)("div", {
+                                className: "w-full md:w-1/2",
+                                children: /*#__PURE__*/ (0,jsx_runtime.jsx)(proxy/* motion */.E.img, {
+                                    src: projects[currentIndex].image,
+                                    alt: projects[currentIndex].title,
+                                    className: "w-full h-64 md:h-96 object-cover rounded-lg shadow-xl",
+                                    initial: {
+                                        scale: 0.9
+                                    },
+                                    animate: {
+                                        scale: 1
+                                    },
+                                    transition: {
+                                        duration: 0.5
+                                    }
+                                })
+                            }),
+                            /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
+                                className: "w-full md:w-1/2 space-y-4",
+                                children: [
+                                    /*#__PURE__*/ (0,jsx_runtime.jsx)("h3", {
+                                        className: "text-2xl font-bold text-gray-900",
+                                        children: projects[currentIndex].title
+                                    }),
+                                    /*#__PURE__*/ (0,jsx_runtime.jsx)("p", {
+                                        className: "text-gray-600",
+                                        children: projects[currentIndex].description
+                                    }),
+                                    /*#__PURE__*/ (0,jsx_runtime.jsx)("div", {
+                                        className: "flex flex-wrap gap-2",
+                                        children: projects[currentIndex].technologies.map((tech, index)=>/*#__PURE__*/ (0,jsx_runtime.jsx)("span", {
+                                                className: "px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm",
+                                                children: tech
+                                            }, index))
+                                    }),
+                                    /*#__PURE__*/ (0,jsx_runtime.jsx)("a", {
+                                        href: projects[currentIndex].link,
+                                        className: "inline-block px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors",
+                                        children: "View Project"
+                                    })
+                                ]
+                            })
+                        ]
+                    }, currentIndex)
+                })
+            }),
+            /*#__PURE__*/ (0,jsx_runtime.jsx)("button", {
+                onClick: prevSlide,
+                className: "absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white p-2 rounded-full shadow-lg hover:bg-gray-100 transition-colors",
+                "aria-label": "Previous project",
+                children: /*#__PURE__*/ (0,jsx_runtime.jsx)(esm_ChevronLeftIcon, {
+                    className: "w-6 h-6 text-gray-600"
+                })
+            }),
+            /*#__PURE__*/ (0,jsx_runtime.jsx)("button", {
+                onClick: nextSlide,
+                className: "absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-white p-2 rounded-full shadow-lg hover:bg-gray-100 transition-colors",
+                "aria-label": "Next project",
+                children: /*#__PURE__*/ (0,jsx_runtime.jsx)(esm_ChevronRightIcon, {
+                    className: "w-6 h-6 text-gray-600"
+                })
+            }),
+            /*#__PURE__*/ (0,jsx_runtime.jsx)("div", {
+                className: "flex justify-center gap-2 mt-6",
+                children: projects.map((_, index)=>/*#__PURE__*/ (0,jsx_runtime.jsx)("button", {
+                        onClick: ()=>setCurrentIndex(index),
+                        className: "w-3 h-3 rounded-full transition-colors ".concat(index === currentIndex ? "bg-blue-600" : "bg-gray-300"),
+                        "aria-label": "Go to project ".concat(index + 1)
+                    }, index))
+            })
+        ]
+    });
+}
+
 ;// CONCATENATED MODULE: ./src/app/page.tsx
 /* __next_internal_client_entry_do_not_use__ default auto */ 
+
 
 
 
@@ -1194,6 +1481,46 @@ function Home() {
             }),
             /*#__PURE__*/ (0,jsx_runtime.jsx)("section", {
                 style: {
+                    padding: "5rem 0",
+                    backgroundColor: "white"
+                },
+                children: /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
+                    style: {
+                        maxWidth: "1200px",
+                        margin: "0 auto",
+                        padding: "0 1rem"
+                    },
+                    children: [
+                        /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
+                            style: {
+                                textAlign: "center",
+                                marginBottom: "4rem"
+                            },
+                            children: [
+                                /*#__PURE__*/ (0,jsx_runtime.jsx)("h2", {
+                                    style: {
+                                        fontSize: "2.25rem",
+                                        fontWeight: "bold",
+                                        marginBottom: "1rem"
+                                    },
+                                    children: "Success Cases"
+                                }),
+                                /*#__PURE__*/ (0,jsx_runtime.jsx)("p", {
+                                    style: {
+                                        color: "#4b5563",
+                                        maxWidth: "42rem",
+                                        margin: "0 auto"
+                                    },
+                                    children: "Discover some of our most impactful projects and how we helped our clients achieve their goals"
+                                })
+                            ]
+                        }),
+                        /*#__PURE__*/ (0,jsx_runtime.jsx)(SuccessCasesCarousel, {})
+                    ]
+                })
+            }),
+            /*#__PURE__*/ (0,jsx_runtime.jsx)("section", {
+                style: {
                     padding: "5rem 0"
                 },
                 children: /*#__PURE__*/ (0,jsx_runtime.jsx)("div", {
@@ -1384,98 +1711,108 @@ function Home() {
                                 maxWidth: "56rem",
                                 margin: "0 auto"
                             },
-                            children: /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
+                            children: /*#__PURE__*/ (0,jsx_runtime.jsx)("div", {
                                 style: {
-                                    display: "grid",
-                                    gridTemplateColumns: "repeat(2, 1fr)",
-                                    gap: "3rem"
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    alignItems: "center",
+                                    gap: "1rem"
                                 },
-                                children: [
-                                    /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
+                                children: /*#__PURE__*/ (0,jsx_runtime.jsx)("div", {
+                                    children: /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
+                                        style: {
+                                            display: "flex",
+                                            flexDirection: "column",
+                                            gap: "1.5rem",
+                                            alignItems: "center"
+                                        },
                                         children: [
-                                            /*#__PURE__*/ (0,jsx_runtime.jsx)("h3", {
-                                                style: {
-                                                    fontSize: "1.5rem",
-                                                    fontWeight: "600",
-                                                    marginBottom: "1.5rem"
-                                                },
-                                                children: "Contact Information"
+                                            /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
+                                                children: [
+                                                    /*#__PURE__*/ (0,jsx_runtime.jsx)("h4", {
+                                                        style: {
+                                                            fontSize: "1.125rem",
+                                                            fontWeight: "500",
+                                                            marginBottom: "0.5rem",
+                                                            textAlign: "center"
+                                                        },
+                                                        children: "Email"
+                                                    }),
+                                                    /*#__PURE__*/ (0,jsx_runtime.jsx)("p", {
+                                                        style: {
+                                                            color: "#4b5563",
+                                                            textAlign: "center"
+                                                        },
+                                                        children: "luizfmd16@gmail.com"
+                                                    })
+                                                ]
                                             }),
                                             /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
-                                                style: {
-                                                    display: "flex",
-                                                    flexDirection: "column",
-                                                    gap: "1.5rem"
-                                                },
                                                 children: [
-                                                    /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
-                                                        children: [
-                                                            /*#__PURE__*/ (0,jsx_runtime.jsx)("h4", {
-                                                                style: {
-                                                                    fontSize: "1.125rem",
-                                                                    fontWeight: "500",
-                                                                    marginBottom: "0.5rem"
-                                                                },
-                                                                children: "Address"
-                                                            }),
-                                                            /*#__PURE__*/ (0,jsx_runtime.jsx)("p", {
-                                                                style: {
-                                                                    color: "#4b5563"
-                                                                },
-                                                                children: "Minas Gerais, MG - Brazil"
-                                                            })
-                                                        ]
+                                                    /*#__PURE__*/ (0,jsx_runtime.jsx)("h4", {
+                                                        style: {
+                                                            fontSize: "1.125rem",
+                                                            fontWeight: "500",
+                                                            marginBottom: "0.5rem",
+                                                            textAlign: "center"
+                                                        },
+                                                        children: "Social Media"
                                                     }),
                                                     /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
+                                                        style: {
+                                                            display: "flex",
+                                                            gap: "1rem",
+                                                            justifyContent: "center"
+                                                        },
                                                         children: [
-                                                            /*#__PURE__*/ (0,jsx_runtime.jsx)("h4", {
+                                                            /*#__PURE__*/ (0,jsx_runtime.jsxs)("a", {
+                                                                href: "https://www.linkedin.com/in/luiz-fernando-dias-0a4b2a1b8/",
                                                                 style: {
-                                                                    fontSize: "1.125rem",
-                                                                    fontWeight: "500",
-                                                                    marginBottom: "0.5rem"
-                                                                },
-                                                                children: "Email"
-                                                            }),
-                                                            /*#__PURE__*/ (0,jsx_runtime.jsx)("p", {
-                                                                style: {
-                                                                    color: "#4b5563"
-                                                                },
-                                                                children: "luizfmd16@gmail.com"
-                                                            })
-                                                        ]
-                                                    }),
-                                                    /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
-                                                        children: [
-                                                            /*#__PURE__*/ (0,jsx_runtime.jsx)("h4", {
-                                                                style: {
-                                                                    fontSize: "1.125rem",
-                                                                    fontWeight: "500",
-                                                                    marginBottom: "0.5rem"
-                                                                },
-                                                                children: "Social Media"
-                                                            }),
-                                                            /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
-                                                                style: {
+                                                                    color: "#1e3a8a",
                                                                     display: "flex",
-                                                                    gap: "1rem"
+                                                                    alignItems: "center",
+                                                                    gap: "0.5rem",
+                                                                    textDecoration: "none"
                                                                 },
+                                                                target: "_blank",
+                                                                rel: "noopener noreferrer",
                                                                 children: [
-                                                                    /*#__PURE__*/ (0,jsx_runtime.jsx)("a", {
-                                                                        href: "https://www.linkedin.com/in/luiz-fernando-dias-0a4b2a1b8/",
-                                                                        style: {
-                                                                            color: "#1e3a8a"
-                                                                        },
-                                                                        children: "LinkedIn"
+                                                                    /*#__PURE__*/ (0,jsx_runtime.jsx)("svg", {
+                                                                        xmlns: "http://www.w3.org/2000/svg",
+                                                                        width: "24",
+                                                                        height: "24",
+                                                                        viewBox: "0 0 24 24",
+                                                                        fill: "currentColor",
+                                                                        children: /*#__PURE__*/ (0,jsx_runtime.jsx)("path", {
+                                                                            d: "M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+                                                                        })
                                                                     }),
-                                                                    /*#__PURE__*/ (0,jsx_runtime.jsx)("a", {
-                                                                        href: "https://github.com/luizfmd16",
-                                                                        target: "_blank",
-                                                                        rel: "noopener noreferrer",
-                                                                        style: {
-                                                                            color: "#1e3a8a"
-                                                                        },
-                                                                        children: "GitHub"
-                                                                    })
+                                                                    "LinkedIn"
+                                                                ]
+                                                            }),
+                                                            /*#__PURE__*/ (0,jsx_runtime.jsxs)("a", {
+                                                                href: "https://github.com/luizfmd16",
+                                                                style: {
+                                                                    color: "#1e3a8a",
+                                                                    display: "flex",
+                                                                    alignItems: "center",
+                                                                    gap: "0.5rem",
+                                                                    textDecoration: "none"
+                                                                },
+                                                                target: "_blank",
+                                                                rel: "noopener noreferrer",
+                                                                children: [
+                                                                    /*#__PURE__*/ (0,jsx_runtime.jsx)("svg", {
+                                                                        xmlns: "http://www.w3.org/2000/svg",
+                                                                        width: "24",
+                                                                        height: "24",
+                                                                        viewBox: "0 0 24 24",
+                                                                        fill: "currentColor",
+                                                                        children: /*#__PURE__*/ (0,jsx_runtime.jsx)("path", {
+                                                                            d: "M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+                                                                        })
+                                                                    }),
+                                                                    "GitHub"
                                                                 ]
                                                             })
                                                         ]
@@ -1483,197 +1820,8 @@ function Home() {
                                                 ]
                                             })
                                         ]
-                                    }),
-                                    /*#__PURE__*/ (0,jsx_runtime.jsx)("div", {
-                                        children: /*#__PURE__*/ (0,jsx_runtime.jsxs)("form", {
-                                            onSubmit: handleSubmit,
-                                            style: {
-                                                display: "flex",
-                                                flexDirection: "column",
-                                                gap: "1.5rem"
-                                            },
-                                            children: [
-                                                submitStatus && /*#__PURE__*/ (0,jsx_runtime.jsx)("div", {
-                                                    style: {
-                                                        padding: "1rem",
-                                                        borderRadius: "0.5rem",
-                                                        backgroundColor: submitStatus.success ? "#dcfce7" : "#fee2e2",
-                                                        color: submitStatus.success ? "#166534" : "#991b1b"
-                                                    },
-                                                    role: "alert",
-                                                    "aria-live": "polite",
-                                                    children: submitStatus.message
-                                                }),
-                                                /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
-                                                    children: [
-                                                        /*#__PURE__*/ (0,jsx_runtime.jsxs)("label", {
-                                                            htmlFor: "name",
-                                                            style: {
-                                                                display: "block",
-                                                                color: "#374151",
-                                                                marginBottom: "0.5rem"
-                                                            },
-                                                            children: [
-                                                                "Name ",
-                                                                /*#__PURE__*/ (0,jsx_runtime.jsx)("span", {
-                                                                    style: {
-                                                                        color: "#ef4444"
-                                                                    },
-                                                                    children: "*"
-                                                                })
-                                                            ]
-                                                        }),
-                                                        /*#__PURE__*/ (0,jsx_runtime.jsx)("input", {
-                                                            id: "name",
-                                                            type: "text",
-                                                            name: "name",
-                                                            value: formData.name,
-                                                            onChange: handleChange,
-                                                            style: {
-                                                                width: "100%",
-                                                                padding: "0.5rem 1rem",
-                                                                border: "1px solid #d1d5db",
-                                                                borderRadius: "0.5rem",
-                                                                outline: "none",
-                                                                backgroundColor: isSubmitting ? "#f3f4f6" : "white"
-                                                            },
-                                                            required: true,
-                                                            disabled: isSubmitting,
-                                                            "aria-required": "true",
-                                                            "aria-invalid": submitStatus && !formData.name.trim() ? "true" : "false"
-                                                        })
-                                                    ]
-                                                }),
-                                                /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
-                                                    children: [
-                                                        /*#__PURE__*/ (0,jsx_runtime.jsxs)("label", {
-                                                            htmlFor: "email",
-                                                            style: {
-                                                                display: "block",
-                                                                color: "#374151",
-                                                                marginBottom: "0.5rem"
-                                                            },
-                                                            children: [
-                                                                "Email ",
-                                                                /*#__PURE__*/ (0,jsx_runtime.jsx)("span", {
-                                                                    style: {
-                                                                        color: "#ef4444"
-                                                                    },
-                                                                    children: "*"
-                                                                })
-                                                            ]
-                                                        }),
-                                                        /*#__PURE__*/ (0,jsx_runtime.jsx)("input", {
-                                                            id: "email",
-                                                            type: "email",
-                                                            name: "email",
-                                                            value: formData.email,
-                                                            onChange: handleChange,
-                                                            style: {
-                                                                width: "100%",
-                                                                padding: "0.5rem 1rem",
-                                                                border: "1px solid #d1d5db",
-                                                                borderRadius: "0.5rem",
-                                                                outline: "none",
-                                                                backgroundColor: isSubmitting ? "#f3f4f6" : "white"
-                                                            },
-                                                            required: true,
-                                                            disabled: isSubmitting,
-                                                            "aria-required": "true",
-                                                            "aria-invalid": submitStatus && !formData.email.trim() ? "true" : "false"
-                                                        })
-                                                    ]
-                                                }),
-                                                /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
-                                                    children: [
-                                                        /*#__PURE__*/ (0,jsx_runtime.jsx)("label", {
-                                                            htmlFor: "phone",
-                                                            style: {
-                                                                display: "block",
-                                                                color: "#374151",
-                                                                marginBottom: "0.5rem"
-                                                            },
-                                                            children: "Phone"
-                                                        }),
-                                                        /*#__PURE__*/ (0,jsx_runtime.jsx)("input", {
-                                                            id: "phone",
-                                                            type: "tel",
-                                                            name: "phone",
-                                                            value: formData.phone,
-                                                            onChange: handleChange,
-                                                            style: {
-                                                                width: "100%",
-                                                                padding: "0.5rem 1rem",
-                                                                border: "1px solid #d1d5db",
-                                                                borderRadius: "0.5rem",
-                                                                outline: "none",
-                                                                backgroundColor: isSubmitting ? "#f3f4f6" : "white"
-                                                            },
-                                                            disabled: isSubmitting
-                                                        })
-                                                    ]
-                                                }),
-                                                /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
-                                                    children: [
-                                                        /*#__PURE__*/ (0,jsx_runtime.jsxs)("label", {
-                                                            htmlFor: "message",
-                                                            style: {
-                                                                display: "block",
-                                                                color: "#374151",
-                                                                marginBottom: "0.5rem"
-                                                            },
-                                                            children: [
-                                                                "Message ",
-                                                                /*#__PURE__*/ (0,jsx_runtime.jsx)("span", {
-                                                                    style: {
-                                                                        color: "#ef4444"
-                                                                    },
-                                                                    children: "*"
-                                                                })
-                                                            ]
-                                                        }),
-                                                        /*#__PURE__*/ (0,jsx_runtime.jsx)("textarea", {
-                                                            id: "message",
-                                                            name: "message",
-                                                            value: formData.message,
-                                                            onChange: handleChange,
-                                                            style: {
-                                                                width: "100%",
-                                                                padding: "0.5rem 1rem",
-                                                                border: "1px solid #d1d5db",
-                                                                borderRadius: "0.5rem",
-                                                                outline: "none",
-                                                                height: "8rem",
-                                                                backgroundColor: isSubmitting ? "#f3f4f6" : "white",
-                                                                resize: "vertical"
-                                                            },
-                                                            required: true,
-                                                            disabled: isSubmitting,
-                                                            "aria-required": "true",
-                                                            "aria-invalid": submitStatus && !formData.message.trim() ? "true" : "false"
-                                                        })
-                                                    ]
-                                                }),
-                                                /*#__PURE__*/ (0,jsx_runtime.jsx)("button", {
-                                                    type: "submit",
-                                                    style: {
-                                                        width: "100%",
-                                                        padding: "0.75rem",
-                                                        borderRadius: "0.5rem",
-                                                        backgroundColor: isSubmitting ? "#9ca3af" : "#1e3a8a",
-                                                        color: "white",
-                                                        cursor: isSubmitting ? "not-allowed" : "pointer",
-                                                        transition: "background-color 0.3s",
-                                                        fontWeight: "600"
-                                                    },
-                                                    disabled: isSubmitting,
-                                                    "aria-busy": isSubmitting,
-                                                    children: isSubmitting ? "Sending..." : "Send Message"
-                                                })
-                                            ]
-                                        })
                                     })
-                                ]
+                                })
                             })
                         })
                     ]
@@ -1871,7 +2019,7 @@ function Home() {
 },
 /******/ function(__webpack_require__) { // webpackRuntimeModules
 /******/ var __webpack_exec__ = function(moduleId) { return __webpack_require__(__webpack_require__.s = moduleId); }
-/******/ __webpack_require__.O(0, [971,69,744], function() { return __webpack_exec__(6518); });
+/******/ __webpack_require__.O(0, [432,971,69,744], function() { return __webpack_exec__(6518); });
 /******/ var __webpack_exports__ = __webpack_require__.O();
 /******/ _N_E = __webpack_exports__;
 /******/ }
