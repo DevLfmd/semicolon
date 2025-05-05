@@ -541,7 +541,7 @@ const projects = [
         id: 1,
         title: "Deepread",
         description: "DeepRead is a digital productivity platform that enhances how users engage with their Kindle highlights. The tool allows users to sync, organize, and refine their reading notes to build a structured, personalized knowledge system. With a focus on insight extraction and learning retention, DeepRead empowers users to transform highlights into actionable ideas and knowledge.",
-        image: "/images/deepread.png",
+        image: "https://devlfmd.github.io/semicolon/images/deepread.png",
         link: "https://deepread.com",
         technologies: [
             "ReactJS",
@@ -556,7 +556,7 @@ const projects = [
         id: 2,
         title: "LeadOwl",
         description: "LeadOwl is an AI-powered sales assistant platform designed to help businesses automate lead engagement, streamline customer communication, and close more deals—24/7. The platform enables instant responses across channels like websites, WhatsApp, SMS, and social media, ensuring no lead is ever missed.",
-        image: "/images/leadowl.png",
+        image: "https://devlfmd.github.io/semicolon/images/leadowl.png",
         link: "https://leadowl.com",
         technologies: [
             "Next.js",
@@ -575,7 +575,7 @@ const projects = [
         id: 3,
         title: "Vidlo",
         description: "Vidlo is a UGC (user-generated content) platform that empowers brands to easily collect and organize authentic customer video stories. By transforming real experiences into shareable, sales-driving content, Vidlo helps businesses unlock trust, engagement, and revenue through automated video capture.",
-        image: "/images/vidlo.png",
+        image: "https://devlfmd.github.io/semicolon/images/vidlo.png",
         link: "https://vidlo.video",
         technologies: [
             "ReactJS",
@@ -588,7 +588,7 @@ const projects = [
         id: 4,
         title: "Roboagro",
         description: "Roboagro is Brazil’s first company to automate swine feeding through an app-controlled robotic feeder. More than just an automatic trough, Roboagro is transforming swine farming with precision feeding, enhanced animal welfare, and real-time data management.",
-        image: "/images/roboagro.png",
+        image: "https://devlfmd.github.io/semicolon/images/roboagro.png",
         link: "https://www.roboagro.com.br",
         technologies: [
             "Symphony PHP",
@@ -600,7 +600,7 @@ const projects = [
         id: 4,
         title: "2Local.AI",
         description: "2Local.ai is a cutting-edge AI-powered platform designed to automate and scale local business outreach. It enables marketing agencies, sales teams, and real estate professionals to discover local businesses via real-time Google Maps data, build targeted prospect lists, and launch personalized automated outreach campaigns — without relying on cold emails or spam-prone tactics.",
-        image: "/images/2localai.png",
+        image: "https://devlfmd.github.io/semicolon/images/2localai.png",
         link: "https://www.2local.ai",
         technologies: [
             "Nest.JS",
@@ -615,7 +615,7 @@ const projects = [
         id: 5,
         title: "iCons\xf3rcio",
         description: "iCons\xf3rcio is a flexible, all-in-one platform built to streamline the management of health consortia, clinics, and medical practices. Its modular system allows organizations to choose and integrate only the tools they need — all in one cohesive environment.",
-        image: "/images/iconsorcio.png",
+        image: "https://devlfmd.github.io/semicolon/images/iconsorcio.png",
         link: "https://www.sitconsistemas.com.br/pagina-iconsorcio/",
         technologies: [
             "React Native",
@@ -631,7 +631,7 @@ const projects = [
         id: 6,
         title: "Escallo",
         description: "Escallo is a business strategy platform that uses intelligent technology to enhance customer interactions via voice and text.",
-        image: "/images/escallo.png",
+        image: "https://devlfmd.github.io/semicolon/images/escallo.png",
         link: "https://escallo.com.br",
         technologies: [
             "Php PDO",
@@ -645,7 +645,7 @@ const projects = [
         id: 7,
         title: "Yby Online",
         description: "Yby online was a platform that allowed users to create and manage their own online farm stores.",
-        image: "/images/yby.png",
+        image: "https://devlfmd.github.io/semicolon/images/yby.png",
         link: "https://www.instagram.com/ybyonline/",
         technologies: [
             "AdonisJS",
