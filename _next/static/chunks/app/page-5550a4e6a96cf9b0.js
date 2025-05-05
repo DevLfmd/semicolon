@@ -1,6 +1,6 @@
 (self["webpackChunk_N_E"] = self["webpackChunk_N_E"] || []).push([[931],{
 
-/***/ 751:
+/***/ 6518:
 /***/ (function(__unused_webpack_module, __unused_webpack_exports, __webpack_require__) {
 
 Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 1139))
@@ -493,29 +493,11 @@ function Home() {
     (0,react.useEffect)(()=>{
         try {
             es/* default.init */.ZP.init("fkyTKEWPMpDZrvJIJ");
-            console.log("EmailJS inicializado com sucesso");
+            console.log("EmailJS initialized successfully");
         } catch (error) {
-            console.error("Erro ao inicializar EmailJS:", error);
+            console.error("Error initializing EmailJS:", error);
         }
     }, []);
-    const testEmailJS = async ()=>{
-        try {
-            console.log("Testando EmailJS...");
-            const serviceId = "service_3fezsm8";
-            const templateId = "template_w17cycd";
-            const result = await es/* default.send */.ZP.send(serviceId, templateId, {
-                from_name: "Teste",
-                from_email: "teste@exemplo.com",
-                phone: "123456789",
-                message: "Esta \xe9 uma mensagem de teste."
-            }, "fkyTKEWPMpDZrvJIJ");
-            console.log("Resultado do teste:", result);
-            alert("Teste de EmailJS conclu\xeddo com sucesso!");
-        } catch (error) {
-            console.error("Erro no teste de EmailJS:", error);
-            alert("Erro no teste de EmailJS. Verifique o console para mais detalhes.");
-        }
-    };
     const handleChange = (e)=>{
         const { name, value } = e.target;
         setFormData((prev)=>({
@@ -525,12 +507,12 @@ function Home() {
     };
     const handleSubmit = async (e)=>{
         e.preventDefault();
-        console.log("Formul\xe1rio enviado", formData);
+        console.log("Form submitted", formData);
         // Basic validation
         if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
             setSubmitStatus({
                 success: false,
-                message: "Por favor, preencha todos os campos obrigat\xf3rios."
+                message: "Please fill in all required fields."
             });
             return;
         }
@@ -539,14 +521,14 @@ function Home() {
         if (!emailRegex.test(formData.email)) {
             setSubmitStatus({
                 success: false,
-                message: "Por favor, insira um endere\xe7o de email v\xe1lido."
+                message: "Please enter a valid email address."
             });
             return;
         }
         setIsSubmitting(true);
         setSubmitStatus(null);
         try {
-            console.log("Iniciando envio de email...");
+            console.log("Starting email sending...");
             const serviceId = "service_3fezsm8";
             const templateId = "template_w17cycd";
             const publicKey = "fkyTKEWPMpDZrvJIJ";
@@ -556,13 +538,13 @@ function Home() {
                 phone: formData.phone,
                 message: formData.message
             };
-            console.log("Par\xe2metros do template:", templateParams);
+            console.log("Template parameters:", templateParams);
             const result = await es/* default.send */.ZP.send(serviceId, templateId, templateParams, publicKey);
-            console.log("Resultado do envio:", result);
+            console.log("Sending result:", result);
             if (result.text === "OK") {
                 setSubmitStatus({
                     success: true,
-                    message: "Mensagem enviada com sucesso! Entraremos em contato em breve."
+                    message: "Message sent successfully! We will contact you soon."
                 });
                 setFormData({
                     name: "",
@@ -571,13 +553,13 @@ function Home() {
                     message: ""
                 });
             } else {
-                throw new Error("Falha ao enviar mensagem");
+                throw new Error("Failed to send message");
             }
         } catch (error) {
             console.error("Error sending email:", error);
             setSubmitStatus({
                 success: false,
-                message: "Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente mais tarde."
+                message: "An error occurred while sending your message. Please try again later."
             });
         } finally{
             setIsSubmitting(false);
@@ -625,13 +607,13 @@ function Home() {
                                     marginBottom: "1.5rem"
                                 },
                                 children: [
-                                    "Transformando Ideias em",
+                                    "Transforming Ideas into",
                                     /*#__PURE__*/ (0,jsx_runtime.jsx)("span", {
                                         style: {
                                             display: "block",
                                             color: "#60a5fa"
                                         },
-                                        children: "Realidade Digital"
+                                        children: "Digital Reality"
                                     })
                                 ]
                             }),
@@ -642,7 +624,7 @@ function Home() {
                                     maxWidth: "48rem",
                                     margin: "0 auto"
                                 },
-                                children: "Desenvolvimento Full Stack de alta performance para impulsionar seu neg\xf3cio"
+                                children: "Full Stack Development of high performance to boost your business"
                             }),
                             /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
                                 style: {
@@ -663,7 +645,7 @@ function Home() {
                                             fontWeight: "600",
                                             transition: "background-color 0.3s"
                                         },
-                                        children: "Fale Conosco"
+                                        children: "Contact Us"
                                     }),
                                     /*#__PURE__*/ (0,jsx_runtime.jsx)("a", {
                                         href: "#services",
@@ -677,7 +659,7 @@ function Home() {
                                             fontWeight: "600",
                                             transition: "all 0.3s"
                                         },
-                                        children: "Nossos Servi\xe7os"
+                                        children: "Our Services"
                                     })
                                 ]
                             })
@@ -735,7 +717,7 @@ function Home() {
                                         style: {
                                             color: "#4b5563"
                                         },
-                                        children: "Anos de Experi\xeancia"
+                                        children: "Years of Experience"
                                     })
                                 ]
                             }),
@@ -757,7 +739,7 @@ function Home() {
                                         style: {
                                             color: "#4b5563"
                                         },
-                                        children: "Projetos Conclu\xeddos"
+                                        children: "Completed Projects"
                                     })
                                 ]
                             }),
@@ -779,7 +761,7 @@ function Home() {
                                         style: {
                                             color: "#4b5563"
                                         },
-                                        children: "Clientes Satisfeitos"
+                                        children: "Satisfied Clients"
                                     })
                                 ]
                             }),
@@ -801,7 +783,7 @@ function Home() {
                                         style: {
                                             color: "#4b5563"
                                         },
-                                        children: "Comprometimento"
+                                        children: "Commitment"
                                     })
                                 ]
                             })
@@ -834,7 +816,7 @@ function Home() {
                                         fontWeight: "bold",
                                         marginBottom: "1rem"
                                     },
-                                    children: "Nossos Servi\xe7os"
+                                    children: "Our Services"
                                 }),
                                 /*#__PURE__*/ (0,jsx_runtime.jsx)("p", {
                                     style: {
@@ -842,7 +824,7 @@ function Home() {
                                         maxWidth: "42rem",
                                         margin: "0 auto"
                                     },
-                                    children: "Oferecemos solu\xe7\xf5es completas em desenvolvimento de software para impulsionar seu neg\xf3cio"
+                                    children: "We offer complete solutions in software development to boost your business"
                                 })
                             ]
                         }),
@@ -887,14 +869,14 @@ function Home() {
                                                 fontWeight: "600",
                                                 marginBottom: "1rem"
                                             },
-                                            children: "Desenvolvimento Web"
+                                            children: "Web Development"
                                         }),
                                         /*#__PURE__*/ (0,jsx_runtime.jsx)("p", {
                                             style: {
                                                 color: "#4b5563",
                                                 marginBottom: "1.5rem"
                                             },
-                                            children: "Criamos aplica\xe7\xf5es web modernas e responsivas utilizando as mais recentes tecnologias do mercado."
+                                            children: "We create modern and responsive web applications using the latest technologies on the market."
                                         }),
                                         /*#__PURE__*/ (0,jsx_runtime.jsxs)("ul", {
                                             style: {
@@ -918,7 +900,7 @@ function Home() {
                                                             }
                                                         }),
                                                         /*#__PURE__*/ (0,jsx_runtime.jsx)("span", {
-                                                            children: "Sites Institucionais"
+                                                            children: "Institutional Sites"
                                                         })
                                                     ]
                                                 }),
@@ -956,7 +938,7 @@ function Home() {
                                                             }
                                                         }),
                                                         /*#__PURE__*/ (0,jsx_runtime.jsx)("span", {
-                                                            children: "Aplicativos Web"
+                                                            children: "Web Applications"
                                                         })
                                                     ]
                                                 })
@@ -998,14 +980,14 @@ function Home() {
                                                 fontWeight: "600",
                                                 marginBottom: "1rem"
                                             },
-                                            children: "Apps Mobile"
+                                            children: "Mobile Apps"
                                         }),
                                         /*#__PURE__*/ (0,jsx_runtime.jsx)("p", {
                                             style: {
                                                 color: "#4b5563",
                                                 marginBottom: "1.5rem"
                                             },
-                                            children: "Desenvolvimento de aplicativos m\xf3veis nativos e h\xedbridos para iOS e Android."
+                                            children: "Development of native and hybrid mobile applications for iOS and Android."
                                         }),
                                         /*#__PURE__*/ (0,jsx_runtime.jsxs)("ul", {
                                             style: {
@@ -1029,7 +1011,7 @@ function Home() {
                                                             }
                                                         }),
                                                         /*#__PURE__*/ (0,jsx_runtime.jsx)("span", {
-                                                            children: "Apps Nativos"
+                                                            children: "Native Apps"
                                                         })
                                                     ]
                                                 }),
@@ -1048,7 +1030,7 @@ function Home() {
                                                             }
                                                         }),
                                                         /*#__PURE__*/ (0,jsx_runtime.jsx)("span", {
-                                                            children: "Apps H\xedbridos"
+                                                            children: "Hybrid Apps"
                                                         })
                                                     ]
                                                 }),
@@ -1116,7 +1098,7 @@ function Home() {
                                                 color: "#4b5563",
                                                 marginBottom: "1.5rem"
                                             },
-                                            children: "Arquitetura robusta e escal\xe1vel para suas aplica\xe7\xf5es com APIs RESTful."
+                                            children: "Robust and scalable architecture for your applications with RESTful APIs."
                                         }),
                                         /*#__PURE__*/ (0,jsx_runtime.jsxs)("ul", {
                                             style: {
@@ -1140,7 +1122,7 @@ function Home() {
                                                             }
                                                         }),
                                                         /*#__PURE__*/ (0,jsx_runtime.jsx)("span", {
-                                                            children: "APIs RESTful"
+                                                            children: "RESTful APIs"
                                                         })
                                                     ]
                                                 }),
@@ -1159,7 +1141,7 @@ function Home() {
                                                             }
                                                         }),
                                                         /*#__PURE__*/ (0,jsx_runtime.jsx)("span", {
-                                                            children: "Microservi\xe7os"
+                                                            children: "Microservices"
                                                         })
                                                     ]
                                                 }),
@@ -1217,14 +1199,14 @@ function Home() {
                                             fontWeight: "bold",
                                             marginBottom: "1.5rem"
                                         },
-                                        children: "Sobre N\xf3s"
+                                        children: "About Us"
                                     }),
                                     /*#__PURE__*/ (0,jsx_runtime.jsx)("p", {
                                         style: {
                                             color: "#4b5563",
                                             marginBottom: "1.5rem"
                                         },
-                                        children: "Somos uma empresa especializada em desenvolvimento full stack, com foco em criar solu\xe7\xf5es tecnol\xf3gicas inovadoras e de alta qualidade. Nossa equipe \xe9 composta por profissionais experientes e apaixonados por tecnologia."
+                                        children: "We are a company specialized in full stack development, focused on creating innovative and high-quality technological solutions. Our team is composed of experienced professionals passionate about technology."
                                     }),
                                     /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
                                         style: {
@@ -1255,13 +1237,13 @@ function Home() {
                                                                     fontSize: "1.25rem",
                                                                     fontWeight: "600"
                                                                 },
-                                                                children: "Experi\xeancia em Projetos Complexos"
+                                                                children: "Experience in Complex Projects"
                                                             }),
                                                             /*#__PURE__*/ (0,jsx_runtime.jsx)("p", {
                                                                 style: {
                                                                     color: "#4b5563"
                                                                 },
-                                                                children: "Desenvolvemos solu\xe7\xf5es para diversos setores e tamanhos de empresas."
+                                                                children: "We develop solutions for various sectors and company sizes."
                                                             })
                                                         ]
                                                     })
@@ -1289,13 +1271,13 @@ function Home() {
                                                                     fontSize: "1.25rem",
                                                                     fontWeight: "600"
                                                                 },
-                                                                children: "Metodologias \xc1geis"
+                                                                children: "Agile Methodologies"
                                                             }),
                                                             /*#__PURE__*/ (0,jsx_runtime.jsx)("p", {
                                                                 style: {
                                                                     color: "#4b5563"
                                                                 },
-                                                                children: "Utilizamos metodologias \xe1geis para entregas r\xe1pidas e eficientes."
+                                                                children: "We use agile methodologies for fast and efficient deliveries."
                                                             })
                                                         ]
                                                     })
@@ -1323,13 +1305,13 @@ function Home() {
                                                                     fontSize: "1.25rem",
                                                                     fontWeight: "600"
                                                                 },
-                                                                children: "Suporte T\xe9cnico Especializado"
+                                                                children: "Specialized Technical Support"
                                                             }),
                                                             /*#__PURE__*/ (0,jsx_runtime.jsx)("p", {
                                                                 style: {
                                                                     color: "#4b5563"
                                                                 },
-                                                                children: "Oferecemos suporte t\xe9cnico especializado para todos os nossos clientes."
+                                                                children: "We offer specialized technical support for all our clients."
                                                             })
                                                         ]
                                                     })
@@ -1376,7 +1358,7 @@ function Home() {
                                         fontWeight: "bold",
                                         marginBottom: "1rem"
                                     },
-                                    children: "Entre em Contato"
+                                    children: "Contact Us"
                                 }),
                                 /*#__PURE__*/ (0,jsx_runtime.jsx)("p", {
                                     style: {
@@ -1384,7 +1366,7 @@ function Home() {
                                         maxWidth: "42rem",
                                         margin: "0 auto"
                                     },
-                                    children: "Estamos prontos para transformar sua ideia em realidade. Entre em contato conosco!"
+                                    children: "We are ready to transform your idea into reality. Contact us!"
                                 })
                             ]
                         }),
@@ -1408,7 +1390,7 @@ function Home() {
                                                     fontWeight: "600",
                                                     marginBottom: "1.5rem"
                                                 },
-                                                children: "Informa\xe7\xf5es de Contato"
+                                                children: "Contact Information"
                                             }),
                                             /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
                                                 style: {
@@ -1425,13 +1407,13 @@ function Home() {
                                                                     fontWeight: "500",
                                                                     marginBottom: "0.5rem"
                                                                 },
-                                                                children: "Endere\xe7o"
+                                                                children: "Address"
                                                             }),
                                                             /*#__PURE__*/ (0,jsx_runtime.jsx)("p", {
                                                                 style: {
                                                                     color: "#4b5563"
                                                                 },
-                                                                children: "S\xe3o Paulo, SP - Brasil"
+                                                                children: "Minas Gerais, MG - Brazil"
                                                             })
                                                         ]
                                                     }),
@@ -1461,25 +1443,7 @@ function Home() {
                                                                     fontWeight: "500",
                                                                     marginBottom: "0.5rem"
                                                                 },
-                                                                children: "Telefone"
-                                                            }),
-                                                            /*#__PURE__*/ (0,jsx_runtime.jsx)("p", {
-                                                                style: {
-                                                                    color: "#4b5563"
-                                                                },
-                                                                children: "(11) 9999-9999"
-                                                            })
-                                                        ]
-                                                    }),
-                                                    /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
-                                                        children: [
-                                                            /*#__PURE__*/ (0,jsx_runtime.jsx)("h4", {
-                                                                style: {
-                                                                    fontSize: "1.125rem",
-                                                                    fontWeight: "500",
-                                                                    marginBottom: "0.5rem"
-                                                                },
-                                                                children: "Redes Sociais"
+                                                                children: "Social Media"
                                                             }),
                                                             /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
                                                                 style: {
@@ -1488,7 +1452,7 @@ function Home() {
                                                                 },
                                                                 children: [
                                                                     /*#__PURE__*/ (0,jsx_runtime.jsx)("a", {
-                                                                        href: "#",
+                                                                        href: "https://www.linkedin.com/in/luiz-fernando-dias-0a4b2a1b8/",
                                                                         style: {
                                                                             color: "#1e3a8a"
                                                                         },
@@ -1502,13 +1466,6 @@ function Home() {
                                                                             color: "#1e3a8a"
                                                                         },
                                                                         children: "GitHub"
-                                                                    }),
-                                                                    /*#__PURE__*/ (0,jsx_runtime.jsx)("a", {
-                                                                        href: "#",
-                                                                        style: {
-                                                                            color: "#1e3a8a"
-                                                                        },
-                                                                        children: "Twitter"
                                                                     })
                                                                 ]
                                                             })
@@ -1548,7 +1505,7 @@ function Home() {
                                                                 marginBottom: "0.5rem"
                                                             },
                                                             children: [
-                                                                "Nome ",
+                                                                "Name ",
                                                                 /*#__PURE__*/ (0,jsx_runtime.jsx)("span", {
                                                                     style: {
                                                                         color: "#ef4444"
@@ -1627,7 +1584,7 @@ function Home() {
                                                                 color: "#374151",
                                                                 marginBottom: "0.5rem"
                                                             },
-                                                            children: "Telefone"
+                                                            children: "Phone"
                                                         }),
                                                         /*#__PURE__*/ (0,jsx_runtime.jsx)("input", {
                                                             id: "phone",
@@ -1657,7 +1614,7 @@ function Home() {
                                                                 marginBottom: "0.5rem"
                                                             },
                                                             children: [
-                                                                "Mensagem ",
+                                                                "Message ",
                                                                 /*#__PURE__*/ (0,jsx_runtime.jsx)("span", {
                                                                     style: {
                                                                         color: "#ef4444"
@@ -1702,23 +1659,7 @@ function Home() {
                                                     },
                                                     disabled: isSubmitting,
                                                     "aria-busy": isSubmitting,
-                                                    children: isSubmitting ? "Enviando..." : "Enviar Mensagem"
-                                                }),
-                                                /*#__PURE__*/ (0,jsx_runtime.jsx)("button", {
-                                                    type: "button",
-                                                    onClick: testEmailJS,
-                                                    style: {
-                                                        width: "100%",
-                                                        padding: "0.75rem",
-                                                        borderRadius: "0.5rem",
-                                                        backgroundColor: "#4b5563",
-                                                        color: "white",
-                                                        cursor: "pointer",
-                                                        transition: "background-color 0.3s",
-                                                        fontWeight: "600",
-                                                        marginTop: "0.5rem"
-                                                    },
-                                                    children: "Testar EmailJS"
+                                                    children: isSubmitting ? "Sending..." : "Send Message"
                                                 })
                                             ]
                                         })
@@ -1757,13 +1698,13 @@ function Home() {
                                                 fontWeight: "600",
                                                 marginBottom: "1rem"
                                             },
-                                            children: "Sobre"
+                                            children: "About"
                                         }),
                                         /*#__PURE__*/ (0,jsx_runtime.jsx)("p", {
                                             style: {
                                                 color: "#9ca3af"
                                             },
-                                            children: "Empresa especializada em desenvolvimento full stack, criando solu\xe7\xf5es tecnol\xf3gicas inovadoras."
+                                            children: "Company specialized in full stack development, creating innovative technological solutions."
                                         })
                                     ]
                                 }),
@@ -1775,7 +1716,7 @@ function Home() {
                                                 fontWeight: "600",
                                                 marginBottom: "1rem"
                                             },
-                                            children: "Servi\xe7os"
+                                            children: "Services"
                                         }),
                                         /*#__PURE__*/ (0,jsx_runtime.jsxs)("ul", {
                                             style: {
@@ -1790,7 +1731,7 @@ function Home() {
                                                         style: {
                                                             color: "#9ca3af"
                                                         },
-                                                        children: "Desenvolvimento Web"
+                                                        children: "Web Development"
                                                     })
                                                 }),
                                                 /*#__PURE__*/ (0,jsx_runtime.jsx)("li", {
@@ -1799,7 +1740,7 @@ function Home() {
                                                         style: {
                                                             color: "#9ca3af"
                                                         },
-                                                        children: "Apps Mobile"
+                                                        children: "Mobile Apps"
                                                     })
                                                 }),
                                                 /*#__PURE__*/ (0,jsx_runtime.jsx)("li", {
@@ -1817,7 +1758,7 @@ function Home() {
                                                         style: {
                                                             color: "#9ca3af"
                                                         },
-                                                        children: "Consultoria"
+                                                        children: "Consultancy"
                                                     })
                                                 })
                                             ]
@@ -1832,7 +1773,7 @@ function Home() {
                                                 fontWeight: "600",
                                                 marginBottom: "1rem"
                                             },
-                                            children: "Contato"
+                                            children: "Contact"
                                         }),
                                         /*#__PURE__*/ (0,jsx_runtime.jsxs)("ul", {
                                             style: {
@@ -1851,13 +1792,7 @@ function Home() {
                                                     style: {
                                                         color: "#9ca3af"
                                                     },
-                                                    children: "Telefone: (11) 9999-9999"
-                                                }),
-                                                /*#__PURE__*/ (0,jsx_runtime.jsx)("li", {
-                                                    style: {
-                                                        color: "#9ca3af"
-                                                    },
-                                                    children: "S\xe3o Paulo, SP"
+                                                    children: "Minas Gerais, MG"
                                                 })
                                             ]
                                         })
@@ -1871,7 +1806,7 @@ function Home() {
                                                 fontWeight: "600",
                                                 marginBottom: "1rem"
                                             },
-                                            children: "Redes Sociais"
+                                            children: "Social Media"
                                         }),
                                         /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
                                             style: {
@@ -1881,7 +1816,7 @@ function Home() {
                                             },
                                             children: [
                                                 /*#__PURE__*/ (0,jsx_runtime.jsx)("a", {
-                                                    href: "#",
+                                                    href: "https://www.linkedin.com/in/luiz-fernando-dias-0a4b2a1b8/",
                                                     style: {
                                                         color: "#9ca3af"
                                                     },
@@ -1895,13 +1830,6 @@ function Home() {
                                                         color: "#9ca3af"
                                                     },
                                                     children: "GitHub"
-                                                }),
-                                                /*#__PURE__*/ (0,jsx_runtime.jsx)("a", {
-                                                    href: "#",
-                                                    style: {
-                                                        color: "#9ca3af"
-                                                    },
-                                                    children: "Twitter"
                                                 })
                                             ]
                                         })
@@ -1918,7 +1846,7 @@ function Home() {
                                 color: "#9ca3af"
                             },
                             children: /*#__PURE__*/ (0,jsx_runtime.jsx)("p", {
-                                children: "\xa9 2024 Sua Empresa. Todos os direitos reservados."
+                                children: "\xa9 2025 Semicolon. All rights reserved."
                             })
                         })
                     ]
@@ -1934,7 +1862,7 @@ function Home() {
 },
 /******/ function(__webpack_require__) { // webpackRuntimeModules
 /******/ var __webpack_exec__ = function(moduleId) { return __webpack_require__(__webpack_require__.s = moduleId); }
-/******/ __webpack_require__.O(0, [971,69,744], function() { return __webpack_exec__(751); });
+/******/ __webpack_require__.O(0, [971,69,744], function() { return __webpack_exec__(6518); });
 /******/ var __webpack_exports__ = __webpack_require__.O();
 /******/ _N_E = __webpack_exports__;
 /******/ }

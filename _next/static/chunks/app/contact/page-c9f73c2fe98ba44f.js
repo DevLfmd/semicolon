@@ -1,6 +1,6 @@
 (self["webpackChunk_N_E"] = self["webpackChunk_N_E"] || []).push([[327],{
 
-/***/ 1201:
+/***/ 349:
 /***/ (function(__unused_webpack_module, __unused_webpack_exports, __webpack_require__) {
 
 Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 9690))
@@ -89,11 +89,11 @@ const ContactPage = ()=>{
                     children: [
                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
                             className: "text-4xl font-bold mb-4",
-                            children: "Entre em Contato"
+                            children: "Contact Us"
                         }),
                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
                             className: "text-gray-400",
-                            children: "Tem alguma d\xfavida ou proposta? Estamos aqui para ajudar!"
+                            children: "Do you have any questions or proposals? We are here to help!"
                         })
                     ]
                 }),
@@ -235,7 +235,7 @@ const ContactPage = ()=>{
 },
 /******/ function(__webpack_require__) { // webpackRuntimeModules
 /******/ var __webpack_exec__ = function(moduleId) { return __webpack_require__(__webpack_require__.s = moduleId); }
-/******/ __webpack_require__.O(0, [444,971,69,744], function() { return __webpack_exec__(1201); });
+/******/ __webpack_require__.O(0, [444,971,69,744], function() { return __webpack_exec__(349); });
 /******/ var __webpack_exports__ = __webpack_require__.O();
 /******/ _N_E = __webpack_exports__;
 /******/ }
