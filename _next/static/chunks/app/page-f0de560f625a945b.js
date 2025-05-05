@@ -1202,153 +1202,143 @@ function Home() {
                         margin: "0 auto",
                         padding: "0 1rem"
                     },
-                    children: /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
+                    children: /*#__PURE__*/ (0,jsx_runtime.jsx)("div", {
                         style: {
                             display: "grid",
                             gridTemplateColumns: "repeat(2, 1fr)",
                             gap: "3rem",
                             alignItems: "center"
                         },
-                        children: [
-                            /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
-                                children: [
-                                    /*#__PURE__*/ (0,jsx_runtime.jsx)("h2", {
-                                        style: {
-                                            fontSize: "2.25rem",
-                                            fontWeight: "bold",
-                                            marginBottom: "1.5rem"
-                                        },
-                                        children: "About Us"
-                                    }),
-                                    /*#__PURE__*/ (0,jsx_runtime.jsx)("p", {
-                                        style: {
-                                            color: "#4b5563",
-                                            marginBottom: "1.5rem"
-                                        },
-                                        children: "We are a company specialized in full stack development, focused on creating innovative and high-quality technological solutions. Our team is composed of experienced professionals passionate about technology."
-                                    }),
-                                    /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
-                                        style: {
-                                            display: "flex",
-                                            flexDirection: "column",
-                                            gap: "1rem"
-                                        },
-                                        children: [
-                                            /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
-                                                style: {
-                                                    display: "flex",
-                                                    alignItems: "flex-start"
-                                                },
-                                                children: [
-                                                    /*#__PURE__*/ (0,jsx_runtime.jsx)(esm_CheckCircleIcon, {
-                                                        style: {
-                                                            height: "1.5rem",
-                                                            width: "1.5rem",
-                                                            color: "#1e3a8a",
-                                                            marginRight: "0.75rem",
-                                                            marginTop: "0.25rem"
-                                                        }
-                                                    }),
-                                                    /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
-                                                        children: [
-                                                            /*#__PURE__*/ (0,jsx_runtime.jsx)("h3", {
-                                                                style: {
-                                                                    fontSize: "1.25rem",
-                                                                    fontWeight: "600"
-                                                                },
-                                                                children: "Experience in Complex Projects"
-                                                            }),
-                                                            /*#__PURE__*/ (0,jsx_runtime.jsx)("p", {
-                                                                style: {
-                                                                    color: "#4b5563"
-                                                                },
-                                                                children: "We develop solutions for various sectors and company sizes."
-                                                            })
-                                                        ]
-                                                    })
-                                                ]
-                                            }),
-                                            /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
-                                                style: {
-                                                    display: "flex",
-                                                    alignItems: "flex-start"
-                                                },
-                                                children: [
-                                                    /*#__PURE__*/ (0,jsx_runtime.jsx)(esm_CheckCircleIcon, {
-                                                        style: {
-                                                            height: "1.5rem",
-                                                            width: "1.5rem",
-                                                            color: "#1e3a8a",
-                                                            marginRight: "0.75rem",
-                                                            marginTop: "0.25rem"
-                                                        }
-                                                    }),
-                                                    /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
-                                                        children: [
-                                                            /*#__PURE__*/ (0,jsx_runtime.jsx)("h3", {
-                                                                style: {
-                                                                    fontSize: "1.25rem",
-                                                                    fontWeight: "600"
-                                                                },
-                                                                children: "Agile Methodologies"
-                                                            }),
-                                                            /*#__PURE__*/ (0,jsx_runtime.jsx)("p", {
-                                                                style: {
-                                                                    color: "#4b5563"
-                                                                },
-                                                                children: "We use agile methodologies for fast and efficient deliveries."
-                                                            })
-                                                        ]
-                                                    })
-                                                ]
-                                            }),
-                                            /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
-                                                style: {
-                                                    display: "flex",
-                                                    alignItems: "flex-start"
-                                                },
-                                                children: [
-                                                    /*#__PURE__*/ (0,jsx_runtime.jsx)(esm_CheckCircleIcon, {
-                                                        style: {
-                                                            height: "1.5rem",
-                                                            width: "1.5rem",
-                                                            color: "#1e3a8a",
-                                                            marginRight: "0.75rem",
-                                                            marginTop: "0.25rem"
-                                                        }
-                                                    }),
-                                                    /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
-                                                        children: [
-                                                            /*#__PURE__*/ (0,jsx_runtime.jsx)("h3", {
-                                                                style: {
-                                                                    fontSize: "1.25rem",
-                                                                    fontWeight: "600"
-                                                                },
-                                                                children: "Specialized Technical Support"
-                                                            }),
-                                                            /*#__PURE__*/ (0,jsx_runtime.jsx)("p", {
-                                                                style: {
-                                                                    color: "#4b5563"
-                                                                },
-                                                                children: "We offer specialized technical support for all our clients."
-                                                            })
-                                                        ]
-                                                    })
-                                                ]
-                                            })
-                                        ]
-                                    })
-                                ]
-                            }),
-                            /*#__PURE__*/ (0,jsx_runtime.jsx)("div", {
-                                style: {
-                                    background: "linear-gradient(to bottom right, #1e3a8a, #1d4ed8)",
-                                    height: "24rem",
-                                    borderRadius: "0.5rem",
-                                    boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1)"
-                                }
-                            })
-                        ]
+                        children: /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
+                            children: [
+                                /*#__PURE__*/ (0,jsx_runtime.jsx)("h2", {
+                                    style: {
+                                        fontSize: "2.25rem",
+                                        fontWeight: "bold",
+                                        marginBottom: "1.5rem"
+                                    },
+                                    children: "About Us"
+                                }),
+                                /*#__PURE__*/ (0,jsx_runtime.jsx)("p", {
+                                    style: {
+                                        color: "#4b5563",
+                                        marginBottom: "1.5rem"
+                                    },
+                                    children: "We are a company specialized in full stack development, focused on creating innovative and high-quality technological solutions. Our team is composed of experienced professionals passionate about technology."
+                                }),
+                                /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
+                                    style: {
+                                        display: "flex",
+                                        flexDirection: "column",
+                                        gap: "1rem"
+                                    },
+                                    children: [
+                                        /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
+                                            style: {
+                                                display: "flex",
+                                                alignItems: "flex-start"
+                                            },
+                                            children: [
+                                                /*#__PURE__*/ (0,jsx_runtime.jsx)(esm_CheckCircleIcon, {
+                                                    style: {
+                                                        height: "1.5rem",
+                                                        width: "1.5rem",
+                                                        color: "#1e3a8a",
+                                                        marginRight: "0.75rem",
+                                                        marginTop: "0.25rem"
+                                                    }
+                                                }),
+                                                /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
+                                                    children: [
+                                                        /*#__PURE__*/ (0,jsx_runtime.jsx)("h3", {
+                                                            style: {
+                                                                fontSize: "1.25rem",
+                                                                fontWeight: "600"
+                                                            },
+                                                            children: "Experience in Complex Projects"
+                                                        }),
+                                                        /*#__PURE__*/ (0,jsx_runtime.jsx)("p", {
+                                                            style: {
+                                                                color: "#4b5563"
+                                                            },
+                                                            children: "We develop solutions for various sectors and company sizes."
+                                                        })
+                                                    ]
+                                                })
+                                            ]
+                                        }),
+                                        /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
+                                            style: {
+                                                display: "flex",
+                                                alignItems: "flex-start"
+                                            },
+                                            children: [
+                                                /*#__PURE__*/ (0,jsx_runtime.jsx)(esm_CheckCircleIcon, {
+                                                    style: {
+                                                        height: "1.5rem",
+                                                        width: "1.5rem",
+                                                        color: "#1e3a8a",
+                                                        marginRight: "0.75rem",
+                                                        marginTop: "0.25rem"
+                                                    }
+                                                }),
+                                                /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
+                                                    children: [
+                                                        /*#__PURE__*/ (0,jsx_runtime.jsx)("h3", {
+                                                            style: {
+                                                                fontSize: "1.25rem",
+                                                                fontWeight: "600"
+                                                            },
+                                                            children: "Agile Methodologies"
+                                                        }),
+                                                        /*#__PURE__*/ (0,jsx_runtime.jsx)("p", {
+                                                            style: {
+                                                                color: "#4b5563"
+                                                            },
+                                                            children: "We use agile methodologies for fast and efficient deliveries."
+                                                        })
+                                                    ]
+                                                })
+                                            ]
+                                        }),
+                                        /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
+                                            style: {
+                                                display: "flex",
+                                                alignItems: "flex-start"
+                                            },
+                                            children: [
+                                                /*#__PURE__*/ (0,jsx_runtime.jsx)(esm_CheckCircleIcon, {
+                                                    style: {
+                                                        height: "1.5rem",
+                                                        width: "1.5rem",
+                                                        color: "#1e3a8a",
+                                                        marginRight: "0.75rem",
+                                                        marginTop: "0.25rem"
+                                                    }
+                                                }),
+                                                /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
+                                                    children: [
+                                                        /*#__PURE__*/ (0,jsx_runtime.jsx)("h3", {
+                                                            style: {
+                                                                fontSize: "1.25rem",
+                                                                fontWeight: "600"
+                                                            },
+                                                            children: "Specialized Technical Support"
+                                                        }),
+                                                        /*#__PURE__*/ (0,jsx_runtime.jsx)("p", {
+                                                            style: {
+                                                                color: "#4b5563"
+                                                            },
+                                                            children: "We offer specialized technical support for all our clients."
+                                                        })
+                                                    ]
+                                                })
+                                            ]
+                                        })
+                                    ]
+                                })
+                            ]
+                        })
                     })
                 })
             }),
