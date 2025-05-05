@@ -711,7 +711,7 @@ function Home() {
                                             color: "#1e3a8a",
                                             marginBottom: "0.5rem"
                                         },
-                                        children: "8+"
+                                        children: "6+"
                                     }),
                                     /*#__PURE__*/ (0,jsx_runtime.jsx)("p", {
                                         style: {
@@ -733,7 +733,7 @@ function Home() {
                                             color: "#1e3a8a",
                                             marginBottom: "0.5rem"
                                         },
-                                        children: "50+"
+                                        children: "5+"
                                     }),
                                     /*#__PURE__*/ (0,jsx_runtime.jsx)("p", {
                                         style: {
@@ -755,7 +755,7 @@ function Home() {
                                             color: "#1e3a8a",
                                             marginBottom: "0.5rem"
                                         },
-                                        children: "30+"
+                                        children: "3+"
                                     }),
                                     /*#__PURE__*/ (0,jsx_runtime.jsx)("p", {
                                         style: {
@@ -1161,6 +1161,25 @@ function Home() {
                                                         }),
                                                         /*#__PURE__*/ (0,jsx_runtime.jsx)("span", {
                                                             children: "Cloud Solutions"
+                                                        })
+                                                    ]
+                                                }),
+                                                /*#__PURE__*/ (0,jsx_runtime.jsxs)("li", {
+                                                    style: {
+                                                        display: "flex",
+                                                        alignItems: "center"
+                                                    },
+                                                    children: [
+                                                        /*#__PURE__*/ (0,jsx_runtime.jsx)(esm_CheckCircleIcon, {
+                                                            style: {
+                                                                height: "1.25rem",
+                                                                width: "1.25rem",
+                                                                color: "#1e3a8a",
+                                                                marginRight: "0.5rem"
+                                                            }
+                                                        }),
+                                                        /*#__PURE__*/ (0,jsx_runtime.jsx)("span", {
+                                                            children: "AI Solutions"
                                                         })
                                                     ]
                                                 })
