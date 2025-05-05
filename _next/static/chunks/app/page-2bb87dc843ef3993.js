@@ -1766,7 +1766,7 @@ function Home() {
                                                         },
                                                         children: [
                                                             /*#__PURE__*/ (0,jsx_runtime.jsxs)("a", {
-                                                                href: "https://www.linkedin.com/in/luiz-fernando-dias-0a4b2a1b8/",
+                                                                href: "https://www.linkedin.com/company/semicolondev/",
                                                                 style: {
                                                                     color: "#1e3a8a",
                                                                     display: "flex",
