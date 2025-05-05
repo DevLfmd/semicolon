@@ -14,7 +14,7 @@ Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_re
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(3827);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(4090);
-/* harmony import */ var framer_motion__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(8371);
+/* harmony import */ var framer_motion__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(2175);
 /* harmony import */ var _emailjs_browser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5986);
 /* __next_internal_client_entry_do_not_use__ default auto */ 
 
@@ -235,7 +235,7 @@ const ContactPage = ()=>{
 },
 /******/ function(__webpack_require__) { // webpackRuntimeModules
 /******/ var __webpack_exec__ = function(moduleId) { return __webpack_require__(__webpack_require__.s = moduleId); }
-/******/ __webpack_require__.O(0, [432,971,69,744], function() { return __webpack_exec__(349); });
+/******/ __webpack_require__.O(0, [444,971,69,744], function() { return __webpack_exec__(349); });
 /******/ var __webpack_exports__ = __webpack_require__.O();
 /******/ _N_E = __webpack_exports__;
 /******/ }

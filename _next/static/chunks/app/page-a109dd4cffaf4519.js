@@ -3,11 +3,336 @@
 /***/ 6518:
 /***/ (function(__unused_webpack_module, __unused_webpack_exports, __webpack_require__) {
 
-Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 1009))
+Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 7570))
 
 /***/ }),
 
-/***/ 1009:
+/***/ 5986:
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, {
+  ZP: function() { return /* binding */ es; }
+});
+
+// UNUSED EXPORTS: EmailJSResponseStatus, init, send, sendForm
+
+;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/models/EmailJSResponseStatus.js
+class EmailJSResponseStatus {
+    constructor(_status = 0, _text = "Network Error"){
+        this.status = _status;
+        this.text = _text;
+    }
+}
+
+;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/utils/createWebStorage/createWebStorage.js
+const createWebStorage = ()=>{
+    if (typeof localStorage === "undefined") return;
+    return {
+        get: (key)=>Promise.resolve(localStorage.getItem(key)),
+        set: (key, value)=>Promise.resolve(localStorage.setItem(key, value)),
+        remove: (key)=>Promise.resolve(localStorage.removeItem(key))
+    };
+};
+
+;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/store/store.js
+
+const store = {
+    origin: "https://api.emailjs.com",
+    blockHeadless: false,
+    storageProvider: createWebStorage()
+};
+
+;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/utils/buildOptions/buildOptions.js
+const buildOptions = (options)=>{
+    if (!options) return {};
+    // support compatibility with SDK v3
+    if (typeof options === "string") {
+        return {
+            publicKey: options
+        };
+    }
+    // eslint-disable-next-line @typescript-eslint/no-base-to-string
+    if (options.toString() === "[object Object]") {
+        return options;
+    }
+    return {};
+};
+
+;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/methods/init/init.js
+
+
+/**
+ * EmailJS global SDK config
+ * @param {object} options - the EmailJS global SDK config options
+ * @param {string} origin - the non-default EmailJS origin
+ */ const init = function(options) {
+    let origin = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : "https://api.emailjs.com";
+    if (!options) return;
+    const opts = buildOptions(options);
+    store.publicKey = opts.publicKey;
+    store.blockHeadless = opts.blockHeadless;
+    store.storageProvider = opts.storageProvider;
+    store.blockList = opts.blockList;
+    store.limitRate = opts.limitRate;
+    store.origin = opts.origin || origin;
+};
+
+;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/api/sendPost.js
+
+
+const sendPost = async function(url, data) {
+    let headers = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : {};
+    const response = await fetch(store.origin + url, {
+        method: "POST",
+        headers,
+        body: data
+    });
+    const message = await response.text();
+    const responseStatus = new EmailJSResponseStatus(response.status, message);
+    if (response.ok) {
+        return responseStatus;
+    }
+    throw responseStatus;
+};
+
+;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/utils/validateParams/validateParams.js
+const validateParams = (publicKey, serviceID, templateID)=>{
+    if (!publicKey || typeof publicKey !== "string") {
+        throw "The public key is required. Visit https://dashboard.emailjs.com/admin/account";
+    }
+    if (!serviceID || typeof serviceID !== "string") {
+        throw "The service ID is required. Visit https://dashboard.emailjs.com/admin";
+    }
+    if (!templateID || typeof templateID !== "string") {
+        throw "The template ID is required. Visit https://dashboard.emailjs.com/admin/templates";
+    }
+};
+
+;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/utils/validateTemplateParams/validateTemplateParams.js
+const validateTemplateParams = (templateParams)=>{
+    // eslint-disable-next-line @typescript-eslint/no-base-to-string
+    if (templateParams && templateParams.toString() !== "[object Object]") {
+        throw "The template params have to be the object. Visit https://www.emailjs.com/docs/sdk/send/";
+    }
+};
+
+;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/utils/isHeadless/isHeadless.js
+const isHeadless = (navigator)=>{
+    return navigator.webdriver || !navigator.languages || navigator.languages.length === 0;
+};
+
+;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/errors/headlessError/headlessError.js
+
+const headlessError = ()=>{
+    return new EmailJSResponseStatus(451, "Unavailable For Headless Browser");
+};
+
+;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/utils/validateBlockListParams/validateBlockListParams.js
+const validateBlockListParams = (list, watchVariable)=>{
+    if (!Array.isArray(list)) {
+        throw "The BlockList list has to be an array";
+    }
+    if (typeof watchVariable !== "string") {
+        throw "The BlockList watchVariable has to be a string";
+    }
+};
+
+;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/utils/isBlockedValueInParams/isBlockedValueInParams.js
+
+const isBlockListDisabled = (options)=>{
+    var _options_list;
+    return !((_options_list = options.list) === null || _options_list === void 0 ? void 0 : _options_list.length) || !options.watchVariable;
+};
+const getValue = (data, name)=>{
+    return data instanceof FormData ? data.get(name) : data[name];
+};
+const isBlockedValueInParams = (options, params)=>{
+    if (isBlockListDisabled(options)) return false;
+    validateBlockListParams(options.list, options.watchVariable);
+    const value = getValue(params, options.watchVariable);
+    if (typeof value !== "string") return false;
+    return options.list.includes(value);
+};
+
+;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/errors/blockedEmailError/blockedEmailError.js
+
+const blockedEmailError = ()=>{
+    return new EmailJSResponseStatus(403, "Forbidden");
+};
+
+;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/utils/validateLimitRateParams/validateLimitRateParams.js
+const validateLimitRateParams = (throttle, id)=>{
+    if (typeof throttle !== "number" || throttle < 0) {
+        throw "The LimitRate throttle has to be a positive number";
+    }
+    if (id && typeof id !== "string") {
+        throw "The LimitRate ID has to be a non-empty string";
+    }
+};
+
+;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/utils/isLimitRateHit/isLimitRateHit.js
+
+const getLeftTime = async (id, throttle, storage)=>{
+    const lastTime = Number(await storage.get(id) || 0);
+    return throttle - Date.now() + lastTime;
+};
+const isLimitRateHit = async (defaultID, options, storage)=>{
+    if (!options.throttle || !storage) {
+        return false;
+    }
+    validateLimitRateParams(options.throttle, options.id);
+    const id = options.id || defaultID;
+    const leftTime = await getLeftTime(id, options.throttle, storage);
+    if (leftTime > 0) {
+        return true;
+    }
+    await storage.set(id, Date.now().toString());
+    return false;
+};
+
+;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/errors/limitRateError/limitRateError.js
+
+const limitRateError = ()=>{
+    return new EmailJSResponseStatus(429, "Too Many Requests");
+};
+
+;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/methods/send/send.js
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * Send a template to the specific EmailJS service
+ * @param {string} serviceID - the EmailJS service ID
+ * @param {string} templateID - the EmailJS template ID
+ * @param {object} templateParams - the template params, what will be set to the EmailJS template
+ * @param {object} options - the EmailJS SDK config options
+ * @returns {Promise<EmailJSResponseStatus>}
+ */ const send = async (serviceID, templateID, templateParams, options)=>{
+    const opts = buildOptions(options);
+    const publicKey = opts.publicKey || store.publicKey;
+    const blockHeadless = opts.blockHeadless || store.blockHeadless;
+    const storageProvider = opts.storageProvider || store.storageProvider;
+    const blockList = {
+        ...store.blockList,
+        ...opts.blockList
+    };
+    const limitRate = {
+        ...store.limitRate,
+        ...opts.limitRate
+    };
+    if (blockHeadless && isHeadless(navigator)) {
+        return Promise.reject(headlessError());
+    }
+    validateParams(publicKey, serviceID, templateID);
+    validateTemplateParams(templateParams);
+    if (templateParams && isBlockedValueInParams(blockList, templateParams)) {
+        return Promise.reject(blockedEmailError());
+    }
+    if (await isLimitRateHit(location.pathname, limitRate, storageProvider)) {
+        return Promise.reject(limitRateError());
+    }
+    const params = {
+        lib_version: "4.4.1",
+        user_id: publicKey,
+        service_id: serviceID,
+        template_id: templateID,
+        template_params: templateParams
+    };
+    return sendPost("/api/v1.0/email/send", JSON.stringify(params), {
+        "Content-type": "application/json"
+    });
+};
+
+;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/utils/validateForm/validateForm.js
+const validateForm = (form)=>{
+    if (!form || form.nodeName !== "FORM") {
+        throw "The 3rd parameter is expected to be the HTML form element or the style selector of the form";
+    }
+};
+
+;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/methods/sendForm/sendForm.js
+
+
+
+
+
+
+
+
+
+
+
+const findHTMLForm = (form)=>{
+    return typeof form === "string" ? document.querySelector(form) : form;
+};
+/**
+ * Send a form the specific EmailJS service
+ * @param {string} serviceID - the EmailJS service ID
+ * @param {string} templateID - the EmailJS template ID
+ * @param {string | HTMLFormElement} form - the form element or selector
+ * @param {object} options - the EmailJS SDK config options
+ * @returns {Promise<EmailJSResponseStatus>}
+ */ const sendForm = async (serviceID, templateID, form, options)=>{
+    const opts = buildOptions(options);
+    const publicKey = opts.publicKey || store.publicKey;
+    const blockHeadless = opts.blockHeadless || store.blockHeadless;
+    const storageProvider = store.storageProvider || opts.storageProvider;
+    const blockList = {
+        ...store.blockList,
+        ...opts.blockList
+    };
+    const limitRate = {
+        ...store.limitRate,
+        ...opts.limitRate
+    };
+    if (blockHeadless && isHeadless(navigator)) {
+        return Promise.reject(headlessError());
+    }
+    const currentForm = findHTMLForm(form);
+    validateParams(publicKey, serviceID, templateID);
+    validateForm(currentForm);
+    const formData = new FormData(currentForm);
+    if (isBlockedValueInParams(blockList, formData)) {
+        return Promise.reject(blockedEmailError());
+    }
+    if (await isLimitRateHit(location.pathname, limitRate, storageProvider)) {
+        return Promise.reject(limitRateError());
+    }
+    formData.append("lib_version", "4.4.1");
+    formData.append("service_id", serviceID);
+    formData.append("template_id", templateID);
+    formData.append("user_id", publicKey);
+    return sendPost("/api/v1.0/email/send-form", formData);
+};
+
+;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/index.js
+
+
+
+
+
+/* harmony default export */ var es = ({
+    init: init,
+    send: send,
+    sendForm: sendForm,
+    EmailJSResponseStatus: EmailJSResponseStatus
+});
+
+
+/***/ }),
+
+/***/ 7570:
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -150,337 +475,6 @@ const ServerIcon_ForwardRef = /*#__PURE__*/ react.forwardRef(ServerIcon);
 
 // EXTERNAL MODULE: ./node_modules/@emailjs/browser/es/index.js + 19 modules
 var es = __webpack_require__(5986);
-// EXTERNAL MODULE: ./node_modules/framer-motion/dist/es/context/LayoutGroupContext.mjs
-var LayoutGroupContext = __webpack_require__(3856);
-// EXTERNAL MODULE: ./node_modules/framer-motion/dist/es/utils/use-constant.mjs
-var use_constant = __webpack_require__(2435);
-// EXTERNAL MODULE: ./node_modules/framer-motion/dist/es/context/PresenceContext.mjs
-var PresenceContext = __webpack_require__(4561);
-// EXTERNAL MODULE: ./node_modules/framer-motion/dist/es/context/MotionConfigContext.mjs
-var MotionConfigContext = __webpack_require__(3449);
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/components/AnimatePresence/PopChild.mjs
-/* __next_internal_client_entry_do_not_use__ PopChild auto */ 
-
-
-
-/**
- * Measurement functionality has to be within a separate component
- * to leverage snapshot lifecycle.
- */ class PopChildMeasure extends react.Component {
-    getSnapshotBeforeUpdate(prevProps) {
-        const element = this.props.childRef.current;
-        if (element && prevProps.isPresent && !this.props.isPresent) {
-            const size = this.props.sizeRef.current;
-            size.height = element.offsetHeight || 0;
-            size.width = element.offsetWidth || 0;
-            size.top = element.offsetTop;
-            size.left = element.offsetLeft;
-        }
-        return null;
-    }
-    /**
-     * Required with getSnapshotBeforeUpdate to stop React complaining.
-     */ componentDidUpdate() {}
-    render() {
-        return this.props.children;
-    }
-}
-function PopChild(param) {
-    let { children, isPresent } = param;
-    const id = (0,react.useId)();
-    const ref = (0,react.useRef)(null);
-    const size = (0,react.useRef)({
-        width: 0,
-        height: 0,
-        top: 0,
-        left: 0
-    });
-    const { nonce } = (0,react.useContext)(MotionConfigContext/* MotionConfigContext */._);
-    /**
-     * We create and inject a style block so we can apply this explicit
-     * sizing in a non-destructive manner by just deleting the style block.
-     *
-     * We can't apply size via render as the measurement happens
-     * in getSnapshotBeforeUpdate (post-render), likewise if we apply the
-     * styles directly on the DOM node, we might be overwriting
-     * styles set via the style prop.
-     */ (0,react.useInsertionEffect)(()=>{
-        const { width, height, top, left } = size.current;
-        if (isPresent || !ref.current || !width || !height) return;
-        ref.current.dataset.motionPopId = id;
-        const style = document.createElement("style");
-        if (nonce) style.nonce = nonce;
-        document.head.appendChild(style);
-        if (style.sheet) {
-            style.sheet.insertRule('\n          [data-motion-pop-id="'.concat(id, '"] {\n            position: absolute !important;\n            width: ').concat(width, "px !important;\n            height: ").concat(height, "px !important;\n            top: ").concat(top, "px !important;\n            left: ").concat(left, "px !important;\n          }\n        "));
-        }
-        return ()=>{
-            document.head.removeChild(style);
-        };
-    }, [
-        isPresent
-    ]);
-    return (0,jsx_runtime.jsx)(PopChildMeasure, {
-        isPresent: isPresent,
-        childRef: ref,
-        sizeRef: size,
-        children: /*#__PURE__*/ react.cloneElement(children, {
-            ref
-        })
-    });
-}
-
-
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/components/AnimatePresence/PresenceChild.mjs
-/* __next_internal_client_entry_do_not_use__ PresenceChild auto */ 
-
-
-
-
-
-const PresenceChild = (param)=>{
-    let { children, initial, isPresent, onExitComplete, custom, presenceAffectsLayout, mode } = param;
-    const presenceChildren = (0,use_constant/* useConstant */.h)(newChildrenMap);
-    const id = (0,react.useId)();
-    const memoizedOnExitComplete = (0,react.useCallback)((childId)=>{
-        presenceChildren.set(childId, true);
-        for (const isComplete of presenceChildren.values()){
-            if (!isComplete) return; // can stop searching when any is incomplete
-        }
-        onExitComplete && onExitComplete();
-    }, [
-        presenceChildren,
-        onExitComplete
-    ]);
-    const context = (0,react.useMemo)(()=>({
-            id,
-            initial,
-            isPresent,
-            custom,
-            onExitComplete: memoizedOnExitComplete,
-            register: (childId)=>{
-                presenceChildren.set(childId, false);
-                return ()=>presenceChildren.delete(childId);
-            }
-        }), /**
-     * If the presence of a child affects the layout of the components around it,
-     * we want to make a new context value to ensure they get re-rendered
-     * so they can detect that layout change.
-     */ presenceAffectsLayout ? [
-        Math.random(),
-        memoizedOnExitComplete
-    ] : [
-        isPresent,
-        memoizedOnExitComplete
-    ]);
-    (0,react.useMemo)(()=>{
-        presenceChildren.forEach((_, key)=>presenceChildren.set(key, false));
-    }, [
-        isPresent
-    ]);
-    /**
-     * If there's no `motion` components to fire exit animations, we want to remove this
-     * component immediately.
-     */ react.useEffect(()=>{
-        !isPresent && !presenceChildren.size && onExitComplete && onExitComplete();
-    }, [
-        isPresent
-    ]);
-    if (mode === "popLayout") {
-        children = (0,jsx_runtime.jsx)(PopChild, {
-            isPresent: isPresent,
-            children: children
-        });
-    }
-    return (0,jsx_runtime.jsx)(PresenceContext/* PresenceContext */.O.Provider, {
-        value: context,
-        children: children
-    });
-};
-function newChildrenMap() {
-    return new Map();
-}
-
-
-// EXTERNAL MODULE: ./node_modules/framer-motion/dist/es/components/AnimatePresence/use-presence.mjs
-var use_presence = __webpack_require__(3177);
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/components/AnimatePresence/utils.mjs
-
-const getChildKey = (child)=>child.key || "";
-function onlyElements(children) {
-    const filtered = [];
-    // We use forEach here instead of map as map mutates the component key by preprending `.$`
-    react.Children.forEach(children, (child)=>{
-        if (/*#__PURE__*/ (0,react.isValidElement)(child)) filtered.push(child);
-    });
-    return filtered;
-}
-
-
-// EXTERNAL MODULE: ./node_modules/framer-motion/dist/es/utils/use-isomorphic-effect.mjs
-var use_isomorphic_effect = __webpack_require__(5526);
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/components/AnimatePresence/index.mjs
-/* __next_internal_client_entry_do_not_use__ AnimatePresence auto */ 
-
-
-
-
-
-
-
-/**
- * `AnimatePresence` enables the animation of components that have been removed from the tree.
- *
- * When adding/removing more than a single child, every child **must** be given a unique `key` prop.
- *
- * Any `motion` components that have an `exit` property defined will animate out when removed from
- * the tree.
- *
- * ```jsx
- * import { motion, AnimatePresence } from 'framer-motion'
- *
- * export const Items = ({ items }) => (
- *   <AnimatePresence>
- *     {items.map(item => (
- *       <motion.div
- *         key={item.id}
- *         initial={{ opacity: 0 }}
- *         animate={{ opacity: 1 }}
- *         exit={{ opacity: 0 }}
- *       />
- *     ))}
- *   </AnimatePresence>
- * )
- * ```
- *
- * You can sequence exit animations throughout a tree using variants.
- *
- * If a child contains multiple `motion` components with `exit` props, it will only unmount the child
- * once all `motion` components have finished animating out. Likewise, any components using
- * `usePresence` all need to call `safeToRemove`.
- *
- * @public
- */ const AnimatePresence = (param)=>{
-    let { children, custom, initial = true, onExitComplete, presenceAffectsLayout = true, mode = "sync", propagate = false } = param;
-    const [isParentPresent, safeToRemove] = (0,use_presence/* usePresence */.oO)(propagate);
-    /**
-     * Filter any children that aren't ReactElements. We can only track components
-     * between renders with a props.key.
-     */ const presentChildren = (0,react.useMemo)(()=>onlyElements(children), [
-        children
-    ]);
-    /**
-     * Track the keys of the currently rendered children. This is used to
-     * determine which children are exiting.
-     */ const presentKeys = propagate && !isParentPresent ? [] : presentChildren.map(getChildKey);
-    /**
-     * If `initial={false}` we only want to pass this to components in the first render.
-     */ const isInitialRender = (0,react.useRef)(true);
-    /**
-     * A ref containing the currently present children. When all exit animations
-     * are complete, we use this to re-render the component with the latest children
-     * *committed* rather than the latest children *rendered*.
-     */ const pendingPresentChildren = (0,react.useRef)(presentChildren);
-    /**
-     * Track which exiting children have finished animating out.
-     */ const exitComplete = (0,use_constant/* useConstant */.h)(()=>new Map());
-    /**
-     * Save children to render as React state. To ensure this component is concurrent-safe,
-     * we check for exiting children via an effect.
-     */ const [diffedChildren, setDiffedChildren] = (0,react.useState)(presentChildren);
-    const [renderedChildren, setRenderedChildren] = (0,react.useState)(presentChildren);
-    (0,use_isomorphic_effect/* useIsomorphicLayoutEffect */.L)(()=>{
-        isInitialRender.current = false;
-        pendingPresentChildren.current = presentChildren;
-        /**
-         * Update complete status of exiting children.
-         */ for(let i = 0; i < renderedChildren.length; i++){
-            const key = getChildKey(renderedChildren[i]);
-            if (!presentKeys.includes(key)) {
-                if (exitComplete.get(key) !== true) {
-                    exitComplete.set(key, false);
-                }
-            } else {
-                exitComplete.delete(key);
-            }
-        }
-    }, [
-        renderedChildren,
-        presentKeys.length,
-        presentKeys.join("-")
-    ]);
-    const exitingChildren = [];
-    if (presentChildren !== diffedChildren) {
-        let nextChildren = [
-            ...presentChildren
-        ];
-        /**
-         * Loop through all the currently rendered components and decide which
-         * are exiting.
-         */ for(let i = 0; i < renderedChildren.length; i++){
-            const child = renderedChildren[i];
-            const key = getChildKey(child);
-            if (!presentKeys.includes(key)) {
-                nextChildren.splice(i, 0, child);
-                exitingChildren.push(child);
-            }
-        }
-        /**
-         * If we're in "wait" mode, and we have exiting children, we want to
-         * only render these until they've all exited.
-         */ if (mode === "wait" && exitingChildren.length) {
-            nextChildren = exitingChildren;
-        }
-        setRenderedChildren(onlyElements(nextChildren));
-        setDiffedChildren(presentChildren);
-        /**
-         * Early return to ensure once we've set state with the latest diffed
-         * children, we can immediately re-render.
-         */ return;
-    }
-    if (false) {}
-    /**
-     * If we've been provided a forceRender function by the LayoutGroupContext,
-     * we can use it to force a re-render amongst all surrounding components once
-     * all components have finished animating out.
-     */ const { forceRender } = (0,react.useContext)(LayoutGroupContext/* LayoutGroupContext */.p);
-    return (0,jsx_runtime.jsx)(jsx_runtime.Fragment, {
-        children: renderedChildren.map((child)=>{
-            const key = getChildKey(child);
-            const isPresent = propagate && !isParentPresent ? false : presentChildren === renderedChildren || presentKeys.includes(key);
-            const onExit = ()=>{
-                if (exitComplete.has(key)) {
-                    exitComplete.set(key, true);
-                } else {
-                    return;
-                }
-                let isEveryExitComplete = true;
-                exitComplete.forEach((isExitComplete)=>{
-                    if (!isExitComplete) isEveryExitComplete = false;
-                });
-                if (isEveryExitComplete) {
-                    forceRender === null || forceRender === void 0 ? void 0 : forceRender();
-                    setRenderedChildren(pendingPresentChildren.current);
-                    propagate && (safeToRemove === null || safeToRemove === void 0 ? void 0 : safeToRemove());
-                    onExitComplete && onExitComplete();
-                }
-            };
-            return (0,jsx_runtime.jsx)(PresenceChild, {
-                isPresent: isPresent,
-                initial: !isInitialRender.current || initial ? undefined : false,
-                custom: isPresent ? undefined : custom,
-                presenceAffectsLayout: presenceAffectsLayout,
-                mode: mode,
-                onExitComplete: isPresent ? undefined : onExit,
-                children: child
-            }, key);
-        })
-    });
-};
-
-
-// EXTERNAL MODULE: ./node_modules/framer-motion/dist/es/render/components/motion/proxy.mjs + 241 modules
-var proxy = __webpack_require__(8371);
 ;// CONCATENATED MODULE: ./node_modules/@heroicons/react/24/outline/esm/ChevronLeftIcon.js
 
 function ChevronLeftIcon(param, svgRef) {
@@ -533,7 +527,6 @@ const ChevronRightIcon_ForwardRef = /*#__PURE__*/ react.forwardRef(ChevronRightI
 
 ;// CONCATENATED MODULE: ./src/components/SuccessCasesCarousel.tsx
 /* __next_internal_client_entry_do_not_use__ default auto */ 
-
 
 
 const projects = [
@@ -667,70 +660,45 @@ function SuccessCasesCarousel() {
         children: [
             /*#__PURE__*/ (0,jsx_runtime.jsx)("div", {
                 className: "overflow-hidden",
-                children: /*#__PURE__*/ (0,jsx_runtime.jsx)(AnimatePresence, {
-                    mode: "wait",
-                    children: /*#__PURE__*/ (0,jsx_runtime.jsxs)(proxy/* motion */.E.div, {
-                        initial: {
-                            opacity: 0,
-                            x: 100
-                        },
-                        animate: {
-                            opacity: 1,
-                            x: 0
-                        },
-                        exit: {
-                            opacity: 0,
-                            x: -100
-                        },
-                        transition: {
-                            duration: 0.5
-                        },
-                        className: "flex flex-col md:flex-row items-center gap-8 p-6",
-                        children: [
-                            /*#__PURE__*/ (0,jsx_runtime.jsx)("div", {
-                                className: "w-full md:w-1/2",
-                                children: /*#__PURE__*/ (0,jsx_runtime.jsx)(proxy/* motion */.E.img, {
-                                    src: projects[currentIndex].image,
-                                    alt: projects[currentIndex].title,
-                                    className: "w-full h-64 md:h-96 object-cover rounded-lg shadow-xl",
-                                    initial: {
-                                        scale: 0.9
-                                    },
-                                    animate: {
-                                        scale: 1
-                                    },
-                                    transition: {
-                                        duration: 0.5
-                                    }
-                                })
-                            }),
-                            /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
-                                className: "w-full md:w-1/2 space-y-4",
-                                children: [
-                                    /*#__PURE__*/ (0,jsx_runtime.jsx)("h3", {
-                                        className: "text-2xl font-bold text-gray-900",
-                                        children: projects[currentIndex].title
-                                    }),
-                                    /*#__PURE__*/ (0,jsx_runtime.jsx)("p", {
-                                        className: "text-gray-600",
-                                        children: projects[currentIndex].description
-                                    }),
-                                    /*#__PURE__*/ (0,jsx_runtime.jsx)("div", {
-                                        className: "flex flex-wrap gap-2",
-                                        children: projects[currentIndex].technologies.map((tech, index)=>/*#__PURE__*/ (0,jsx_runtime.jsx)("span", {
-                                                className: "px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm",
-                                                children: tech
-                                            }, index))
-                                    }),
-                                    /*#__PURE__*/ (0,jsx_runtime.jsx)("a", {
-                                        href: projects[currentIndex].link,
-                                        className: "inline-block px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors",
-                                        children: "View Project"
-                                    })
-                                ]
+                children: /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
+                    className: "flex flex-col md:flex-row items-center gap-8 p-6",
+                    children: [
+                        /*#__PURE__*/ (0,jsx_runtime.jsx)("div", {
+                            className: "w-full md:w-1/2",
+                            children: /*#__PURE__*/ (0,jsx_runtime.jsx)("img", {
+                                src: projects[currentIndex].image,
+                                alt: projects[currentIndex].title,
+                                className: "w-full h-64 md:h-96 object-cover rounded-lg shadow-xl"
                             })
-                        ]
-                    }, currentIndex)
+                        }),
+                        /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
+                            className: "w-full md:w-1/2 space-y-4",
+                            children: [
+                                /*#__PURE__*/ (0,jsx_runtime.jsx)("h3", {
+                                    className: "text-2xl font-bold text-gray-900",
+                                    children: projects[currentIndex].title
+                                }),
+                                /*#__PURE__*/ (0,jsx_runtime.jsx)("p", {
+                                    className: "text-gray-600",
+                                    children: projects[currentIndex].description
+                                }),
+                                /*#__PURE__*/ (0,jsx_runtime.jsx)("div", {
+                                    className: "flex flex-wrap gap-2",
+                                    children: projects[currentIndex].technologies.map((tech, index)=>/*#__PURE__*/ (0,jsx_runtime.jsx)("span", {
+                                            className: "px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm",
+                                            children: tech
+                                        }, index))
+                                }),
+                                /*#__PURE__*/ (0,jsx_runtime.jsx)("a", {
+                                    href: projects[currentIndex].link,
+                                    className: "inline-block px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors",
+                                    target: "_blank",
+                                    rel: "noopener noreferrer",
+                                    children: "View Project"
+                                })
+                            ]
+                        })
+                    ]
                 })
             }),
             /*#__PURE__*/ (0,jsx_runtime.jsx)("button", {
@@ -2019,7 +1987,7 @@ function Home() {
 },
 /******/ function(__webpack_require__) { // webpackRuntimeModules
 /******/ var __webpack_exec__ = function(moduleId) { return __webpack_require__(__webpack_require__.s = moduleId); }
-/******/ __webpack_require__.O(0, [432,971,69,744], function() { return __webpack_exec__(6518); });
+/******/ __webpack_require__.O(0, [971,69,744], function() { return __webpack_exec__(6518); });
 /******/ var __webpack_exports__ = __webpack_require__.O();
 /******/ _N_E = __webpack_exports__;
 /******/ }
