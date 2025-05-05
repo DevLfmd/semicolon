@@ -3,7 +3,7 @@
 /***/ 6518:
 /***/ (function(__unused_webpack_module, __unused_webpack_exports, __webpack_require__) {
 
-Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 7570))
+Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 6857))
 
 /***/ }),
 
@@ -332,7 +332,7 @@ const findHTMLForm = (form)=>{
 
 /***/ }),
 
-/***/ 7570:
+/***/ 6857:
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -475,59 +475,8 @@ const ServerIcon_ForwardRef = /*#__PURE__*/ react.forwardRef(ServerIcon);
 
 // EXTERNAL MODULE: ./node_modules/@emailjs/browser/es/index.js + 19 modules
 var es = __webpack_require__(5986);
-;// CONCATENATED MODULE: ./node_modules/@heroicons/react/24/outline/esm/ChevronLeftIcon.js
-
-function ChevronLeftIcon(param, svgRef) {
-    let { title, titleId, ...props } = param;
-    return /*#__PURE__*/ react.createElement("svg", Object.assign({
-        xmlns: "http://www.w3.org/2000/svg",
-        fill: "none",
-        viewBox: "0 0 24 24",
-        strokeWidth: 1.5,
-        stroke: "currentColor",
-        "aria-hidden": "true",
-        "data-slot": "icon",
-        ref: svgRef,
-        "aria-labelledby": titleId
-    }, props), title ? /*#__PURE__*/ react.createElement("title", {
-        id: titleId
-    }, title) : null, /*#__PURE__*/ react.createElement("path", {
-        strokeLinecap: "round",
-        strokeLinejoin: "round",
-        d: "M15.75 19.5 8.25 12l7.5-7.5"
-    }));
-}
-const ChevronLeftIcon_ForwardRef = /*#__PURE__*/ react.forwardRef(ChevronLeftIcon);
-/* harmony default export */ var esm_ChevronLeftIcon = (ChevronLeftIcon_ForwardRef);
-
-;// CONCATENATED MODULE: ./node_modules/@heroicons/react/24/outline/esm/ChevronRightIcon.js
-
-function ChevronRightIcon(param, svgRef) {
-    let { title, titleId, ...props } = param;
-    return /*#__PURE__*/ react.createElement("svg", Object.assign({
-        xmlns: "http://www.w3.org/2000/svg",
-        fill: "none",
-        viewBox: "0 0 24 24",
-        strokeWidth: 1.5,
-        stroke: "currentColor",
-        "aria-hidden": "true",
-        "data-slot": "icon",
-        ref: svgRef,
-        "aria-labelledby": titleId
-    }, props), title ? /*#__PURE__*/ react.createElement("title", {
-        id: titleId
-    }, title) : null, /*#__PURE__*/ react.createElement("path", {
-        strokeLinecap: "round",
-        strokeLinejoin: "round",
-        d: "m8.25 4.5 7.5 7.5-7.5 7.5"
-    }));
-}
-const ChevronRightIcon_ForwardRef = /*#__PURE__*/ react.forwardRef(ChevronRightIcon);
-/* harmony default export */ var esm_ChevronRightIcon = (ChevronRightIcon_ForwardRef);
-
 ;// CONCATENATED MODULE: ./src/components/SuccessCasesCarousel.tsx
 /* __next_internal_client_entry_do_not_use__ default auto */ 
-
 
 const projects = [
     {
@@ -580,7 +529,7 @@ const projects = [
     {
         id: 4,
         title: "Roboagro",
-        description: "Roboagro is Brazil’s first company to automate swine feeding through an app-controlled robotic feeder. More than just an automatic trough, Roboagro is transforming swine farming with precision feeding, enhanced animal welfare, and real-time data management.",
+        description: "Roboagro is Brazil's first company to automate swine feeding through an app-controlled robotic feeder. More than just an automatic trough, Roboagro is transforming swine farming with precision feeding, enhanced animal welfare, and real-time data management.",
         image: "https://devlfmd.github.io/semicolon/images/roboagro.png",
         link: "https://www.roboagro.com.br",
         technologies: [
@@ -590,7 +539,7 @@ const projects = [
         ]
     },
     {
-        id: 4,
+        id: 5,
         title: "2Local.AI",
         description: "2Local.ai is a cutting-edge AI-powered platform designed to automate and scale local business outreach. It enables marketing agencies, sales teams, and real estate professionals to discover local businesses via real-time Google Maps data, build targeted prospect lists, and launch personalized automated outreach campaigns — without relying on cold emails or spam-prone tactics.",
         image: "https://devlfmd.github.io/semicolon/images/2localai.png",
@@ -605,7 +554,7 @@ const projects = [
         ]
     },
     {
-        id: 5,
+        id: 6,
         title: "iCons\xf3rcio",
         description: "iCons\xf3rcio is a flexible, all-in-one platform built to streamline the management of health consortia, clinics, and medical practices. Its modular system allows organizations to choose and integrate only the tools they need — all in one cohesive environment.",
         image: "https://devlfmd.github.io/semicolon/images/iconsorcio.png",
@@ -621,7 +570,7 @@ const projects = [
         ]
     },
     {
-        id: 6,
+        id: 7,
         title: "Escallo",
         description: "Escallo is a business strategy platform that uses intelligent technology to enhance customer interactions via voice and text.",
         image: "https://devlfmd.github.io/semicolon/images/escallo.png",
@@ -635,7 +584,7 @@ const projects = [
         ]
     },
     {
-        id: 7,
+        id: 8,
         title: "Yby Online",
         description: "Yby online was a platform that allowed users to create and manage their own online farm stores.",
         image: "https://devlfmd.github.io/semicolon/images/yby.png",
@@ -655,77 +604,198 @@ function SuccessCasesCarousel() {
     const prevSlide = ()=>{
         setCurrentIndex((prevIndex)=>(prevIndex - 1 + projects.length) % projects.length);
     };
-    return /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
-        className: "relative w-full max-w-6xl mx-auto",
-        children: [
-            /*#__PURE__*/ (0,jsx_runtime.jsx)("div", {
-                className: "overflow-hidden",
-                children: /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
-                    className: "flex flex-col md:flex-row items-center gap-8 p-6",
-                    children: [
-                        /*#__PURE__*/ (0,jsx_runtime.jsx)("div", {
-                            className: "w-full md:w-1/2",
-                            children: /*#__PURE__*/ (0,jsx_runtime.jsx)("img", {
+    return /*#__PURE__*/ (0,jsx_runtime.jsx)("div", {
+        style: {
+            maxWidth: "1200px",
+            margin: "0 auto",
+            padding: "0 1rem"
+        },
+        children: /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
+            style: {
+                position: "relative"
+            },
+            children: [
+                /*#__PURE__*/ (0,jsx_runtime.jsx)("div", {
+                    style: {
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "2rem",
+                        padding: "2rem",
+                        backgroundColor: "white",
+                        borderRadius: "0.5rem",
+                        boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)"
+                    },
+                    children: /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
+                        style: {
+                            display: "flex",
+                            flexDirection: "column",
+                            gap: "1rem",
+                            alignItems: "center"
+                        },
+                        children: [
+                            /*#__PURE__*/ (0,jsx_runtime.jsx)("img", {
                                 src: projects[currentIndex].image,
                                 alt: projects[currentIndex].title,
-                                className: "w-full h-64 md:h-96 object-cover rounded-lg shadow-xl"
+                                style: {
+                                    width: "100%",
+                                    maxHeight: "400px",
+                                    objectFit: "cover",
+                                    borderRadius: "0.5rem"
+                                }
+                            }),
+                            /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
+                                style: {
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    gap: "1rem",
+                                    width: "100%"
+                                },
+                                children: [
+                                    /*#__PURE__*/ (0,jsx_runtime.jsx)("h3", {
+                                        style: {
+                                            fontSize: "1.5rem",
+                                            fontWeight: "600",
+                                            color: "#1e3a8a"
+                                        },
+                                        children: projects[currentIndex].title
+                                    }),
+                                    /*#__PURE__*/ (0,jsx_runtime.jsx)("p", {
+                                        style: {
+                                            color: "#4b5563",
+                                            lineHeight: "1.5"
+                                        },
+                                        children: projects[currentIndex].description
+                                    }),
+                                    /*#__PURE__*/ (0,jsx_runtime.jsx)("div", {
+                                        style: {
+                                            display: "flex",
+                                            flexWrap: "wrap",
+                                            gap: "0.5rem"
+                                        },
+                                        children: projects[currentIndex].technologies.map((tech, index)=>/*#__PURE__*/ (0,jsx_runtime.jsx)("span", {
+                                                style: {
+                                                    padding: "0.25rem 0.75rem",
+                                                    backgroundColor: "#dbeafe",
+                                                    color: "#1e3a8a",
+                                                    borderRadius: "9999px",
+                                                    fontSize: "0.875rem"
+                                                },
+                                                children: tech
+                                            }, index))
+                                    }),
+                                    /*#__PURE__*/ (0,jsx_runtime.jsx)("a", {
+                                        href: projects[currentIndex].link,
+                                        target: "_blank",
+                                        rel: "noopener noreferrer",
+                                        style: {
+                                            display: "inline-block",
+                                            padding: "0.75rem 1.5rem",
+                                            backgroundColor: "#1e3a8a",
+                                            color: "white",
+                                            borderRadius: "0.5rem",
+                                            textDecoration: "none",
+                                            textAlign: "center",
+                                            marginTop: "1rem",
+                                            transition: "background-color 0.3s"
+                                        },
+                                        onMouseOver: (e)=>e.currentTarget.style.backgroundColor = "#1e40af",
+                                        onMouseOut: (e)=>e.currentTarget.style.backgroundColor = "#1e3a8a",
+                                        children: "View Project"
+                                    })
+                                ]
                             })
-                        }),
-                        /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
-                            className: "w-full md:w-1/2 space-y-4",
-                            children: [
-                                /*#__PURE__*/ (0,jsx_runtime.jsx)("h3", {
-                                    className: "text-2xl font-bold text-gray-900",
-                                    children: projects[currentIndex].title
-                                }),
-                                /*#__PURE__*/ (0,jsx_runtime.jsx)("p", {
-                                    className: "text-gray-600",
-                                    children: projects[currentIndex].description
-                                }),
-                                /*#__PURE__*/ (0,jsx_runtime.jsx)("div", {
-                                    className: "flex flex-wrap gap-2",
-                                    children: projects[currentIndex].technologies.map((tech, index)=>/*#__PURE__*/ (0,jsx_runtime.jsx)("span", {
-                                            className: "px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm",
-                                            children: tech
-                                        }, index))
-                                }),
-                                /*#__PURE__*/ (0,jsx_runtime.jsx)("a", {
-                                    href: projects[currentIndex].link,
-                                    className: "inline-block px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors",
-                                    target: "_blank",
-                                    rel: "noopener noreferrer",
-                                    children: "View Project"
-                                })
-                            ]
+                        ]
+                    })
+                }),
+                /*#__PURE__*/ (0,jsx_runtime.jsx)("button", {
+                    onClick: prevSlide,
+                    style: {
+                        position: "absolute",
+                        left: "-1rem",
+                        top: "50%",
+                        transform: "translateY(-50%)",
+                        backgroundColor: "white",
+                        padding: "0.5rem",
+                        borderRadius: "9999px",
+                        border: "none",
+                        boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
+                        cursor: "pointer",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center"
+                    },
+                    "aria-label": "Previous project",
+                    children: /*#__PURE__*/ (0,jsx_runtime.jsx)("svg", {
+                        xmlns: "http://www.w3.org/2000/svg",
+                        width: "24",
+                        height: "24",
+                        viewBox: "0 0 24 24",
+                        fill: "none",
+                        stroke: "currentColor",
+                        strokeWidth: "2",
+                        strokeLinecap: "round",
+                        strokeLinejoin: "round",
+                        children: /*#__PURE__*/ (0,jsx_runtime.jsx)("path", {
+                            d: "M15 18l-6-6 6-6"
                         })
-                    ]
+                    })
+                }),
+                /*#__PURE__*/ (0,jsx_runtime.jsx)("button", {
+                    onClick: nextSlide,
+                    style: {
+                        position: "absolute",
+                        right: "-1rem",
+                        top: "50%",
+                        transform: "translateY(-50%)",
+                        backgroundColor: "white",
+                        padding: "0.5rem",
+                        borderRadius: "9999px",
+                        border: "none",
+                        boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
+                        cursor: "pointer",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center"
+                    },
+                    "aria-label": "Next project",
+                    children: /*#__PURE__*/ (0,jsx_runtime.jsx)("svg", {
+                        xmlns: "http://www.w3.org/2000/svg",
+                        width: "24",
+                        height: "24",
+                        viewBox: "0 0 24 24",
+                        fill: "none",
+                        stroke: "currentColor",
+                        strokeWidth: "2",
+                        strokeLinecap: "round",
+                        strokeLinejoin: "round",
+                        children: /*#__PURE__*/ (0,jsx_runtime.jsx)("path", {
+                            d: "M9 18l6-6-6-6"
+                        })
+                    })
+                }),
+                /*#__PURE__*/ (0,jsx_runtime.jsx)("div", {
+                    style: {
+                        display: "flex",
+                        justifyContent: "center",
+                        gap: "0.5rem",
+                        marginTop: "1rem"
+                    },
+                    children: projects.map((_, index)=>/*#__PURE__*/ (0,jsx_runtime.jsx)("button", {
+                            onClick: ()=>setCurrentIndex(index),
+                            style: {
+                                width: "0.5rem",
+                                height: "0.5rem",
+                                borderRadius: "9999px",
+                                border: "none",
+                                cursor: "pointer",
+                                backgroundColor: index === currentIndex ? "#1e3a8a" : "#d1d5db",
+                                transition: "background-color 0.3s"
+                            },
+                            "aria-label": "Go to project ".concat(index + 1)
+                        }, index))
                 })
-            }),
-            /*#__PURE__*/ (0,jsx_runtime.jsx)("button", {
-                onClick: prevSlide,
-                className: "absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white p-2 rounded-full shadow-lg hover:bg-gray-100 transition-colors",
-                "aria-label": "Previous project",
-                children: /*#__PURE__*/ (0,jsx_runtime.jsx)(esm_ChevronLeftIcon, {
-                    className: "w-6 h-6 text-gray-600"
-                })
-            }),
-            /*#__PURE__*/ (0,jsx_runtime.jsx)("button", {
-                onClick: nextSlide,
-                className: "absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-white p-2 rounded-full shadow-lg hover:bg-gray-100 transition-colors",
-                "aria-label": "Next project",
-                children: /*#__PURE__*/ (0,jsx_runtime.jsx)(esm_ChevronRightIcon, {
-                    className: "w-6 h-6 text-gray-600"
-                })
-            }),
-            /*#__PURE__*/ (0,jsx_runtime.jsx)("div", {
-                className: "flex justify-center gap-2 mt-6",
-                children: projects.map((_, index)=>/*#__PURE__*/ (0,jsx_runtime.jsx)("button", {
-                        onClick: ()=>setCurrentIndex(index),
-                        className: "w-3 h-3 rounded-full transition-colors ".concat(index === currentIndex ? "bg-blue-600" : "bg-gray-300"),
-                        "aria-label": "Go to project ".concat(index + 1)
-                    }, index))
-            })
-        ]
+            ]
+        })
     });
 }
 
