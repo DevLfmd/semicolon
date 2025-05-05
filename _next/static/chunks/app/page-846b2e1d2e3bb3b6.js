@@ -501,6 +501,9 @@ const projects = [
         image: "https://devlfmd.github.io/semicolon/images/leadowl.png",
         link: "https://leadowl.com",
         technologies: [
+            "Laravel",
+            "Php",
+            "Chargebee",
             "Next.js",
             "TypeScript",
             "OpenAI",
@@ -598,12 +601,21 @@ const projects = [
 ];
 function SuccessCasesCarousel() {
     const [currentIndex, setCurrentIndex] = (0,react.useState)(0);
-    const nextSlide = ()=>{
-        setCurrentIndex((prevIndex)=>(prevIndex + 1) % projects.length);
-    };
-    const prevSlide = ()=>{
-        setCurrentIndex((prevIndex)=>(prevIndex - 1 + projects.length) % projects.length);
-    };
+    const nextSlide = (0,react.useCallback)(()=>{
+        setCurrentIndex((prevIndex)=>{
+            const nextIndex = prevIndex + 1;
+            return nextIndex >= projects.length ? 0 : nextIndex;
+        });
+    }, []);
+    const prevSlide = (0,react.useCallback)(()=>{
+        setCurrentIndex((prevIndex)=>{
+            const nextIndex = prevIndex - 1;
+            return nextIndex < 0 ? projects.length - 1 : nextIndex;
+        });
+    }, []);
+    const goToSlide = (0,react.useCallback)((index)=>{
+        setCurrentIndex(index);
+    }, []);
     return /*#__PURE__*/ (0,jsx_runtime.jsx)("div", {
         style: {
             maxWidth: "1200px",
@@ -781,7 +793,7 @@ function SuccessCasesCarousel() {
                         marginTop: "1rem"
                     },
                     children: projects.map((_, index)=>/*#__PURE__*/ (0,jsx_runtime.jsx)("button", {
-                            onClick: ()=>setCurrentIndex(index),
+                            onClick: ()=>goToSlide(index),
                             style: {
                                 width: "0.5rem",
                                 height: "0.5rem",
