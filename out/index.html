@@ -1,0 +1,610 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preload" href="/semicolon/_next/static/media/a34f9d1faa5f3315-s.p.woff2" as="font" crossorigin="" type="font/woff2"/><link rel="preload" as="image" href="https://devlfmd.github.io/semicolon/images/deepread-logo.png"/><link rel="preload" as="image" href="https://devlfmd.github.io/semicolon/images/leadowl-logo.png"/><link rel="preload" as="image" href="https://devlfmd.github.io/semicolon/images/vidlo-logo.png"/><link rel="preload" as="image" href="https://devlfmd.github.io/semicolon/images/roboagro-logo.png"/><link rel="preload" as="image" href="https://devlfmd.github.io/semicolon/images/2localai-logo.png"/><link rel="preload" as="image" href="https://devlfmd.github.io/semicolon/images/iconsorcio-logo.png"/><link rel="preload" as="image" href="https://devlfmd.github.io/semicolon/images/escallo-logo.png"/><link rel="preload" as="image" href="https://devlfmd.github.io/semicolon/images/yby-logo.png"/><link rel="preload" as="image" href="https://devlfmd.github.io/semicolon/images/recicle-bem-logo.png"/><link rel="stylesheet" href="/semicolon/_next/static/css/5f332588fdd6fd5e.css" crossorigin="" data-precedence="next"/><link rel="preload" as="script" fetchPriority="low" href="/semicolon/_next/static/chunks/webpack-f859969ffdba3f74.js" crossorigin=""/><script src="/semicolon/_next/static/chunks/fd9d1056-6110ffd77e8dcc12.js" async="" crossorigin=""></script><script src="/semicolon/_next/static/chunks/69-61e3a47736e820c9.js" async="" crossorigin=""></script><script src="/semicolon/_next/static/chunks/main-app-13a9aff7aaedfb9b.js" async="" crossorigin=""></script><script src="/semicolon/_next/static/chunks/app/page-d57109d892e1e45e.js" async=""></script><title>Empresa de Desenvolvimento Full Stack</title><meta name="description" content="Transformando ideias em realidade digital com desenvolvimento full stack de alta performance"/><meta name="next-size-adjust"/><style>
+          /* Reset e estilos base */
+          :root {
+            --foreground-rgb: 0, 0, 0;
+            --background-start-rgb: 214, 219, 220;
+            --background-end-rgb: 255, 255, 255;
+            --primary: #1e40af;
+            --secondary: #1e3a8a;
+            --accent: #3b82f6;
+            --dark: #0f172a;
+          }
+          
+          * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+          }
+          
+          html, body {
+            height: 100%;
+            width: 100%;
+            overflow-x: hidden;
+          }
+          
+          body {
+            color: rgb(var(--foreground-rgb));
+            background: rgb(var(--background-end-rgb));
+            font-family: 'Inter', sans-serif;
+            line-height: 1.5;
+          }
+          
+          /* Layout */
+          .min-h-screen {
+            min-height: 100vh;
+          }
+          
+          .container {
+            width: 100%;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+          }
+          
+          /* Flexbox */
+          .flex {
+            display: flex;
+          }
+          
+          .flex-col {
+            flex-direction: column;
+          }
+          
+          .flex-row {
+            flex-direction: row;
+          }
+          
+          .items-center {
+            align-items: center;
+          }
+          
+          .items-start {
+            align-items: flex-start;
+          }
+          
+          .justify-center {
+            justify-content: center;
+          }
+          
+          .justify-between {
+            justify-content: space-between;
+          }
+          
+          .gap-4 {
+            gap: 1rem;
+          }
+          
+          .gap-8 {
+            gap: 2rem;
+          }
+          
+          /* Grid */
+          .grid {
+            display: grid;
+          }
+          
+          .grid-cols-1 {
+            grid-template-columns: repeat(1, minmax(0, 1fr));
+          }
+          
+          .grid-cols-2 {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+          }
+          
+          .grid-cols-3 {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+          }
+          
+          .grid-cols-4 {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+          }
+          
+          /* Espaçamento */
+          .p-4 {
+            padding: 1rem;
+          }
+          
+          .p-6 {
+            padding: 1.5rem;
+          }
+          
+          .p-8 {
+            padding: 2rem;
+          }
+          
+          .px-4 {
+            padding-left: 1rem;
+            padding-right: 1rem;
+          }
+          
+          .px-6 {
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+          }
+          
+          .px-8 {
+            padding-left: 2rem;
+            padding-right: 2rem;
+          }
+          
+          .py-3 {
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
+          }
+          
+          .py-4 {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+          }
+          
+          .py-6 {
+            padding-top: 1.5rem;
+            padding-bottom: 1.5rem;
+          }
+          
+          .py-8 {
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+          }
+          
+          .py-12 {
+            padding-top: 3rem;
+            padding-bottom: 3rem;
+          }
+          
+          .py-16 {
+            padding-top: 4rem;
+            padding-bottom: 4rem;
+          }
+          
+          .py-20 {
+            padding-top: 5rem;
+            padding-bottom: 5rem;
+          }
+          
+          .mb-2 {
+            margin-bottom: 0.5rem;
+          }
+          
+          .mb-4 {
+            margin-bottom: 1rem;
+          }
+          
+          .mb-6 {
+            margin-bottom: 1.5rem;
+          }
+          
+          .mb-8 {
+            margin-bottom: 2rem;
+          }
+          
+          .mb-12 {
+            margin-bottom: 3rem;
+          }
+          
+          .mb-16 {
+            margin-bottom: 4rem;
+          }
+          
+          .mt-4 {
+            margin-top: 1rem;
+          }
+          
+          .mt-8 {
+            margin-top: 2rem;
+          }
+          
+          .mt-12 {
+            margin-top: 3rem;
+          }
+          
+          .mt-16 {
+            margin-top: 4rem;
+          }
+          
+          .mr-2 {
+            margin-right: 0.5rem;
+          }
+          
+          .mr-3 {
+            margin-right: 0.75rem;
+          }
+          
+          .mr-4 {
+            margin-right: 1rem;
+          }
+          
+          .space-y-2 > * + * {
+            margin-top: 0.5rem;
+          }
+          
+          .space-y-4 > * + * {
+            margin-top: 1rem;
+          }
+          
+          .space-y-6 > * + * {
+            margin-top: 1.5rem;
+          }
+          
+          .space-x-4 > * + * {
+            margin-left: 1rem;
+          }
+          
+          /* Cores */
+          .bg-white {
+            background-color: #ffffff;
+          }
+          
+          .bg-gray-50 {
+            background-color: #f9fafb;
+          }
+          
+          .bg-gray-100 {
+            background-color: #f3f4f6;
+          }
+          
+          .bg-gray-900 {
+            background-color: #111827;
+          }
+          
+          .bg-blue-100 {
+            background-color: #dbeafe;
+          }
+          
+          .bg-blue-600 {
+            background-color: #2563eb;
+          }
+          
+          .bg-blue-700 {
+            background-color: #1d4ed8;
+          }
+          
+          .bg-blue-800 {
+            background-color: #1e40af;
+          }
+          
+          .bg-blue-900 {
+            background-color: #1e3a8a;
+          }
+          
+          .text-white {
+            color: #ffffff;
+          }
+          
+          .text-gray-400 {
+            color: #9ca3af;
+          }
+          
+          .text-gray-600 {
+            color: #4b5563;
+          }
+          
+          .text-gray-700 {
+            color: #374151;
+          }
+          
+          .text-gray-800 {
+            color: #1f2937;
+          }
+          
+          .text-gray-900 {
+            color: #111827;
+          }
+          
+          .text-blue-400 {
+            color: #60a5fa;
+          }
+          
+          .text-blue-600 {
+            color: #2563eb;
+          }
+          
+          .text-blue-700 {
+            color: #1d4ed8;
+          }
+          
+          .text-blue-900 {
+            color: #1e3a8a;
+          }
+          
+          /* Tipografia */
+          .text-4xl {
+            font-size: 2.25rem;
+            line-height: 2.5rem;
+          }
+          
+          .text-5xl {
+            font-size: 3rem;
+            line-height: 1;
+          }
+          
+          .text-6xl {
+            font-size: 3.75rem;
+            line-height: 1;
+          }
+          
+          .text-lg {
+            font-size: 1.125rem;
+            line-height: 1.75rem;
+          }
+          
+          .text-xl {
+            font-size: 1.25rem;
+            line-height: 1.75rem;
+          }
+          
+          .text-2xl {
+            font-size: 1.5rem;
+            line-height: 2rem;
+          }
+          
+          .font-bold {
+            font-weight: 700;
+          }
+          
+          .font-semibold {
+            font-weight: 600;
+          }
+          
+          .font-medium {
+            font-weight: 500;
+          }
+          
+          .text-center {
+            text-align: center;
+          }
+          
+          /* Bordas e sombras */
+          .rounded-lg {
+            border-radius: 0.5rem;
+          }
+          
+          .rounded-full {
+            border-radius: 9999px;
+          }
+          
+          .border {
+            border-width: 1px;
+            border-style: solid;
+          }
+          
+          .border-2 {
+            border-width: 2px;
+            border-style: solid;
+          }
+          
+          .border-gray-800 {
+            border-color: #1f2937;
+          }
+          
+          .border-t {
+            border-top-width: 1px;
+            border-top-style: solid;
+          }
+          
+          .border-t-gray-800 {
+            border-top-color: #1f2937;
+          }
+          
+          .shadow-lg {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+          }
+          
+          .shadow-xl {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+          }
+          
+          /* Efeitos */
+          .transition-colors {
+            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 150ms;
+          }
+          
+          .hover\:bg-blue-100:hover {
+            background-color: #dbeafe;
+          }
+          
+          .hover\:bg-blue-700:hover {
+            background-color: #1d4ed8;
+          }
+          
+          .hover\:bg-blue-800:hover {
+            background-color: #1e40af;
+          }
+          
+          .hover\:text-white:hover {
+            color: #ffffff;
+          }
+          
+          .hover\:text-blue-700:hover {
+            color: #1d4ed8;
+          }
+          
+          /* Gradientes */
+          .bg-gradient-to-br {
+            background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
+          }
+          
+          .from-blue-900 {
+            --tw-gradient-from: #1e3a8a;
+            --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(30, 58, 138, 0));
+          }
+          
+          .to-blue-700 {
+            --tw-gradient-to: #1d4ed8;
+          }
+          
+          /* Posicionamento */
+          .relative {
+            position: relative;
+          }
+          
+          .absolute {
+            position: absolute;
+          }
+          
+          .inset-0 {
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+          }
+          
+          .bottom-10 {
+            bottom: 2.5rem;
+          }
+          
+          .z-10 {
+            z-index: 10;
+          }
+          
+          /* Opacidade */
+          .opacity-50 {
+            opacity: 0.5;
+          }
+          
+          /* Animações */
+          @keyframes bounce {
+            0%, 100% {
+              transform: translateY(-25%);
+              animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+            }
+            50% {
+              transform: translateY(0);
+              animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+            }
+          }
+          
+          .animate-bounce {
+            animation: bounce 1s infinite;
+          }
+          
+          /* Responsividade */
+          @media (min-width: 768px) {
+            .md\:flex-row {
+              flex-direction: row;
+            }
+            
+            .md\:grid-cols-2 {
+              grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+            
+            .md\:grid-cols-3 {
+              grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+            
+            .md\:grid-cols-4 {
+              grid-template-columns: repeat(4, minmax(0, 1fr));
+            }
+            
+            .md\:text-2xl {
+              font-size: 1.5rem;
+              line-height: 2rem;
+            }
+            
+            .md\:text-7xl {
+              font-size: 4.5rem;
+              line-height: 1;
+            }
+          }
+          
+          /* Utilitários */
+          .w-full {
+            width: 100%;
+          }
+          
+          .h-5 {
+            height: 1.25rem;
+          }
+          
+          .h-6 {
+            height: 1.5rem;
+          }
+          
+          .h-8 {
+            height: 2rem;
+          }
+          
+          .h-16 {
+            height: 4rem;
+          }
+          
+          .h-32 {
+            height: 8rem;
+          }
+          
+          .h-96 {
+            height: 24rem;
+          }
+          
+          .w-5 {
+            width: 1.25rem;
+          }
+          
+          .w-6 {
+            width: 1.5rem;
+          }
+          
+          .w-8 {
+            width: 2rem;
+          }
+          
+          .w-16 {
+            width: 4rem;
+          }
+          
+          .max-w-2xl {
+            max-width: 42rem;
+          }
+          
+          .max-w-3xl {
+            max-width: 48rem;
+          }
+          
+          .max-w-4xl {
+            max-width: 56rem;
+          }
+          
+          .mx-auto {
+            margin-left: auto;
+            margin-right: auto;
+          }
+          
+          .block {
+            display: block;
+          }
+          
+          .hidden {
+            display: none;
+          }
+          
+          .cursor-not-allowed {
+            cursor: not-allowed;
+          }
+          
+          .disabled\:bg-gray-400:disabled {
+            background-color: #9ca3af;
+          }
+          
+          .disabled\:cursor-not-allowed:disabled {
+            cursor: not-allowed;
+          }
+          
+          .focus\:outline-none:focus {
+            outline: 2px solid transparent;
+            outline-offset: 2px;
+          }
+          
+          .focus\:ring-2:focus {
+            --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+            --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+            box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+          }
+          
+          .focus\:ring-blue-900:focus {
+            --tw-ring-color: #1e3a8a;
+          }
+        </style><script src="/semicolon/_next/static/chunks/polyfills-c67a75d1b6f99dc8.js" crossorigin="" noModule=""></script></head><body class="__className_48954d"><main style="min-height:100vh"><section style="height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(to bottom right, #1e3a8a, #1d4ed8);color:white;position:relative;overflow:hidden"><div style="position:absolute;inset:0;background-color:black;opacity:0.5"></div><div style="max-width:1200px;margin:0 auto;padding:0 1rem;text-align:center;position:relative;z-index:10"><h1 style="font-size:3.5rem;font-weight:bold;margin-bottom:1.5rem">Transforming Ideas into<span style="display:block;color:#60a5fa">Digital Reality</span></h1><p style="font-size:1.35rem;margin-bottom:2rem;max-width:48rem;margin:0 auto">Full Stack Development of high performance to boost your business</p><div style="display:flex;flex-direction:row;gap:1rem;justify-content:center"><a href="#contact" style="background-color:white;color:#1e3a8a;padding:0.75rem 2rem;border-radius:9999px;font-size:1.125rem;font-weight:600;transition:background-color 0.3s">Contact Us</a><a href="#services" style="background-color:transparent;border:2px solid white;color:white;padding:0.75rem 2rem;border-radius:9999px;font-size:1.125rem;font-weight:600;transition:all 0.3s">Our Services</a></div></div><div style="position:absolute;bottom:2.5rem"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" style="height:2rem;width:2rem;animation:bounce 1s infinite"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3"></path></svg></div></section><section style="padding:4rem 0;background-color:white"><div style="max-width:1200px;margin:0 auto;padding:0 1rem"><div style="display:grid;grid-template-columns:repeat(4, 1fr);gap:2rem;text-align:center"><div style="padding:1.5rem"><h3 style="font-size:2.25rem;font-weight:bold;color:#1e3a8a;margin-bottom:0.5rem">6+</h3><p style="color:#4b5563">Years of Experience</p></div><div style="padding:1.5rem"><h3 style="font-size:2.25rem;font-weight:bold;color:#1e3a8a;margin-bottom:0.5rem">5+</h3><p style="color:#4b5563">Completed Projects</p></div><div style="padding:1.5rem"><h3 style="font-size:2.25rem;font-weight:bold;color:#1e3a8a;margin-bottom:0.5rem">3+</h3><p style="color:#4b5563">Satisfied Clients</p></div><div style="padding:1.5rem"><h3 style="font-size:2.25rem;font-weight:bold;color:#1e3a8a;margin-bottom:0.5rem">100%</h3><p style="color:#4b5563">Commitment</p></div></div></div></section><section id="services" style="padding:5rem 0;background-color:#f9fafb"><div style="max-width:1200px;margin:0 auto;padding:0 1rem"><div style="text-align:center;margin-bottom:4rem"><h2 style="font-size:2.25rem;font-weight:bold;margin-bottom:1rem">Our Services</h2><p style="color:#4b5563;max-width:42rem;margin:0 auto">We offer complete solutions in software development to boost your business</p></div><div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:2rem"><div style="background-color:white;padding:2rem;border-radius:0.5rem;box-shadow:0 10px 15px -3px rgba(0, 0, 0, 0.1)"><div style="background-color:#dbeafe;padding:1rem;border-radius:9999px;width:4rem;height:4rem;display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" style="height:2rem;width:2rem;color:#1e3a8a"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5"></path></svg></div><h3 style="font-size:1.5rem;font-weight:600;margin-bottom:1rem">Web Development</h3><p style="color:#4b5563;margin-bottom:1.5rem">We create modern and responsive web applications using the latest technologies on the market.</p><ul style="display:flex;flex-direction:column;gap:0.5rem"><li style="display:flex;align-items:center"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" style="height:1.25rem;width:1.25rem;color:#1e3a8a;margin-right:0.5rem"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path></svg><span>Institutional Sites</span></li><li style="display:flex;align-items:center"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" style="height:1.25rem;width:1.25rem;color:#1e3a8a;margin-right:0.5rem"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path></svg><span>E-commerces</span></li><li style="display:flex;align-items:center"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" style="height:1.25rem;width:1.25rem;color:#1e3a8a;margin-right:0.5rem"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path></svg><span>Web Applications</span></li></ul></div><div style="background-color:white;padding:2rem;border-radius:0.5rem;box-shadow:0 10px 15px -3px rgba(0, 0, 0, 0.1)"><div style="background-color:#dbeafe;padding:1rem;border-radius:9999px;width:4rem;height:4rem;display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" style="height:2rem;width:2rem;color:#1e3a8a"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 0 0 6 3.75v16.5a2.25 2.25 0 0 0 2.25 2.25h7.5A2.25 2.25 0 0 0 18 20.25V3.75a2.25 2.25 0 0 0-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3"></path></svg></div><h3 style="font-size:1.5rem;font-weight:600;margin-bottom:1rem">Mobile Apps</h3><p style="color:#4b5563;margin-bottom:1.5rem">Development of native and hybrid mobile applications for iOS and Android.</p><ul style="display:flex;flex-direction:column;gap:0.5rem"><li style="display:flex;align-items:center"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" style="height:1.25rem;width:1.25rem;color:#1e3a8a;margin-right:0.5rem"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path></svg><span>Native Apps</span></li><li style="display:flex;align-items:center"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" style="height:1.25rem;width:1.25rem;color:#1e3a8a;margin-right:0.5rem"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path></svg><span>Hybrid Apps</span></li><li style="display:flex;align-items:center"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" style="height:1.25rem;width:1.25rem;color:#1e3a8a;margin-right:0.5rem"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path></svg><span>PWA</span></li></ul></div><div style="background-color:white;padding:2rem;border-radius:0.5rem;box-shadow:0 10px 15px -3px rgba(0, 0, 0, 0.1)"><div style="background-color:#dbeafe;padding:1rem;border-radius:9999px;width:4rem;height:4rem;display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" style="height:2rem;width:2rem;color:#1e3a8a"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 17.25v-.228a4.5 4.5 0 0 0-.12-1.03l-2.268-9.64a3.375 3.375 0 0 0-3.285-2.602H7.923a3.375 3.375 0 0 0-3.285 2.602l-2.268 9.64a4.5 4.5 0 0 0-.12 1.03v.228m19.5 0a3 3 0 0 1-3 3H5.25a3 3 0 0 1-3-3m19.5 0a3 3 0 0 0-3-3H5.25a3 3 0 0 0-3 3m16.5 0h.008v.008h-.008v-.008Zm-3 0h.008v.008h-.008v-.008Z"></path></svg></div><h3 style="font-size:1.5rem;font-weight:600;margin-bottom:1rem">Backend &amp; API</h3><p style="color:#4b5563;margin-bottom:1.5rem">Robust and scalable architecture for your applications with RESTful APIs.</p><ul style="display:flex;flex-direction:column;gap:0.5rem"><li style="display:flex;align-items:center"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" style="height:1.25rem;width:1.25rem;color:#1e3a8a;margin-right:0.5rem"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path></svg><span>RESTful APIs</span></li><li style="display:flex;align-items:center"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" style="height:1.25rem;width:1.25rem;color:#1e3a8a;margin-right:0.5rem"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path></svg><span>Microservices</span></li><li style="display:flex;align-items:center"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" style="height:1.25rem;width:1.25rem;color:#1e3a8a;margin-right:0.5rem"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path></svg><span>Cloud Solutions</span></li><li style="display:flex;align-items:center"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" style="height:1.25rem;width:1.25rem;color:#1e3a8a;margin-right:0.5rem"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path></svg><span>AI Solutions</span></li></ul></div></div></div></section><section style="padding:5rem 0;background-color:white"><div style="max-width:1200px;margin:0 auto;padding:0 1rem"><div style="text-align:center;margin-bottom:4rem"><h2 style="font-size:2.25rem;font-weight:bold;margin-bottom:1rem">Success Cases</h2><p style="color:#4b5563;max-width:42rem;margin:0 auto">Discover some of our most impactful projects and how we helped our clients achieve their goals</p></div><div style="display:flex;flex-direction:row;gap:1rem;justify-content:space-between;align-content:center;align-items:center"><a href="https://deepread.com" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;justify-content:center;width:100%;max-width:250px;height:100%;padding:1rem;transition:all 0.3s ease;border-radius:0.5rem;background-color:white;box-shadow:0 1px 3px rgba(0, 0, 0, 0.1)"><img src="https://devlfmd.github.io/semicolon/images/deepread-logo.png" alt="Deepread" style="width:100%;max-height:30px;object-fit:contain;border-radius:0.5rem;filter:grayscale(100%)"/></a><a href="https://leadowl.com" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;justify-content:center;width:100%;max-width:250px;height:100%;padding:1rem;transition:all 0.3s ease;border-radius:0.5rem;background-color:white;box-shadow:0 1px 3px rgba(0, 0, 0, 0.1)"><img src="https://devlfmd.github.io/semicolon/images/leadowl-logo.png" alt="LeadOwl" style="width:100%;max-height:30px;object-fit:contain;border-radius:0.5rem;filter:grayscale(100%)"/></a><a href="https://vidlo.video" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;justify-content:center;width:100%;max-width:250px;height:100%;padding:1rem;transition:all 0.3s ease;border-radius:0.5rem;background-color:white;box-shadow:0 1px 3px rgba(0, 0, 0, 0.1)"><img src="https://devlfmd.github.io/semicolon/images/vidlo-logo.png" alt="Vidlo" style="width:100%;max-height:30px;object-fit:contain;border-radius:0.5rem;filter:grayscale(100%)"/></a><a href="https://www.roboagro.com.br" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;justify-content:center;width:100%;max-width:250px;height:100%;padding:1rem;transition:all 0.3s ease;border-radius:0.5rem;background-color:white;box-shadow:0 1px 3px rgba(0, 0, 0, 0.1)"><img src="https://devlfmd.github.io/semicolon/images/roboagro-logo.png" alt="Roboagro" style="width:100%;max-height:30px;object-fit:contain;border-radius:0.5rem;filter:grayscale(100%)"/></a><a href="https://www.2local.ai" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;justify-content:center;width:100%;max-width:250px;height:100%;padding:1rem;transition:all 0.3s ease;border-radius:0.5rem;background-color:white;box-shadow:0 1px 3px rgba(0, 0, 0, 0.1)"><img src="https://devlfmd.github.io/semicolon/images/2localai-logo.png" alt="2Local.AI" style="width:100%;max-height:30px;object-fit:contain;border-radius:0.5rem;filter:grayscale(100%)"/></a><a href="https://www.sitconsistemas.com.br/pagina-iconsorcio/" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;justify-content:center;width:100%;max-width:250px;height:100%;padding:1rem;transition:all 0.3s ease;border-radius:0.5rem;background-color:white;box-shadow:0 1px 3px rgba(0, 0, 0, 0.1)"><img src="https://devlfmd.github.io/semicolon/images/iconsorcio-logo.png" alt="iConsórcio" style="width:100%;max-height:30px;object-fit:contain;border-radius:0.5rem;filter:grayscale(100%)"/></a><a href="https://escallo.com.br" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;justify-content:center;width:100%;max-width:250px;height:100%;padding:1rem;transition:all 0.3s ease;border-radius:0.5rem;background-color:white;box-shadow:0 1px 3px rgba(0, 0, 0, 0.1)"><img src="https://devlfmd.github.io/semicolon/images/escallo-logo.png" alt="Escallo" style="width:100%;max-height:30px;object-fit:contain;border-radius:0.5rem;filter:grayscale(100%)"/></a><a href="https://www.instagram.com/ybyonline/" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;justify-content:center;width:100%;max-width:250px;height:100%;padding:1rem;transition:all 0.3s ease;border-radius:0.5rem;background-color:white;box-shadow:0 1px 3px rgba(0, 0, 0, 0.1)"><img src="https://devlfmd.github.io/semicolon/images/yby-logo.png" alt="Yby Online" style="width:100%;max-height:30px;object-fit:contain;border-radius:0.5rem;filter:grayscale(100%)"/></a><a href="https://reciclebem.com.br" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;justify-content:center;width:100%;max-width:250px;height:100%;padding:1rem;transition:all 0.3s ease;border-radius:0.5rem;background-color:white;box-shadow:0 1px 3px rgba(0, 0, 0, 0.1)"><img src="https://devlfmd.github.io/semicolon/images/recicle-bem-logo.png" alt="Recicle bem" style="width:100%;max-height:30px;object-fit:contain;border-radius:0.5rem;filter:grayscale(100%)"/></a></div></div></section><section style="padding:5rem 0"><div style="max-width:1200px;margin:0 auto;padding:0 1rem"><div style="display:grid;grid-template-columns:repeat(2, 1fr);gap:3rem;align-items:center"><div><h2 style="font-size:2.25rem;font-weight:bold;margin-bottom:1.5rem">About Us</h2><p style="color:#4b5563;margin-bottom:1.5rem">We are a company specialized in full stack development, focused on creating innovative and high-quality technological solutions. Our team is composed of experienced professionals passionate about technology.</p><div style="display:flex;flex-direction:column;gap:1rem"><div style="display:flex;align-items:flex-start"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" style="height:1.5rem;width:1.5rem;color:#1e3a8a;margin-right:0.75rem;margin-top:0.25rem"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path></svg><div><h3 style="font-size:1.25rem;font-weight:600">Experience in Complex Projects</h3><p style="color:#4b5563">We develop solutions for various sectors and company sizes.</p></div></div><div style="display:flex;align-items:flex-start"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" style="height:1.5rem;width:1.5rem;color:#1e3a8a;margin-right:0.75rem;margin-top:0.25rem"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path></svg><div><h3 style="font-size:1.25rem;font-weight:600">Agile Methodologies</h3><p style="color:#4b5563">We use agile methodologies for fast and efficient deliveries.</p></div></div><div style="display:flex;align-items:flex-start"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" style="height:1.5rem;width:1.5rem;color:#1e3a8a;margin-right:0.75rem;margin-top:0.25rem"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path></svg><div><h3 style="font-size:1.25rem;font-weight:600">Specialized Technical Support</h3><p style="color:#4b5563">We offer specialized technical support for all our clients.</p></div></div></div></div></div></div></section><section id="contact" style="padding:5rem 0;background-color:#f9fafb"><div style="max-width:1200px;margin:0 auto;padding:0 1rem"><div style="text-align:center;margin-bottom:4rem"><h2 style="font-size:2.25rem;font-weight:bold;margin-bottom:1rem">Contact Us</h2><p style="color:#4b5563;max-width:42rem;margin:0 auto">We are ready to transform your idea into reality. Contact us!</p></div><div style="max-width:56rem;margin:0 auto"><div style="display:flex;flex-direction:column;align-items:center;gap:1rem"><div><div style="display:flex;flex-direction:column;gap:1.5rem;align-items:center"><div><h4 style="font-size:1.125rem;font-weight:500;margin-bottom:0.5rem;text-align:center">Email</h4><p style="color:#4b5563;text-align:center">luizfmd16@gmail.com</p></div><div><h4 style="font-size:1.125rem;font-weight:500;margin-bottom:0.5rem;text-align:center">Social Media</h4><div style="display:flex;gap:1rem;justify-content:center"><a href="https://www.linkedin.com/company/semicolondev/" style="color:#1e3a8a;display:flex;align-items:center;gap:0.5rem;text-decoration:none" target="_blank" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>LinkedIn</a><a href="https://github.com/luizfmd16" style="color:#1e3a8a;display:flex;align-items:center;gap:0.5rem;text-decoration:none" target="_blank" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path></svg>GitHub</a></div></div></div></div></div></div></div></section><footer style="background-color:#111827;color:white;padding:3rem 0"><div style="max-width:1200px;margin:0 auto;padding:0 1rem"><div style="display:grid;grid-template-columns:repeat(4, 1fr);gap:2rem"><div><h3 style="font-size:1.25rem;font-weight:600;margin-bottom:1rem">About</h3><p style="color:#9ca3af">Company specialized in full stack development, creating innovative technological solutions.</p></div><div><h3 style="font-size:1.25rem;font-weight:600;margin-bottom:1rem">Services</h3><ul style="display:flex;flex-direction:column;gap:0.5rem"><li><a href="#services" style="color:#9ca3af">Web Development</a></li><li><a href="#services" style="color:#9ca3af">Mobile Apps</a></li><li><a href="#services" style="color:#9ca3af">Backend &amp; API</a></li><li><a href="#services" style="color:#9ca3af">Consultancy</a></li></ul></div><div><h3 style="font-size:1.25rem;font-weight:600;margin-bottom:1rem">Contact</h3><ul style="display:flex;flex-direction:column;gap:0.5rem"><li style="color:#9ca3af">Email: luizfmd16@gmail.com</li><li style="color:#9ca3af">Minas Gerais, MG</li></ul></div><div><h3 style="font-size:1.25rem;font-weight:600;margin-bottom:1rem">Social Media</h3><div style="display:flex;flex-direction:column;gap:0.5rem"><a href="https://www.linkedin.com/in/luiz-fernando-dias-0a4b2a1b8/" style="color:#9ca3af">LinkedIn</a><a href="https://github.com/luizfmd16" target="_blank" rel="noopener noreferrer" style="color:#9ca3af">GitHub</a></div></div></div><div style="border-top:1px solid #1f2937;margin-top:2rem;padding-top:2rem;text-align:center;color:#9ca3af"><p>© 2025 Semicolon. All rights reserved.</p></div></div></footer></main><script src="/semicolon/_next/static/chunks/webpack-f859969ffdba3f74.js" crossorigin="" async=""></script><script>(self.__next_f=self.__next_f||[]).push([0]);self.__next_f.push([2,null])</script><script>self.__next_f.push([1,"1:HL[\"/semicolon/_next/static/media/a34f9d1faa5f3315-s.p.woff2\",\"font\",{\"crossOrigin\":\"\",\"type\":\"font/woff2\"}]\n2:HL[\"/semicolon/_next/static/css/5f332588fdd6fd5e.css\",\"style\",{\"crossOrigin\":\"\"}]\n0:\"$L3\"\n"])</script><script>self.__next_f.push([1,"4:I[7690,[],\"\"]\n6:I[7831,[],\"\"]\n7:I[7674,[\"931\",\"static/chunks/app/page-d57109d892e1e45e.js\"],\"\"]\n9:I[5613,[],\"\"]\na:I[1778,[],\"\"]\nd:I[8955,[],\"\"]\n8:T35d8,"])</script><script>self.__next_f.push([1,"\n          /* Reset e estilos base */\n          :root {\n            --foreground-rgb: 0, 0, 0;\n            --background-start-rgb: 214, 219, 220;\n            --background-end-rgb: 255, 255, 255;\n            --primary: #1e40af;\n            --secondary: #1e3a8a;\n            --accent: #3b82f6;\n            --dark: #0f172a;\n          }\n          \n          * {\n            box-sizing: border-box;\n            margin: 0;\n            padding: 0;\n          }\n          \n          html, body {\n            height: 100%;\n            width: 100%;\n            overflow-x: hidden;\n          }\n          \n          body {\n            color: rgb(var(--foreground-rgb));\n            background: rgb(var(--background-end-rgb));\n            font-family: 'Inter', sans-serif;\n            line-height: 1.5;\n          }\n          \n          /* Layout */\n          .min-h-screen {\n            min-height: 100vh;\n          }\n          \n          .container {\n            width: 100%;\n            max-width: 1200px;\n            margin-left: auto;\n            margin-right: auto;\n            padding-left: 1rem;\n            padding-right: 1rem;\n          }\n          \n          /* Flexbox */\n          .flex {\n            display: flex;\n          }\n          \n          .flex-col {\n            flex-direction: column;\n          }\n          \n          .flex-row {\n            flex-direction: row;\n          }\n          \n          .items-center {\n            align-items: center;\n          }\n          \n          .items-start {\n            align-items: flex-start;\n          }\n          \n          .justify-center {\n            justify-content: center;\n          }\n          \n          .justify-between {\n            justify-content: space-between;\n          }\n          \n          .gap-4 {\n            gap: 1rem;\n          }\n          \n          .gap-8 {\n            gap: 2rem;\n          }\n          \n          /* Grid */\n          .grid {\n            display: grid;\n          }\n          \n          .grid-cols-1 {\n            grid-template-columns: repeat(1, minmax(0, 1fr));\n          }\n          \n          .grid-cols-2 {\n            grid-template-columns: repeat(2, minmax(0, 1fr));\n          }\n          \n          .grid-cols-3 {\n            grid-template-columns: repeat(3, minmax(0, 1fr));\n          }\n          \n          .grid-cols-4 {\n            grid-template-columns: repeat(4, minmax(0, 1fr));\n          }\n          \n          /* Espaçamento */\n          .p-4 {\n            padding: 1rem;\n          }\n          \n          .p-6 {\n            padding: 1.5rem;\n          }\n          \n          .p-8 {\n            padding: 2rem;\n          }\n          \n          .px-4 {\n            padding-left: 1rem;\n            padding-right: 1rem;\n          }\n          \n          .px-6 {\n            padding-left: 1.5rem;\n            padding-right: 1.5rem;\n          }\n          \n          .px-8 {\n            padding-left: 2rem;\n            padding-right: 2rem;\n          }\n          \n          .py-3 {\n            padding-top: 0.75rem;\n            padding-bottom: 0.75rem;\n          }\n          \n          .py-4 {\n            padding-top: 1rem;\n            padding-bottom: 1rem;\n          }\n          \n          .py-6 {\n            padding-top: 1.5rem;\n            padding-bottom: 1.5rem;\n          }\n          \n          .py-8 {\n            padding-top: 2rem;\n            padding-bottom: 2rem;\n          }\n          \n          .py-12 {\n            padding-top: 3rem;\n            padding-bottom: 3rem;\n          }\n          \n          .py-16 {\n            padding-top: 4rem;\n            padding-bottom: 4rem;\n          }\n          \n          .py-20 {\n            padding-top: 5rem;\n            padding-bottom: 5rem;\n          }\n          \n          .mb-2 {\n            margin-bottom: 0.5rem;\n          }\n          \n          .mb-4 {\n            margin-bottom: 1rem;\n          }\n          \n          .mb-6 {\n            margin-bottom: 1.5rem;\n          }\n          \n          .mb-8 {\n            margin-bottom: 2rem;\n          }\n          \n          .mb-12 {\n            margin-bottom: 3rem;\n          }\n          \n          .mb-16 {\n            margin-bottom: 4rem;\n          }\n          \n          .mt-4 {\n            margin-top: 1rem;\n          }\n          \n          .mt-8 {\n            margin-top: 2rem;\n          }\n          \n          .mt-12 {\n            margin-top: 3rem;\n          }\n          \n          .mt-16 {\n            margin-top: 4rem;\n          }\n          \n          .mr-2 {\n            margin-right: 0.5rem;\n          }\n          \n          .mr-3 {\n            margin-right: 0.75rem;\n          }\n          \n          .mr-4 {\n            margin-right: 1rem;\n          }\n          \n          .space-y-2 \u003e * + * {\n            margin-top: 0.5rem;\n          }\n          \n          .space-y-4 \u003e * + * {\n            margin-top: 1rem;\n          }\n          \n          .space-y-6 \u003e * + * {\n            margin-top: 1.5rem;\n          }\n          \n          .space-x-4 \u003e * + * {\n            margin-left: 1rem;\n          }\n          \n          /* Cores */\n          .bg-white {\n            background-color: #ffffff;\n          }\n          \n          .bg-gray-50 {\n            background-color: #f9fafb;\n          }\n          \n          .bg-gray-100 {\n            background-color: #f3f4f6;\n          }\n          \n          .bg-gray-900 {\n            background-color: #111827;\n          }\n          \n          .bg-blue-100 {\n            background-color: #dbeafe;\n          }\n          \n          .bg-blue-600 {\n            background-color: #2563eb;\n          }\n          \n          .bg-blue-700 {\n            background-color: #1d4ed8;\n          }\n          \n          .bg-blue-800 {\n            background-color: #1e40af;\n          }\n          \n          .bg-blue-900 {\n            background-color: #1e3a8a;\n          }\n          \n          .text-white {\n            color: #ffffff;\n          }\n          \n          .text-gray-400 {\n            color: #9ca3af;\n          }\n          \n          .text-gray-600 {\n            color: #4b5563;\n          }\n          \n          .text-gray-700 {\n            color: #374151;\n          }\n          \n          .text-gray-800 {\n            color: #1f2937;\n          }\n          \n          .text-gray-900 {\n            color: #111827;\n          }\n          \n          .text-blue-400 {\n            color: #60a5fa;\n          }\n          \n          .text-blue-600 {\n            color: #2563eb;\n          }\n          \n          .text-blue-700 {\n            color: #1d4ed8;\n          }\n          \n          .text-blue-900 {\n            color: #1e3a8a;\n          }\n          \n          /* Tipografia */\n          .text-4xl {\n            font-size: 2.25rem;\n            line-height: 2.5rem;\n          }\n          \n          .text-5xl {\n            font-size: 3rem;\n            line-height: 1;\n          }\n          \n          .text-6xl {\n            font-size: 3.75rem;\n            line-height: 1;\n          }\n          \n          .text-lg {\n            font-size: 1.125rem;\n            line-height: 1.75rem;\n          }\n          \n          .text-xl {\n            font-size: 1.25rem;\n            line-height: 1.75rem;\n          }\n          \n          .text-2xl {\n            font-size: 1.5rem;\n            line-height: 2rem;\n          }\n          \n          .font-bold {\n            font-weight: 700;\n          }\n          \n          .font-semibold {\n            font-weight: 600;\n          }\n          \n          .font-medium {\n            font-weight: 500;\n          }\n          \n          .text-center {\n            text-align: center;\n          }\n          \n          /* Bordas e sombras */\n          .rounded-lg {\n            border-radius: 0.5rem;\n          }\n          \n          .rounded-full {\n            border-radius: 9999px;\n          }\n          \n          .border {\n            border-width: 1px;\n            border-style: solid;\n          }\n          \n          .border-2 {\n            border-width: 2px;\n            border-style: solid;\n          }\n          \n          .border-gray-800 {\n            border-color: #1f2937;\n          }\n          \n          .border-t {\n            border-top-width: 1px;\n            border-top-style: solid;\n          }\n          \n          .border-t-gray-800 {\n            border-top-color: #1f2937;\n          }\n          \n          .shadow-lg {\n            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);\n          }\n          \n          .shadow-xl {\n            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);\n          }\n          \n          /* Efeitos */\n          .transition-colors {\n            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;\n            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);\n            transition-duration: 150ms;\n          }\n          \n          .hover\\:bg-blue-100:hover {\n            background-color: #dbeafe;\n          }\n          \n          .hover\\:bg-blue-700:hover {\n            background-color: #1d4ed8;\n          }\n          \n          .hover\\:bg-blue-800:hover {\n            background-color: #1e40af;\n          }\n          \n          .hover\\:text-white:hover {\n            color: #ffffff;\n          }\n          \n          .hover\\:text-blue-700:hover {\n            color: #1d4ed8;\n          }\n          \n          /* Gradientes */\n          .bg-gradient-to-br {\n            background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));\n          }\n          \n          .from-blue-900 {\n            --tw-gradient-from: #1e3a8a;\n            --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(30, 58, 138, 0));\n          }\n          \n          .to-blue-700 {\n            --tw-gradient-to: #1d4ed8;\n          }\n          \n          /* Posicionamento */\n          .relative {\n            position: relative;\n          }\n          \n          .absolute {\n            position: absolute;\n          }\n          \n          .inset-0 {\n            top: 0;\n            right: 0;\n            bottom: 0;\n            left: 0;\n          }\n          \n          .bottom-10 {\n            bottom: 2.5rem;\n          }\n          \n          .z-10 {\n            z-index: 10;\n          }\n          \n          /* Opacidade */\n          .opacity-50 {\n            opacity: 0.5;\n          }\n          \n          /* Animações */\n          @keyframes bounce {\n            0%, 100% {\n              transform: translateY(-25%);\n              animation-timing-function: cubic-bezier(0.8, 0, 1, 1);\n            }\n            50% {\n              transform: translateY(0);\n              animation-timing-function: cubic-bezier(0, 0, 0.2, 1);\n            }\n          }\n          \n          .animate-bounce {\n            animation: bounce 1s infinite;\n          }\n          \n          /* Responsividade */\n          @media (min-width: 768px) {\n            .md\\:flex-row {\n              flex-direction: row;\n            }\n            \n            .md\\:grid-cols-2 {\n              grid-template-columns: repeat(2, minmax(0, 1fr));\n            }\n            \n            .md\\:grid-cols-3 {\n              grid-template-columns: repeat(3, minmax(0, 1fr));\n            }\n            \n            .md\\:grid-cols-4 {\n              grid-template-columns: repeat(4, minmax(0, 1fr));\n            }\n            \n            .md\\:text-2xl {\n              font-size: 1.5rem;\n              line-height: 2rem;\n            }\n            \n            .md\\:text-7xl {\n              font-size: 4.5rem;\n              line-height: 1;\n            }\n          }\n          \n          /* Utilitários */\n          .w-full {\n            width: 100%;\n          }\n          \n          .h-5 {\n            height: 1.25rem;\n          }\n          \n          .h-6 {\n            height: 1.5rem;\n          }\n          \n          .h-8 {\n            height: 2rem;\n          }\n          \n          .h-16 {\n            height: 4rem;\n          }\n          \n          .h-32 {\n            height: 8rem;\n          }\n          \n          .h-96 {\n            height: 24rem;\n          }\n          \n          .w-5 {\n            width: 1.25rem;\n          }\n          \n          .w-6 {\n            width: 1.5rem;\n          }\n          \n          .w-8 {\n            width: 2rem;\n          }\n          \n          .w-16 {\n            width: 4rem;\n          }\n          \n          .max-w-2xl {\n            max-width: 42rem;\n          }\n          \n          .max-w-3xl {\n            max-width: 48rem;\n          }\n          \n          .max-w-4xl {\n            max-width: 56rem;\n          }\n          \n          .mx-auto {\n            margin-left: auto;\n            margin-right: auto;\n          }\n          \n          .block {\n            display: block;\n          }\n          \n          .hidden {\n            display: none;\n          }\n          \n          .cursor-not-allowed {\n            cursor: not-allowed;\n          }\n          \n          .disabled\\:bg-gray-400:disabled {\n            background-color: #9ca3af;\n          }\n          \n          .disabled\\:cursor-not-allowed:disabled {\n            cursor: not-allowed;\n          }\n          \n          .focus\\:outline-none:focus {\n            outline: 2px solid transparent;\n            outline-offset: 2px;\n          }\n          \n          .focus\\:ring-2:focus {\n            --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);\n            --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);\n            box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);\n          }\n          \n          .focus\\:ring-blue-900:focus {\n            --tw-ring-color: #1e3a8a;\n          }\n        "])</script><script>self.__next_f.push([1,"b:T696,"])</script><script>self.__next_f.push([1,"\n        body {\n          font-family: 'Inter', sans-serif;\n          margin: 0;\n          padding: 0;\n        }\n        .min-h-screen {\n          min-height: 100vh;\n        }\n        .flex {\n          display: flex;\n        }\n        .items-center {\n          align-items: center;\n        }\n        .justify-center {\n          justify-content: center;\n        }\n        .text-center {\n          text-align: center;\n        }\n        .bg-gray-100 {\n          background-color: #f3f4f6;\n        }\n        .text-6xl {\n          font-size: 3.75rem;\n          line-height: 1;\n        }\n        .font-bold {\n          font-weight: 700;\n        }\n        .text-gray-900 {\n          color: #111827;\n        }\n        .mb-4 {\n          margin-bottom: 1rem;\n        }\n        .text-xl {\n          font-size: 1.25rem;\n          line-height: 1.75rem;\n        }\n        .text-gray-600 {\n          color: #4b5563;\n        }\n        .mb-8 {\n          margin-bottom: 2rem;\n        }\n        .px-6 {\n          padding-left: 1.5rem;\n          padding-right: 1.5rem;\n        }\n        .py-3 {\n          padding-top: 0.75rem;\n          padding-bottom: 0.75rem;\n        }\n        .bg-blue-600 {\n          background-color: #2563eb;\n        }\n        .text-white {\n          color: #ffffff;\n        }\n        .rounded-lg {\n          border-radius: 0.5rem;\n        }\n        .hover\\:bg-blue-700:hover {\n          background-color: #1d4ed8;\n        }\n        .transition-colors {\n          transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;\n          transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);\n          transition-duration: 150ms;\n        }\n      "])</script><script>self.__next_f.push([1,"e:[]\n"])</script><script>self.__next_f.push([1,"3:[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/semicolon/_next/static/css/5f332588fdd6fd5e.css\",\"precedence\":\"next\",\"crossOrigin\":\"\"}]],[\"$\",\"$L4\",null,{\"buildId\":\"6SG9qL5VE6UsjY0dYxt_z\",\"assetPrefix\":\"/semicolon\",\"initialCanonicalUrl\":\"/\",\"initialTree\":[\"\",{\"children\":[\"__PAGE__\",{}]},\"$undefined\",\"$undefined\",true],\"initialSeedData\":[\"\",{\"children\":[\"__PAGE__\",{},[\"$L5\",[\"$\",\"$L6\",null,{\"propsForComponent\":{\"params\":{}},\"Component\":\"$7\",\"isStaticGeneration\":true}],null]]},[null,[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[[\"$\",\"head\",null,{\"children\":[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"$8\"}}]}],[\"$\",\"body\",null,{\"className\":\"__className_48954d\",\"children\":[\"$\",\"$L9\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"loadingScripts\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$La\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"$b\"}}],[\"$\",\"div\",null,{\"className\":\"min-h-screen flex items-center justify-center bg-gray-100\",\"children\":[\"$\",\"div\",null,{\"className\":\"text-center\",\"children\":[[\"$\",\"h1\",null,{\"className\":\"text-6xl font-bold text-gray-900 mb-4\",\"children\":\"404\"}],[\"$\",\"p\",null,{\"className\":\"text-xl text-gray-600 mb-8\",\"children\":\"Página não encontrada\"}],[\"$\",\"a\",null,{\"href\":\"/semicolon/\",\"className\":\"px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors\",\"children\":\"Voltar para a página inicial\"}]]}]}]],\"notFoundStyles\":[],\"styles\":null}]}]]}],null]],\"initialHead\":[false,\"$Lc\"],\"globalErrorComponent\":\"$d\",\"missingSlots\":\"$We\"}]]\n"])</script><script>self.__next_f.push([1,"c:[[\"$\",\"meta\",\"0\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],[\"$\",\"meta\",\"1\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"2\",{\"children\":\"Empresa de Desenvolvimento Full Stack\"}],[\"$\",\"meta\",\"3\",{\"name\":\"description\",\"content\":\"Transformando ideias em realidade digital com desenvolvimento full stack de alta performance\"}],[\"$\",\"meta\",\"4\",{\"name\":\"next-size-adjust\"}]]\n5:null\n"])</script><script>self.__next_f.push([1,""])</script></body></html>

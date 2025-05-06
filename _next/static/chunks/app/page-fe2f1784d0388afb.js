@@ -326,7 +326,7 @@ function BrandsArea() {
                         alt: projects[currentIndex].title,
                         style: {
                             width: "100%",
-                            maxHeight: "60px",
+                            maxHeight: "35px",
                             objectFit: "contain",
                             borderRadius: "0.5rem",
                             filter: "grayscale(100%)"
