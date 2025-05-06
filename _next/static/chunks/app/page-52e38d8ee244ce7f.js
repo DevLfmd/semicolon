@@ -3,336 +3,11 @@
 /***/ 6518:
 /***/ (function(__unused_webpack_module, __unused_webpack_exports, __webpack_require__) {
 
-Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 6857))
+Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 7674))
 
 /***/ }),
 
-/***/ 5986:
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-// EXPORTS
-__webpack_require__.d(__webpack_exports__, {
-  ZP: function() { return /* binding */ es; }
-});
-
-// UNUSED EXPORTS: EmailJSResponseStatus, init, send, sendForm
-
-;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/models/EmailJSResponseStatus.js
-class EmailJSResponseStatus {
-    constructor(_status = 0, _text = "Network Error"){
-        this.status = _status;
-        this.text = _text;
-    }
-}
-
-;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/utils/createWebStorage/createWebStorage.js
-const createWebStorage = ()=>{
-    if (typeof localStorage === "undefined") return;
-    return {
-        get: (key)=>Promise.resolve(localStorage.getItem(key)),
-        set: (key, value)=>Promise.resolve(localStorage.setItem(key, value)),
-        remove: (key)=>Promise.resolve(localStorage.removeItem(key))
-    };
-};
-
-;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/store/store.js
-
-const store = {
-    origin: "https://api.emailjs.com",
-    blockHeadless: false,
-    storageProvider: createWebStorage()
-};
-
-;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/utils/buildOptions/buildOptions.js
-const buildOptions = (options)=>{
-    if (!options) return {};
-    // support compatibility with SDK v3
-    if (typeof options === "string") {
-        return {
-            publicKey: options
-        };
-    }
-    // eslint-disable-next-line @typescript-eslint/no-base-to-string
-    if (options.toString() === "[object Object]") {
-        return options;
-    }
-    return {};
-};
-
-;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/methods/init/init.js
-
-
-/**
- * EmailJS global SDK config
- * @param {object} options - the EmailJS global SDK config options
- * @param {string} origin - the non-default EmailJS origin
- */ const init = function(options) {
-    let origin = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : "https://api.emailjs.com";
-    if (!options) return;
-    const opts = buildOptions(options);
-    store.publicKey = opts.publicKey;
-    store.blockHeadless = opts.blockHeadless;
-    store.storageProvider = opts.storageProvider;
-    store.blockList = opts.blockList;
-    store.limitRate = opts.limitRate;
-    store.origin = opts.origin || origin;
-};
-
-;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/api/sendPost.js
-
-
-const sendPost = async function(url, data) {
-    let headers = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : {};
-    const response = await fetch(store.origin + url, {
-        method: "POST",
-        headers,
-        body: data
-    });
-    const message = await response.text();
-    const responseStatus = new EmailJSResponseStatus(response.status, message);
-    if (response.ok) {
-        return responseStatus;
-    }
-    throw responseStatus;
-};
-
-;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/utils/validateParams/validateParams.js
-const validateParams = (publicKey, serviceID, templateID)=>{
-    if (!publicKey || typeof publicKey !== "string") {
-        throw "The public key is required. Visit https://dashboard.emailjs.com/admin/account";
-    }
-    if (!serviceID || typeof serviceID !== "string") {
-        throw "The service ID is required. Visit https://dashboard.emailjs.com/admin";
-    }
-    if (!templateID || typeof templateID !== "string") {
-        throw "The template ID is required. Visit https://dashboard.emailjs.com/admin/templates";
-    }
-};
-
-;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/utils/validateTemplateParams/validateTemplateParams.js
-const validateTemplateParams = (templateParams)=>{
-    // eslint-disable-next-line @typescript-eslint/no-base-to-string
-    if (templateParams && templateParams.toString() !== "[object Object]") {
-        throw "The template params have to be the object. Visit https://www.emailjs.com/docs/sdk/send/";
-    }
-};
-
-;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/utils/isHeadless/isHeadless.js
-const isHeadless = (navigator)=>{
-    return navigator.webdriver || !navigator.languages || navigator.languages.length === 0;
-};
-
-;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/errors/headlessError/headlessError.js
-
-const headlessError = ()=>{
-    return new EmailJSResponseStatus(451, "Unavailable For Headless Browser");
-};
-
-;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/utils/validateBlockListParams/validateBlockListParams.js
-const validateBlockListParams = (list, watchVariable)=>{
-    if (!Array.isArray(list)) {
-        throw "The BlockList list has to be an array";
-    }
-    if (typeof watchVariable !== "string") {
-        throw "The BlockList watchVariable has to be a string";
-    }
-};
-
-;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/utils/isBlockedValueInParams/isBlockedValueInParams.js
-
-const isBlockListDisabled = (options)=>{
-    var _options_list;
-    return !((_options_list = options.list) === null || _options_list === void 0 ? void 0 : _options_list.length) || !options.watchVariable;
-};
-const getValue = (data, name)=>{
-    return data instanceof FormData ? data.get(name) : data[name];
-};
-const isBlockedValueInParams = (options, params)=>{
-    if (isBlockListDisabled(options)) return false;
-    validateBlockListParams(options.list, options.watchVariable);
-    const value = getValue(params, options.watchVariable);
-    if (typeof value !== "string") return false;
-    return options.list.includes(value);
-};
-
-;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/errors/blockedEmailError/blockedEmailError.js
-
-const blockedEmailError = ()=>{
-    return new EmailJSResponseStatus(403, "Forbidden");
-};
-
-;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/utils/validateLimitRateParams/validateLimitRateParams.js
-const validateLimitRateParams = (throttle, id)=>{
-    if (typeof throttle !== "number" || throttle < 0) {
-        throw "The LimitRate throttle has to be a positive number";
-    }
-    if (id && typeof id !== "string") {
-        throw "The LimitRate ID has to be a non-empty string";
-    }
-};
-
-;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/utils/isLimitRateHit/isLimitRateHit.js
-
-const getLeftTime = async (id, throttle, storage)=>{
-    const lastTime = Number(await storage.get(id) || 0);
-    return throttle - Date.now() + lastTime;
-};
-const isLimitRateHit = async (defaultID, options, storage)=>{
-    if (!options.throttle || !storage) {
-        return false;
-    }
-    validateLimitRateParams(options.throttle, options.id);
-    const id = options.id || defaultID;
-    const leftTime = await getLeftTime(id, options.throttle, storage);
-    if (leftTime > 0) {
-        return true;
-    }
-    await storage.set(id, Date.now().toString());
-    return false;
-};
-
-;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/errors/limitRateError/limitRateError.js
-
-const limitRateError = ()=>{
-    return new EmailJSResponseStatus(429, "Too Many Requests");
-};
-
-;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/methods/send/send.js
-
-
-
-
-
-
-
-
-
-
-
-/**
- * Send a template to the specific EmailJS service
- * @param {string} serviceID - the EmailJS service ID
- * @param {string} templateID - the EmailJS template ID
- * @param {object} templateParams - the template params, what will be set to the EmailJS template
- * @param {object} options - the EmailJS SDK config options
- * @returns {Promise<EmailJSResponseStatus>}
- */ const send = async (serviceID, templateID, templateParams, options)=>{
-    const opts = buildOptions(options);
-    const publicKey = opts.publicKey || store.publicKey;
-    const blockHeadless = opts.blockHeadless || store.blockHeadless;
-    const storageProvider = opts.storageProvider || store.storageProvider;
-    const blockList = {
-        ...store.blockList,
-        ...opts.blockList
-    };
-    const limitRate = {
-        ...store.limitRate,
-        ...opts.limitRate
-    };
-    if (blockHeadless && isHeadless(navigator)) {
-        return Promise.reject(headlessError());
-    }
-    validateParams(publicKey, serviceID, templateID);
-    validateTemplateParams(templateParams);
-    if (templateParams && isBlockedValueInParams(blockList, templateParams)) {
-        return Promise.reject(blockedEmailError());
-    }
-    if (await isLimitRateHit(location.pathname, limitRate, storageProvider)) {
-        return Promise.reject(limitRateError());
-    }
-    const params = {
-        lib_version: "4.4.1",
-        user_id: publicKey,
-        service_id: serviceID,
-        template_id: templateID,
-        template_params: templateParams
-    };
-    return sendPost("/api/v1.0/email/send", JSON.stringify(params), {
-        "Content-type": "application/json"
-    });
-};
-
-;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/utils/validateForm/validateForm.js
-const validateForm = (form)=>{
-    if (!form || form.nodeName !== "FORM") {
-        throw "The 3rd parameter is expected to be the HTML form element or the style selector of the form";
-    }
-};
-
-;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/methods/sendForm/sendForm.js
-
-
-
-
-
-
-
-
-
-
-
-const findHTMLForm = (form)=>{
-    return typeof form === "string" ? document.querySelector(form) : form;
-};
-/**
- * Send a form the specific EmailJS service
- * @param {string} serviceID - the EmailJS service ID
- * @param {string} templateID - the EmailJS template ID
- * @param {string | HTMLFormElement} form - the form element or selector
- * @param {object} options - the EmailJS SDK config options
- * @returns {Promise<EmailJSResponseStatus>}
- */ const sendForm = async (serviceID, templateID, form, options)=>{
-    const opts = buildOptions(options);
-    const publicKey = opts.publicKey || store.publicKey;
-    const blockHeadless = opts.blockHeadless || store.blockHeadless;
-    const storageProvider = store.storageProvider || opts.storageProvider;
-    const blockList = {
-        ...store.blockList,
-        ...opts.blockList
-    };
-    const limitRate = {
-        ...store.limitRate,
-        ...opts.limitRate
-    };
-    if (blockHeadless && isHeadless(navigator)) {
-        return Promise.reject(headlessError());
-    }
-    const currentForm = findHTMLForm(form);
-    validateParams(publicKey, serviceID, templateID);
-    validateForm(currentForm);
-    const formData = new FormData(currentForm);
-    if (isBlockedValueInParams(blockList, formData)) {
-        return Promise.reject(blockedEmailError());
-    }
-    if (await isLimitRateHit(location.pathname, limitRate, storageProvider)) {
-        return Promise.reject(limitRateError());
-    }
-    formData.append("lib_version", "4.4.1");
-    formData.append("service_id", serviceID);
-    formData.append("template_id", templateID);
-    formData.append("user_id", publicKey);
-    return sendPost("/api/v1.0/email/send-form", formData);
-};
-
-;// CONCATENATED MODULE: ./node_modules/@emailjs/browser/es/index.js
-
-
-
-
-
-/* harmony default export */ var es = ({
-    init: init,
-    send: send,
-    sendForm: sendForm,
-    EmailJSResponseStatus: EmailJSResponseStatus
-});
-
-
-/***/ }),
-
-/***/ 6857:
+/***/ 7674:
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -473,17 +148,14 @@ function ServerIcon(param, svgRef) {
 const ServerIcon_ForwardRef = /*#__PURE__*/ react.forwardRef(ServerIcon);
 /* harmony default export */ var esm_ServerIcon = (ServerIcon_ForwardRef);
 
-// EXTERNAL MODULE: ./node_modules/@emailjs/browser/es/index.js + 19 modules
-var es = __webpack_require__(5986);
-;// CONCATENATED MODULE: ./src/components/SuccessCasesCarousel.tsx
+;// CONCATENATED MODULE: ./src/components/BrandsArea.tsx
 /* __next_internal_client_entry_do_not_use__ default auto */ 
-
 const projects = [
     {
         id: 1,
         title: "Deepread",
         description: "DeepRead is a digital productivity platform that enhances how users engage with their Kindle highlights. The tool allows users to sync, organize, and refine their reading notes to build a structured, personalized knowledge system. With a focus on insight extraction and learning retention, DeepRead empowers users to transform highlights into actionable ideas and knowledge.",
-        image: "https://devlfmd.github.io/semicolon/images/deepread.png",
+        image: "https://devlfmd.github.io/semicolon/images/deepread-logo.png",
         link: "https://deepread.com",
         technologies: [
             "ReactJS",
@@ -498,7 +170,7 @@ const projects = [
         id: 2,
         title: "LeadOwl",
         description: "LeadOwl is an AI-powered sales assistant platform designed to help businesses automate lead engagement, streamline customer communication, and close more deals—24/7. The platform enables instant responses across channels like websites, WhatsApp, SMS, and social media, ensuring no lead is ever missed.",
-        image: "https://devlfmd.github.io/semicolon/images/leadowl.png",
+        image: "https://devlfmd.github.io/semicolon/images/leadowl-logo.png",
         link: "https://leadowl.com",
         technologies: [
             "Laravel",
@@ -520,7 +192,7 @@ const projects = [
         id: 3,
         title: "Vidlo",
         description: "Vidlo is a UGC (user-generated content) platform that empowers brands to easily collect and organize authentic customer video stories. By transforming real experiences into shareable, sales-driving content, Vidlo helps businesses unlock trust, engagement, and revenue through automated video capture.",
-        image: "https://devlfmd.github.io/semicolon/images/vidlo.png",
+        image: "https://devlfmd.github.io/semicolon/images/vidlo-logo.png",
         link: "https://vidlo.video",
         technologies: [
             "ReactJS",
@@ -533,7 +205,7 @@ const projects = [
         id: 4,
         title: "Roboagro",
         description: "Roboagro is Brazil's first company to automate swine feeding through an app-controlled robotic feeder. More than just an automatic trough, Roboagro is transforming swine farming with precision feeding, enhanced animal welfare, and real-time data management.",
-        image: "https://devlfmd.github.io/semicolon/images/roboagro.png",
+        image: "https://devlfmd.github.io/semicolon/images/roboagro-logo.png",
         link: "https://www.roboagro.com.br",
         technologies: [
             "Symphony PHP",
@@ -545,7 +217,7 @@ const projects = [
         id: 5,
         title: "2Local.AI",
         description: "2Local.ai is a cutting-edge AI-powered platform designed to automate and scale local business outreach. It enables marketing agencies, sales teams, and real estate professionals to discover local businesses via real-time Google Maps data, build targeted prospect lists, and launch personalized automated outreach campaigns — without relying on cold emails or spam-prone tactics.",
-        image: "https://devlfmd.github.io/semicolon/images/2localai.png",
+        image: "https://devlfmd.github.io/semicolon/images/2localai-logo.png",
         link: "https://www.2local.ai",
         technologies: [
             "Nest.JS",
@@ -560,7 +232,7 @@ const projects = [
         id: 6,
         title: "iCons\xf3rcio",
         description: "iCons\xf3rcio is a flexible, all-in-one platform built to streamline the management of health consortia, clinics, and medical practices. Its modular system allows organizations to choose and integrate only the tools they need — all in one cohesive environment.",
-        image: "https://devlfmd.github.io/semicolon/images/iconsorcio.png",
+        image: "https://devlfmd.github.io/semicolon/images/iconsorcio-logo.png",
         link: "https://www.sitconsistemas.com.br/pagina-iconsorcio/",
         technologies: [
             "React Native",
@@ -576,7 +248,7 @@ const projects = [
         id: 7,
         title: "Escallo",
         description: "Escallo is a business strategy platform that uses intelligent technology to enhance customer interactions via voice and text.",
-        image: "https://devlfmd.github.io/semicolon/images/escallo.png",
+        image: "https://devlfmd.github.io/semicolon/images/escallo-logo.png",
         link: "https://escallo.com.br",
         technologies: [
             "Php PDO",
@@ -590,8 +262,20 @@ const projects = [
         id: 8,
         title: "Yby Online",
         description: "Yby online was a platform that allowed users to create and manage their own online farm stores.",
-        image: "https://devlfmd.github.io/semicolon/images/yby.png",
+        image: "https://devlfmd.github.io/semicolon/images/yby-logo.png",
         link: "https://www.instagram.com/ybyonline/",
+        technologies: [
+            "AdonisJS",
+            "Jquery",
+            "Bootstrap"
+        ]
+    },
+    {
+        id: 9,
+        title: "Recicle bem",
+        description: "“Recycle Well, Do Good” is an innovative recycling program aimed at educational institutions. It promotes environmental awareness and sustainability by offering a complete recycling cycle. The program educates students on proper waste separation and sustainability through a rewarding system that exchanges recyclable packaging (like PET bottles) for eco-friendly gifts such as sustainable school uniforms.",
+        image: "https://devlfmd.github.io/semicolon/images/recicle-bem-logo.png",
+        link: "https://reciclebem.com.br",
         technologies: [
             "AdonisJS",
             "Jquery",
@@ -599,214 +283,56 @@ const projects = [
         ]
     }
 ];
-function SuccessCasesCarousel() {
-    const [currentIndex, setCurrentIndex] = (0,react.useState)(0);
-    const nextSlide = (0,react.useCallback)(()=>{
-        setCurrentIndex((prevIndex)=>{
-            const nextIndex = prevIndex + 1;
-            return nextIndex >= projects.length ? 0 : nextIndex;
-        });
-    }, []);
-    const prevSlide = (0,react.useCallback)(()=>{
-        setCurrentIndex((prevIndex)=>{
-            const nextIndex = prevIndex - 1;
-            return nextIndex < 0 ? projects.length - 1 : nextIndex;
-        });
-    }, []);
-    const goToSlide = (0,react.useCallback)((index)=>{
-        setCurrentIndex(index);
-    }, []);
-    return /*#__PURE__*/ (0,jsx_runtime.jsx)("div", {
-        style: {
-            maxWidth: "1200px",
-            margin: "0 auto",
-            padding: "0 1rem"
-        },
-        children: /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
+function BrandsArea() {
+    return /*#__PURE__*/ (0,jsx_runtime.jsx)(jsx_runtime.Fragment, {
+        children: /*#__PURE__*/ (0,jsx_runtime.jsx)("div", {
             style: {
-                position: "relative"
+                display: "flex",
+                flexDirection: "row",
+                gap: "1rem",
+                justifyContent: "space-between",
+                alignContent: "center",
+                alignItems: "center"
             },
-            children: [
-                /*#__PURE__*/ (0,jsx_runtime.jsx)("div", {
+            children: projects.map((project, currentIndex)=>/*#__PURE__*/ (0,jsx_runtime.jsx)("a", {
+                    href: projects[currentIndex].link,
+                    target: "_blank",
+                    rel: "noopener noreferrer",
                     style: {
-                        display: "flex",
-                        flexDirection: "column",
-                        gap: "2rem",
-                        padding: "2rem",
-                        backgroundColor: "white",
-                        borderRadius: "0.5rem",
-                        boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)"
-                    },
-                    children: /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
-                        style: {
-                            display: "flex",
-                            flexDirection: "column",
-                            gap: "1rem",
-                            alignItems: "center"
-                        },
-                        children: [
-                            /*#__PURE__*/ (0,jsx_runtime.jsx)("img", {
-                                src: projects[currentIndex].image,
-                                alt: projects[currentIndex].title,
-                                style: {
-                                    width: "100%",
-                                    maxHeight: "400px",
-                                    objectFit: "cover",
-                                    borderRadius: "0.5rem"
-                                }
-                            }),
-                            /*#__PURE__*/ (0,jsx_runtime.jsxs)("div", {
-                                style: {
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    gap: "1rem",
-                                    width: "100%"
-                                },
-                                children: [
-                                    /*#__PURE__*/ (0,jsx_runtime.jsx)("h3", {
-                                        style: {
-                                            fontSize: "1.5rem",
-                                            fontWeight: "600",
-                                            color: "#1e3a8a"
-                                        },
-                                        children: projects[currentIndex].title
-                                    }),
-                                    /*#__PURE__*/ (0,jsx_runtime.jsx)("p", {
-                                        style: {
-                                            color: "#4b5563",
-                                            lineHeight: "1.5"
-                                        },
-                                        children: projects[currentIndex].description
-                                    }),
-                                    /*#__PURE__*/ (0,jsx_runtime.jsx)("div", {
-                                        style: {
-                                            display: "flex",
-                                            flexWrap: "wrap",
-                                            gap: "0.5rem"
-                                        },
-                                        children: projects[currentIndex].technologies.map((tech, index)=>/*#__PURE__*/ (0,jsx_runtime.jsx)("span", {
-                                                style: {
-                                                    padding: "0.25rem 0.75rem",
-                                                    backgroundColor: "#dbeafe",
-                                                    color: "#1e3a8a",
-                                                    borderRadius: "9999px",
-                                                    fontSize: "0.875rem"
-                                                },
-                                                children: tech
-                                            }, index))
-                                    }),
-                                    /*#__PURE__*/ (0,jsx_runtime.jsx)("a", {
-                                        href: projects[currentIndex].link,
-                                        target: "_blank",
-                                        rel: "noopener noreferrer",
-                                        style: {
-                                            display: "inline-block",
-                                            padding: "0.75rem 1.5rem",
-                                            backgroundColor: "#1e3a8a",
-                                            color: "white",
-                                            borderRadius: "0.5rem",
-                                            textDecoration: "none",
-                                            textAlign: "center",
-                                            marginTop: "1rem",
-                                            transition: "background-color 0.3s"
-                                        },
-                                        onMouseOver: (e)=>e.currentTarget.style.backgroundColor = "#1e40af",
-                                        onMouseOut: (e)=>e.currentTarget.style.backgroundColor = "#1e3a8a",
-                                        children: "View Project"
-                                    })
-                                ]
-                            })
-                        ]
-                    })
-                }),
-                /*#__PURE__*/ (0,jsx_runtime.jsx)("button", {
-                    onClick: prevSlide,
-                    style: {
-                        position: "absolute",
-                        left: "-1rem",
-                        top: "50%",
-                        transform: "translateY(-50%)",
-                        backgroundColor: "white",
-                        padding: "0.5rem",
-                        borderRadius: "9999px",
-                        border: "none",
-                        boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
-                        cursor: "pointer",
                         display: "flex",
                         alignItems: "center",
-                        justifyContent: "center"
-                    },
-                    "aria-label": "Previous project",
-                    children: /*#__PURE__*/ (0,jsx_runtime.jsx)("svg", {
-                        xmlns: "http://www.w3.org/2000/svg",
-                        width: "24",
-                        height: "24",
-                        viewBox: "0 0 24 24",
-                        fill: "none",
-                        stroke: "currentColor",
-                        strokeWidth: "2",
-                        strokeLinecap: "round",
-                        strokeLinejoin: "round",
-                        children: /*#__PURE__*/ (0,jsx_runtime.jsx)("path", {
-                            d: "M15 18l-6-6 6-6"
-                        })
-                    })
-                }),
-                /*#__PURE__*/ (0,jsx_runtime.jsx)("button", {
-                    onClick: nextSlide,
-                    style: {
-                        position: "absolute",
-                        right: "-1rem",
-                        top: "50%",
-                        transform: "translateY(-50%)",
-                        backgroundColor: "white",
-                        padding: "0.5rem",
-                        borderRadius: "9999px",
-                        border: "none",
-                        boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
-                        cursor: "pointer",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center"
-                    },
-                    "aria-label": "Next project",
-                    children: /*#__PURE__*/ (0,jsx_runtime.jsx)("svg", {
-                        xmlns: "http://www.w3.org/2000/svg",
-                        width: "24",
-                        height: "24",
-                        viewBox: "0 0 24 24",
-                        fill: "none",
-                        stroke: "currentColor",
-                        strokeWidth: "2",
-                        strokeLinecap: "round",
-                        strokeLinejoin: "round",
-                        children: /*#__PURE__*/ (0,jsx_runtime.jsx)("path", {
-                            d: "M9 18l6-6-6-6"
-                        })
-                    })
-                }),
-                /*#__PURE__*/ (0,jsx_runtime.jsx)("div", {
-                    style: {
-                        display: "flex",
                         justifyContent: "center",
-                        gap: "0.5rem",
-                        marginTop: "1rem"
+                        width: "100%",
+                        maxWidth: "250px",
+                        height: "100%",
+                        padding: "1rem",
+                        transition: "all 0.3s ease",
+                        borderRadius: "0.5rem",
+                        backgroundColor: "white",
+                        boxShadow: "0 1px 3px rgba(0, 0, 0, 0.1)"
                     },
-                    children: projects.map((_, index)=>/*#__PURE__*/ (0,jsx_runtime.jsx)("button", {
-                            onClick: ()=>goToSlide(index),
-                            style: {
-                                width: "0.5rem",
-                                height: "0.5rem",
-                                borderRadius: "9999px",
-                                border: "none",
-                                cursor: "pointer",
-                                backgroundColor: index === currentIndex ? "#1e3a8a" : "#d1d5db",
-                                transition: "background-color 0.3s"
-                            },
-                            "aria-label": "Go to project ".concat(index + 1)
-                        }, index))
-                })
-            ]
+                    onMouseOver: (e)=>{
+                        e.currentTarget.style.transform = "translateY(-4px)";
+                        e.currentTarget.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)";
+                        e.currentTarget.querySelector("img").style.filter = "grayscale(0%)";
+                    },
+                    onMouseOut: (e)=>{
+                        e.currentTarget.style.transform = "translateY(0)";
+                        e.currentTarget.style.boxShadow = "0 1px 3px rgba(0, 0, 0, 0.1)";
+                        e.currentTarget.querySelector("img").style.filter = "grayscale(100%)";
+                    },
+                    children: /*#__PURE__*/ (0,jsx_runtime.jsx)("img", {
+                        src: projects[currentIndex].image,
+                        alt: projects[currentIndex].title,
+                        style: {
+                            width: "100%",
+                            maxHeight: "60px",
+                            objectFit: "contain",
+                            borderRadius: "0.5rem",
+                            filter: "grayscale(100%)"
+                        }
+                    })
+                }, currentIndex))
         })
     });
 }
@@ -815,93 +341,7 @@ function SuccessCasesCarousel() {
 /* __next_internal_client_entry_do_not_use__ default auto */ 
 
 
-
-
 function Home() {
-    const [formData, setFormData] = (0,react.useState)({
-        name: "",
-        email: "",
-        phone: "",
-        message: ""
-    });
-    const [isSubmitting, setIsSubmitting] = (0,react.useState)(false);
-    const [submitStatus, setSubmitStatus] = (0,react.useState)(null);
-    // Initialize EmailJS
-    (0,react.useEffect)(()=>{
-        try {
-            es/* default.init */.ZP.init("fkyTKEWPMpDZrvJIJ");
-            console.log("EmailJS initialized successfully");
-        } catch (error) {
-            console.error("Error initializing EmailJS:", error);
-        }
-    }, []);
-    const handleChange = (e)=>{
-        const { name, value } = e.target;
-        setFormData((prev)=>({
-                ...prev,
-                [name]: value
-            }));
-    };
-    const handleSubmit = async (e)=>{
-        e.preventDefault();
-        console.log("Form submitted", formData);
-        // Basic validation
-        if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
-            setSubmitStatus({
-                success: false,
-                message: "Please fill in all required fields."
-            });
-            return;
-        }
-        // Email validation
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(formData.email)) {
-            setSubmitStatus({
-                success: false,
-                message: "Please enter a valid email address."
-            });
-            return;
-        }
-        setIsSubmitting(true);
-        setSubmitStatus(null);
-        try {
-            console.log("Starting email sending...");
-            const serviceId = "service_3fezsm8";
-            const templateId = "template_w17cycd";
-            const publicKey = "fkyTKEWPMpDZrvJIJ";
-            const templateParams = {
-                from_name: formData.name,
-                from_email: formData.email,
-                phone: formData.phone,
-                message: formData.message
-            };
-            console.log("Template parameters:", templateParams);
-            const result = await es/* default.send */.ZP.send(serviceId, templateId, templateParams, publicKey);
-            console.log("Sending result:", result);
-            if (result.text === "OK") {
-                setSubmitStatus({
-                    success: true,
-                    message: "Message sent successfully! We will contact you soon."
-                });
-                setFormData({
-                    name: "",
-                    email: "",
-                    phone: "",
-                    message: ""
-                });
-            } else {
-                throw new Error("Failed to send message");
-            }
-        } catch (error) {
-            console.error("Error sending email:", error);
-            setSubmitStatus({
-                success: false,
-                message: "An error occurred while sending your message. Please try again later."
-            });
-        } finally{
-            setIsSubmitting(false);
-        }
-    };
     return /*#__PURE__*/ (0,jsx_runtime.jsxs)("main", {
         style: {
             minHeight: "100vh"
@@ -1565,7 +1005,7 @@ function Home() {
                                 })
                             ]
                         }),
-                        /*#__PURE__*/ (0,jsx_runtime.jsx)(SuccessCasesCarousel, {})
+                        /*#__PURE__*/ (0,jsx_runtime.jsx)(BrandsArea, {})
                     ]
                 })
             }),
